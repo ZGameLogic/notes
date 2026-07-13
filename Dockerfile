@@ -1,9 +1,9 @@
 FROM node:25.9.0-bookworm
 
 WORKDIR /app
-COPY package.json package-lock.json* ./
-RUN npm ci
+
 COPY .next .next
+COPY node_modules node_modules
 
 EXPOSE 3000
-CMD ["npm", "start"]
+CMD ["next", "start"]
