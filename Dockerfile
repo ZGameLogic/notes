@@ -1,9 +1,9 @@
 FROM node:25.9.0-bookworm
 
-RUN npm install -g next
-
+WORKDIR /app
+COPY package.json package-lock.json* ./
+RUN npm ci
 COPY .next .next
 
 EXPOSE 3000
-
-CMD ["next", "start"]
+CMD ["npm", "start"]
