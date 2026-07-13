@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notes
+  labels:
+    app: notes
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: notes
+  template:
+    metadata:
+      name: notes
+      labels:
+        app: notes
+    spec:
+      containers:
+        - name: notes
+          image: ghcr.io/zgamelogic/notes:production
+          imagePullPolicy: Always
+          env:
+            - name: TZ
+              value: "America/Chicago"
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: ghcr-secret

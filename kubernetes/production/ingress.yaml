@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: notes
+  labels:
+    route53: notes
+spec:
+  rules:
+    - host: "notes.zgamelogic.com"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: notes
+                port:
+                  number: 8080
+  tls:
+    - hosts:
+        - "notes.zgamelogic.com"
+      secretName: ingress-tls

@@ -1,0 +1,18 @@
+name: Minecraft Server Manager Deploy Production
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    permissions:
+      contents: read
+      packages: write
+    uses: zgamelogic/github-actions/.github/workflows/kubernetes-react-deploy.yaml@v1.0.3
+    with:
+      environment: production
+      forceDeploy: true
+      deploymentName: notes
+      imageName: notes
