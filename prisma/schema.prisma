@@ -1,0 +1,56 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model aliases {
+  record_id String  @db.Uuid
+  alias     String  @db.VarChar
+  records   records @relation(fields: [record_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "aliases_records_id_fk")
+
+  @@id([alias, record_id], map: "aliases_pk")
+}
+
+model record_types {
+  record_type                                                   String           @id(map: "record_types_pk") @db.VarChar
+  records                                                       records[]
+  relation_types_relation_types_right_record_typeTorecord_types relation_types[] @relation("relation_types_right_record_typeTorecord_types")
+  relation_types_relation_types_left_record_typeTorecord_types  relation_types[] @relation("relation_types_left_record_typeTorecord_types")
+}
+
+model records {
+  id                                        String       @id(map: "records_pk") @db.Uuid
+  type                                      String       @db.VarChar
+  notes                                     String?      @db.VarChar
+  aliases                                   aliases[]
+  record_types                              record_types @relation(fields: [type], references: [record_type], onDelete: NoAction, onUpdate: NoAction, map: "records_record_types_record_type_fk")
+  relations_relations_left_recordTorecords  relations[]  @relation("relations_left_recordTorecords")
+  relations_relations_right_recordTorecords relations[]  @relation("relations_right_recordTorecords")
+}
+
+model relation_types {
+  left_record_type                                            String       @db.VarChar
+  right_record_type                                           String       @db.VarChar
+  left_to_right_phrase                                        String       @db.VarChar
+  right_to_left_phrase                                        String       @db.VarChar
+  relation_type                                               String       @id(map: "relation_types_pk") @db.VarChar
+  record_types_relation_types_right_record_typeTorecord_types record_types @relation("relation_types_right_record_typeTorecord_types", fields: [right_record_type], references: [record_type], onDelete: NoAction, onUpdate: NoAction, map: "relation_types_record_types_record_type_fk")
+  record_types_relation_types_left_record_typeTorecord_types  record_types @relation("relation_types_left_record_typeTorecord_types", fields: [left_record_type], references: [record_type], onDelete: NoAction, onUpdate: NoAction, map: "relation_types_record_types_record_type_fk_2")
+  relations                                                   relations[]
+}
+
+model relations {
+  left_record                             String         @db.Uuid
+  right_record                            String         @db.Uuid
+  notes                                   String?        @db.VarChar
+  relation_type                           String         @db.VarChar
+  records_relations_left_recordTorecords  records        @relation("relations_left_recordTorecords", fields: [left_record], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "relations_records_id_fk")
+  records_relations_right_recordTorecords records        @relation("relations_right_recordTorecords", fields: [right_record], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "relations_records_id_fk_2")
+  relation_types                          relation_types @relation(fields: [relation_type], references: [relation_type], onDelete: NoAction, onUpdate: NoAction, map: "relations_relation_types_relation_type_fk")
+
+  @@id([left_record, right_record, relation_type], map: "relations_pk")
+}
