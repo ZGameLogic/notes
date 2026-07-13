@@ -15,7 +15,7 @@ spec:
               service:
                 name: notes
                 port:
-                  number: 8080
+                  number: 3000
   tls:
     - hosts:
         - "notes.zgamelogic.com"
