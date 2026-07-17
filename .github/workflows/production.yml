@@ -1,4 +1,4 @@
-name: Minecraft Server Manager Deploy Production
+name: Notes deploy production
 
 on:
   push:
