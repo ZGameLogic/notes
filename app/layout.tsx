@@ -3,6 +3,7 @@ import {ReactNode} from "react";
 import ThemeWrapper from "@/app/ThemeWrapper";
 import {AppRouterCacheProvider} from "@mui/material-nextjs/v13-appRouter";
 import "./globals.css";
+import AppDrawer from "@/app/components/AppDrawer";
 
 export const metadata: Metadata = {
   title: "Dungeons and Dragons Notes",
@@ -14,7 +15,8 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
     <body>
       <AppRouterCacheProvider options={{ enableCssLayer: true }}>
         <ThemeWrapper>
-            {children}
+          <AppDrawer />
+          {children}
         </ThemeWrapper>
       </AppRouterCacheProvider>
     </body>
