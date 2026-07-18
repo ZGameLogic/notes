@@ -48,8 +48,14 @@ async function saveUserAuthData(notes_token: string, dAuth: DiscordAuthenticatio
   });
 }
 
-function updateExpiredToken(data: auth_data){
+async function findByNotesToken(notes_token: string){
+  if(!databaseService?.prisma) throw new Error('Database service not initialized');
+  const data = await databaseService.prisma.auth_data.findFirst({
+    where: { notes_token }
+  });
 
+  if(data === null) throw new Error(`No auth data found for notes_token: ${notes_token}`);
+  return data;
 }
 
-export { fetchExpiringDiscordTokens, updateExpiredToken, saveUserAuthData }
+export { fetchExpiringDiscordTokens, findByNotesToken, saveUserAuthData }
