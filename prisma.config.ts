@@ -6,7 +6,7 @@ import { configService } from "./app/lib/ConfigService";
 
 process.env.CONFIG_PROFILE = 'production';
 await configService.init();
-const connectionString = `postgresql://${process.env['next.datasource.username']}:${process.env['next.datasource.password']}@${process.env['next.datasource.url']}?sslmode=disable`;
+const connectionString = `postgresql://${process.env['datasource.username']}:${process.env['datasource.password']}@${process.env['datasource.url']}?sslmode=disable`;
 
 export default defineConfig({
   schema: "prisma/schema.prisma",

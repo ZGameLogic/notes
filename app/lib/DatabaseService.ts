@@ -6,8 +6,8 @@ class DatabaseService {
 
   async init(): Promise<void> {
     if(this.prisma !== undefined) return;
-    const connectionString = `postgresql://${process.env['next.datasource.username']}:${process.env['next.datasource.password']}@${process.env['next.datasource.url']}?sslmode=disable`;
-    const adapter = new PrismaPg({ connectionString }, { schema: process.env['next.datasource.schema'] });
+    const connectionString = `postgresql://${process.env['datasource.username']}:${process.env['datasource.password']}@${process.env['datasource.url']}?sslmode=disable`;
+    const adapter = new PrismaPg({ connectionString });
     this.prisma = new PrismaClient({ adapter });
     console.log("DatabaseService initialized");
   }
