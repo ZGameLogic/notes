@@ -1,6 +1,6 @@
 import {databaseService} from "@/app/lib/DatabaseService";
 import {NextResponse} from "next/server";
-import {authorizeWithDiscordCode, getDiscordUserFromDiscordToken} from "@/app/lib/DiscordService";
+import {authorizeWithCode} from "@/app/lib/AuthenticationService";
 
 export async function GET(){
   return NextResponse.json(await databaseService?.prisma?.records.findMany());
@@ -8,9 +8,7 @@ export async function GET(){
 
 export async function POST(req: Request) {
   const body = await req.json();
-  const code = body.token;
+  const code = body.code;
 
-  console.log(await getDiscordUserFromDiscordToken(code));
-
-  return NextResponse.json(body);
+  return NextResponse.json(await authorizeWithCode(code, 'http://localhost:3000/login'));
 }

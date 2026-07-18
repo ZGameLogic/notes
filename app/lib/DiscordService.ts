@@ -1,7 +1,7 @@
 export type DiscordAuthenticationResponse = {
   token_type: string
   access_token: string
-  expires_in: bigint
+  expires_in: number
   refresh_token: string
   scope: string
 }

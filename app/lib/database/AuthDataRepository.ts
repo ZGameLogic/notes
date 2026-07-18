@@ -15,22 +15,41 @@ async function fetchExpiringDiscordTokens(): Promise<auth_data[]> {
   });
 }
 
-async function createUserAuthData(notes_token: string, dAuth: DiscordAuthenticationResponse, dUser: DiscordUserResponse){
-  // TODO db service and prisma check
+async function saveUserAuthData(notes_token: string, dAuth: DiscordAuthenticationResponse, dUser: DiscordUserResponse){
+  if(!databaseService?.prisma) throw new Error('Database service not initialized');
 
-  const data: auth_data = {
-    notes_token,
-    discord_refresh_token: dAuth.refresh_token,
-    discord_token: dAuth.access_token,
-    discord_token_expiration: new Date(`${dAuth.expires_in}`),
-    discord_id: dUser.id
-  };
+  await databaseService.prisma.users.upsert({
+    where: { id: dUser.id },
+    create: {
+      id: dUser.id,
+      username: dUser.username,
+      avatar: dUser.avatar || null,
+    },
+    update: {
+      username: dUser.username,
+      avatar: dUser.avatar || null,
+    },
+  });
 
-  const newAuthData =  databaseService?.prisma?.auth_data.create(data);
+  return await databaseService.prisma.auth_data.upsert({
+    where: { notes_token: notes_token },
+    create: {
+      notes_token,
+      discord_refresh_token: dAuth.refresh_token,
+      discord_token: dAuth.access_token,
+      discord_token_expiration: new Date(Date.now() + (dAuth.expires_in * 1000)),
+      discord_id: dUser.id
+    },
+    update: {
+      discord_refresh_token: dAuth.refresh_token,
+      discord_token: dAuth.access_token,
+      discord_token_expiration: new Date(Date.now() + (dAuth.expires_in * 1000))
+    }
+  });
 }
 
 function updateExpiredToken(data: auth_data){
 
 }
 
-export { fetchExpiringDiscordTokens, updateExpiredToken }
+export { fetchExpiringDiscordTokens, updateExpiredToken, saveUserAuthData }
