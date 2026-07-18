@@ -10,5 +10,5 @@ export async function register() {
     await databaseService.init();
   }
 
-  new Cron('0 */5 * * * *', refreshExpiredTokens);
+  new Cron('*/5 * * * * *', refreshExpiredTokens);
 }

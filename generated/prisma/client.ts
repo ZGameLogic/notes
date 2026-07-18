@@ -66,3 +66,13 @@ export type relation_types = Prisma.relation_typesModel
  * 
  */
 export type relations = Prisma.relationsModel
+/**
+ * Model auth_data
+ * 
+ */
+export type auth_data = Prisma.auth_dataModel
+/**
+ * Model users
+ * 
+ */
+export type users = Prisma.usersModel

@@ -55,7 +55,9 @@ export const ModelName = {
   record_types: 'record_types',
   records: 'records',
   relation_types: 'relation_types',
-  relations: 'relations'
+  relations: 'relations',
+  auth_data: 'auth_data',
+  users: 'users'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -117,6 +119,26 @@ export const RelationsScalarFieldEnum = {
 } as const
 
 export type RelationsScalarFieldEnum = (typeof RelationsScalarFieldEnum)[keyof typeof RelationsScalarFieldEnum]
+
+
+export const Auth_dataScalarFieldEnum = {
+  notes_token: 'notes_token',
+  discord_refresh_token: 'discord_refresh_token',
+  discord_token: 'discord_token',
+  discord_token_expiration: 'discord_token_expiration',
+  discord_id: 'discord_id'
+} as const
+
+export type Auth_dataScalarFieldEnum = (typeof Auth_dataScalarFieldEnum)[keyof typeof Auth_dataScalarFieldEnum]
+
+
+export const UsersScalarFieldEnum = {
+  id: 'id',
+  avatar: 'avatar',
+  username: 'username'
+} as const
+
+export type UsersScalarFieldEnum = (typeof UsersScalarFieldEnum)[keyof typeof UsersScalarFieldEnum]
 
 
 export const SortOrder = {
