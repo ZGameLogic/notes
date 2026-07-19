@@ -41,6 +41,7 @@ export function AuthDataProvider({ children }: PropsWithChildren){
 
   useEffect(() => {
     authorizeWithNotesToken().then(authData => {
+      if(!authData) return;
       setServerAuthData(authData);
       router.replace(pathName);
     }).catch(() => {});

@@ -48,7 +48,7 @@ export async function authorizeWithCode(code: string): Promise<AuthenticationDat
   };
 }
 
-export async function authorizeWithNotesToken(): Promise<AuthenticationData> {
+export async function authorizeWithNotesToken(): Promise<AuthenticationData | undefined> {
   try {
     const notes_token = (await cookies()).get('notes_token')?.value;
     if (!notes_token) throw new Error('No token found on cookie data');
@@ -61,8 +61,8 @@ export async function authorizeWithNotesToken(): Promise<AuthenticationData> {
       username: userData.username,
       avatar: userData.avatar
     };
-  } catch (err) {
-    return Promise.reject(err);
+  } catch {
+    return undefined;
   }
 }
 
