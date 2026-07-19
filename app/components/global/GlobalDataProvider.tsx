@@ -10,10 +10,30 @@ export function GlobalDataProvider({ children }: PropsWithChildren){
   const [campaigns, setCampaigns] = useState<campaigns[]>([]);
 
   useEffect(() => {
+    const id = typeof window !== 'undefined' ? localStorage.getItem('camp_id') : null;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    if(id) setSelectedCampaign(id);
+
     getAllCampaigns().then(data => {
       setCampaigns(data);
     }).catch();
   }, []);
+
+  useEffect(() => {
+    if(selectedCampaign && selectedCampaign !== '') {
+      localStorage.setItem('camp_id', selectedCampaign);
+    } else {
+      localStorage.removeItem('camp_id')
+    }
+  }, [selectedCampaign])
+  
+  useEffect(() => {
+    if(!selectedCampaign) return;
+    if(campaigns.length === 0) return;
+    if(campaigns.map(c => c.id).includes(selectedCampaign)) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setSelectedCampaign(undefined);
+  }, [campaigns, selectedCampaign]);
 
   return <GlobalDataContext.Provider value={{
     selectedCampaignId: selectedCampaign,
