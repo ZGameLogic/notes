@@ -76,6 +76,7 @@ model users {
 
 model campaigns {
   id              String             @id(map: "campaign_pk") @db.Uuid
+  name            String
   created         DateTime           @db.Timestamp(6)
   campaignPlayers campaign_players[]
   records         records[]

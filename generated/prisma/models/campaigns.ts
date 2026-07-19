@@ -26,16 +26,19 @@ export type AggregateCampaigns = {
 
 export type CampaignsMinAggregateOutputType = {
   id: string | null
+  name: string | null
   created: Date | null
 }
 
 export type CampaignsMaxAggregateOutputType = {
   id: string | null
+  name: string | null
   created: Date | null
 }
 
 export type CampaignsCountAggregateOutputType = {
   id: number
+  name: number
   created: number
   _all: number
 }
@@ -43,16 +46,19 @@ export type CampaignsCountAggregateOutputType = {
 
 export type CampaignsMinAggregateInputType = {
   id?: true
+  name?: true
   created?: true
 }
 
 export type CampaignsMaxAggregateInputType = {
   id?: true
+  name?: true
   created?: true
 }
 
 export type CampaignsCountAggregateInputType = {
   id?: true
+  name?: true
   created?: true
   _all?: true
 }
@@ -131,6 +137,7 @@ export type campaignsGroupByArgs<ExtArgs extends runtime.Types.Extensions.Intern
 
 export type CampaignsGroupByOutputType = {
   id: string
+  name: string
   created: Date
   _count: CampaignsCountAggregateOutputType | null
   _min: CampaignsMinAggregateOutputType | null
@@ -157,6 +164,7 @@ export type campaignsWhereInput = {
   OR?: Prisma.campaignsWhereInput[]
   NOT?: Prisma.campaignsWhereInput | Prisma.campaignsWhereInput[]
   id?: Prisma.UuidFilter<"campaigns"> | string
+  name?: Prisma.StringFilter<"campaigns"> | string
   created?: Prisma.DateTimeFilter<"campaigns"> | Date | string
   campaignPlayers?: Prisma.Campaign_playersListRelationFilter
   records?: Prisma.RecordsListRelationFilter
@@ -164,6 +172,7 @@ export type campaignsWhereInput = {
 
 export type campaignsOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  name?: Prisma.SortOrder
   created?: Prisma.SortOrder
   campaignPlayers?: Prisma.campaign_playersOrderByRelationAggregateInput
   records?: Prisma.recordsOrderByRelationAggregateInput
@@ -174,6 +183,7 @@ export type campaignsWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.campaignsWhereInput | Prisma.campaignsWhereInput[]
   OR?: Prisma.campaignsWhereInput[]
   NOT?: Prisma.campaignsWhereInput | Prisma.campaignsWhereInput[]
+  name?: Prisma.StringFilter<"campaigns"> | string
   created?: Prisma.DateTimeFilter<"campaigns"> | Date | string
   campaignPlayers?: Prisma.Campaign_playersListRelationFilter
   records?: Prisma.RecordsListRelationFilter
@@ -181,6 +191,7 @@ export type campaignsWhereUniqueInput = Prisma.AtLeast<{
 
 export type campaignsOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  name?: Prisma.SortOrder
   created?: Prisma.SortOrder
   _count?: Prisma.campaignsCountOrderByAggregateInput
   _max?: Prisma.campaignsMaxOrderByAggregateInput
@@ -192,11 +203,13 @@ export type campaignsScalarWhereWithAggregatesInput = {
   OR?: Prisma.campaignsScalarWhereWithAggregatesInput[]
   NOT?: Prisma.campaignsScalarWhereWithAggregatesInput | Prisma.campaignsScalarWhereWithAggregatesInput[]
   id?: Prisma.UuidWithAggregatesFilter<"campaigns"> | string
+  name?: Prisma.StringWithAggregatesFilter<"campaigns"> | string
   created?: Prisma.DateTimeWithAggregatesFilter<"campaigns"> | Date | string
 }
 
 export type campaignsCreateInput = {
   id: string
+  name: string
   created: Date | string
   campaignPlayers?: Prisma.campaign_playersCreateNestedManyWithoutCampaign_playersTocampaignsInput
   records?: Prisma.recordsCreateNestedManyWithoutRecordsTocampaignsInput
@@ -204,6 +217,7 @@ export type campaignsCreateInput = {
 
 export type campaignsUncheckedCreateInput = {
   id: string
+  name: string
   created: Date | string
   campaignPlayers?: Prisma.campaign_playersUncheckedCreateNestedManyWithoutCampaign_playersTocampaignsInput
   records?: Prisma.recordsUncheckedCreateNestedManyWithoutRecordsTocampaignsInput
@@ -211,6 +225,7 @@ export type campaignsUncheckedCreateInput = {
 
 export type campaignsUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaignPlayers?: Prisma.campaign_playersUpdateManyWithoutCampaign_playersTocampaignsNestedInput
   records?: Prisma.recordsUpdateManyWithoutRecordsTocampaignsNestedInput
@@ -218,6 +233,7 @@ export type campaignsUpdateInput = {
 
 export type campaignsUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaignPlayers?: Prisma.campaign_playersUncheckedUpdateManyWithoutCampaign_playersTocampaignsNestedInput
   records?: Prisma.recordsUncheckedUpdateManyWithoutRecordsTocampaignsNestedInput
@@ -225,16 +241,19 @@ export type campaignsUncheckedUpdateInput = {
 
 export type campaignsCreateManyInput = {
   id: string
+  name: string
   created: Date | string
 }
 
 export type campaignsUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type campaignsUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -245,16 +264,19 @@ export type CampaignsScalarRelationFilter = {
 
 export type campaignsCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  name?: Prisma.SortOrder
   created?: Prisma.SortOrder
 }
 
 export type campaignsMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  name?: Prisma.SortOrder
   created?: Prisma.SortOrder
 }
 
 export type campaignsMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  name?: Prisma.SortOrder
   created?: Prisma.SortOrder
 }
 
@@ -288,12 +310,14 @@ export type campaignsUpdateOneRequiredWithoutCampaignPlayersNestedInput = {
 
 export type campaignsCreateWithoutRecordsInput = {
   id: string
+  name: string
   created: Date | string
   campaignPlayers?: Prisma.campaign_playersCreateNestedManyWithoutCampaign_playersTocampaignsInput
 }
 
 export type campaignsUncheckedCreateWithoutRecordsInput = {
   id: string
+  name: string
   created: Date | string
   campaignPlayers?: Prisma.campaign_playersUncheckedCreateNestedManyWithoutCampaign_playersTocampaignsInput
 }
@@ -316,24 +340,28 @@ export type campaignsUpdateToOneWithWhereWithoutRecordsInput = {
 
 export type campaignsUpdateWithoutRecordsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaignPlayers?: Prisma.campaign_playersUpdateManyWithoutCampaign_playersTocampaignsNestedInput
 }
 
 export type campaignsUncheckedUpdateWithoutRecordsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaignPlayers?: Prisma.campaign_playersUncheckedUpdateManyWithoutCampaign_playersTocampaignsNestedInput
 }
 
 export type campaignsCreateWithoutCampaignPlayersInput = {
   id: string
+  name: string
   created: Date | string
   records?: Prisma.recordsCreateNestedManyWithoutRecordsTocampaignsInput
 }
 
 export type campaignsUncheckedCreateWithoutCampaignPlayersInput = {
   id: string
+  name: string
   created: Date | string
   records?: Prisma.recordsUncheckedCreateNestedManyWithoutRecordsTocampaignsInput
 }
@@ -356,12 +384,14 @@ export type campaignsUpdateToOneWithWhereWithoutCampaignPlayersInput = {
 
 export type campaignsUpdateWithoutCampaignPlayersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   records?: Prisma.recordsUpdateManyWithoutRecordsTocampaignsNestedInput
 }
 
 export type campaignsUncheckedUpdateWithoutCampaignPlayersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   records?: Prisma.recordsUncheckedUpdateManyWithoutRecordsTocampaignsNestedInput
 }
@@ -408,6 +438,7 @@ export type CampaignsCountOutputTypeCountRecordsArgs<ExtArgs extends runtime.Typ
 
 export type campaignsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  name?: boolean
   created?: boolean
   campaignPlayers?: boolean | Prisma.campaigns$campaignPlayersArgs<ExtArgs>
   records?: boolean | Prisma.campaigns$recordsArgs<ExtArgs>
@@ -416,20 +447,23 @@ export type campaignsSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
 
 export type campaignsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  name?: boolean
   created?: boolean
 }, ExtArgs["result"]["campaigns"]>
 
 export type campaignsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  name?: boolean
   created?: boolean
 }, ExtArgs["result"]["campaigns"]>
 
 export type campaignsSelectScalar = {
   id?: boolean
+  name?: boolean
   created?: boolean
 }
 
-export type campaignsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "created", ExtArgs["result"]["campaigns"]>
+export type campaignsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "created", ExtArgs["result"]["campaigns"]>
 export type campaignsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   campaignPlayers?: boolean | Prisma.campaigns$campaignPlayersArgs<ExtArgs>
   records?: boolean | Prisma.campaigns$recordsArgs<ExtArgs>
@@ -446,6 +480,7 @@ export type $campaignsPayload<ExtArgs extends runtime.Types.Extensions.InternalA
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
+    name: string
     created: Date
   }, ExtArgs["result"]["campaigns"]>
   composites: {}
@@ -873,6 +908,7 @@ export interface Prisma__campaignsClient<T, Null = never, ExtArgs extends runtim
  */
 export interface campaignsFieldRefs {
   readonly id: Prisma.FieldRef<"campaigns", 'String'>
+  readonly name: Prisma.FieldRef<"campaigns", 'String'>
   readonly created: Prisma.FieldRef<"campaigns", 'DateTime'>
 }
     

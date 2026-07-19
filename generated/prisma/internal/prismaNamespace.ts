@@ -1185,6 +1185,7 @@ export type UsersScalarFieldEnum = (typeof UsersScalarFieldEnum)[keyof typeof Us
 
 export const CampaignsScalarFieldEnum = {
   id: 'id',
+  name: 'name',
   created: 'created'
 } as const
 

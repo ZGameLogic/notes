@@ -5,6 +5,7 @@ import {AppRouterCacheProvider} from "@mui/material-nextjs/v13-appRouter";
 import "./globals.css";
 import AppHeader from "@/app/components/AppHeader";
 import {AuthDataProvider} from "@/app/components/auth/AuthDataProvider";
+import {GlobalDataProvider} from "@/app/components/global/GlobalDataProvider";
 
 export const dynamic = "force-dynamic";
 
@@ -19,10 +20,12 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
       <AppRouterCacheProvider options={{ enableCssLayer: true }}>
         <Suspense>
           <AuthDataProvider>
-            <ThemeWrapper>
-              <AppHeader redirect_url={process.env['discord.redirect-url'] ?? ''} client_id={process.env['discord.client.id'] ?? ''} />
-              {children}
-            </ThemeWrapper>
+            <GlobalDataProvider>
+              <ThemeWrapper>
+                <AppHeader redirect_url={process.env['discord.redirect-url'] ?? ''} client_id={process.env['discord.client.id'] ?? ''} />
+                {children}
+              </ThemeWrapper>
+            </GlobalDataProvider>
           </AuthDataProvider>
         </Suspense>
       </AppRouterCacheProvider>

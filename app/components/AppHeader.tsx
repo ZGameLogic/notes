@@ -3,11 +3,11 @@
 import {
   AppBar,
   Avatar,
-  ButtonBase,
-  IconButton,
+  ButtonBase, FormControl,
+  IconButton, InputLabel,
   ListItemIcon,
   Menu,
-  MenuItem,
+  MenuItem, Select,
   Stack,
   Toolbar,
   Typography
@@ -17,6 +17,7 @@ import {AccountCircle, Logout} from "@mui/icons-material";
 import {useMemo, useState, type MouseEvent} from "react";
 import { useRouter } from 'next/navigation';
 import {useAuthData} from "@/app/components/auth/useAuthData";
+import {useGlobalData} from "@/app/components/global/useGlobalData";
 
 type AppHeaderProps = {
   redirect_url: string
@@ -26,6 +27,8 @@ type AppHeaderProps = {
 export default function AppHeader({ redirect_url, client_id }: AppHeaderProps){
   const router = useRouter();
   const { authData, logout } = useAuthData();
+
+  const { selectedCampaignId, setSelectedCampaignId, campaigns } = useGlobalData();
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -53,8 +56,19 @@ export default function AppHeader({ redirect_url, client_id }: AppHeaderProps){
         <MenuIcon />
       </IconButton>
       <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-        Dungeons and Dragons notes
+        Dungeons and Dragons Notes
       </Typography>
+      <FormControl sx={{ m: 1, width: '15%' }}>
+        <InputLabel id={'camp_id'}>Campaign</InputLabel>
+        <Select
+          variant={'outlined'}
+          labelId={'camp_id'}
+          value={selectedCampaignId ?? ''}
+          onChange={(e) => setSelectedCampaignId(e.target.value)}
+        >
+          {campaigns.map(camp => <MenuItem key={camp.id} value={camp.id}>{camp.name}</MenuItem>)}
+        </Select>
+      </FormControl>
       {authData ? <>
         <ButtonBase onClick={(event: MouseEvent<HTMLElement>) => setAnchorEl(event.currentTarget)}>
           <Stack direction={'row'} spacing={1} sx={{alignItems: 'center'}}>
