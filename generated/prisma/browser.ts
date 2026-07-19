@@ -52,3 +52,13 @@ export type auth_data = Prisma.auth_dataModel
  * 
  */
 export type users = Prisma.usersModel
+/**
+ * Model campaigns
+ * 
+ */
+export type campaigns = Prisma.campaignsModel
+/**
+ * Model campaign_players
+ * 
+ */
+export type campaign_players = Prisma.campaign_playersModel

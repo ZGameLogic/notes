@@ -57,7 +57,9 @@ export const ModelName = {
   relation_types: 'relation_types',
   relations: 'relations',
   auth_data: 'auth_data',
-  users: 'users'
+  users: 'users',
+  campaigns: 'campaigns',
+  campaign_players: 'campaign_players'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -94,7 +96,8 @@ export type Record_typesScalarFieldEnum = (typeof Record_typesScalarFieldEnum)[k
 export const RecordsScalarFieldEnum = {
   id: 'id',
   type: 'type',
-  notes: 'notes'
+  notes: 'notes',
+  campaign: 'campaign'
 } as const
 
 export type RecordsScalarFieldEnum = (typeof RecordsScalarFieldEnum)[keyof typeof RecordsScalarFieldEnum]
@@ -139,6 +142,23 @@ export const UsersScalarFieldEnum = {
 } as const
 
 export type UsersScalarFieldEnum = (typeof UsersScalarFieldEnum)[keyof typeof UsersScalarFieldEnum]
+
+
+export const CampaignsScalarFieldEnum = {
+  id: 'id',
+  created: 'created'
+} as const
+
+export type CampaignsScalarFieldEnum = (typeof CampaignsScalarFieldEnum)[keyof typeof CampaignsScalarFieldEnum]
+
+
+export const Campaign_playersScalarFieldEnum = {
+  campaign_id: 'campaign_id',
+  user_id: 'user_id',
+  role: 'role'
+} as const
+
+export type Campaign_playersScalarFieldEnum = (typeof Campaign_playersScalarFieldEnum)[keyof typeof Campaign_playersScalarFieldEnum]
 
 
 export const SortOrder = {

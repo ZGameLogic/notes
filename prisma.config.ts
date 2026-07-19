@@ -4,7 +4,7 @@ import "dotenv/config";
 import { defineConfig } from "prisma/config";
 import { configService } from "./app/lib/ConfigService";
 
-process.env.CONFIG_PROFILE = 'production';
+process.env.CONFIG_PROFILE = 'development';
 await configService.init();
 const connectionString = `postgresql://${process.env['datasource.username']}:${process.env['datasource.password']}@${process.env['datasource.url']}?sslmode=disable`;
 

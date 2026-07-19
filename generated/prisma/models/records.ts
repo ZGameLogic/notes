@@ -28,18 +28,21 @@ export type RecordsMinAggregateOutputType = {
   id: string | null
   type: string | null
   notes: string | null
+  campaign: string | null
 }
 
 export type RecordsMaxAggregateOutputType = {
   id: string | null
   type: string | null
   notes: string | null
+  campaign: string | null
 }
 
 export type RecordsCountAggregateOutputType = {
   id: number
   type: number
   notes: number
+  campaign: number
   _all: number
 }
 
@@ -48,18 +51,21 @@ export type RecordsMinAggregateInputType = {
   id?: true
   type?: true
   notes?: true
+  campaign?: true
 }
 
 export type RecordsMaxAggregateInputType = {
   id?: true
   type?: true
   notes?: true
+  campaign?: true
 }
 
 export type RecordsCountAggregateInputType = {
   id?: true
   type?: true
   notes?: true
+  campaign?: true
   _all?: true
 }
 
@@ -139,6 +145,7 @@ export type RecordsGroupByOutputType = {
   id: string
   type: string
   notes: string | null
+  campaign: string
   _count: RecordsCountAggregateOutputType | null
   _min: RecordsMinAggregateOutputType | null
   _max: RecordsMaxAggregateOutputType | null
@@ -166,20 +173,24 @@ export type recordsWhereInput = {
   id?: Prisma.UuidFilter<"records"> | string
   type?: Prisma.StringFilter<"records"> | string
   notes?: Prisma.StringNullableFilter<"records"> | string | null
+  campaign?: Prisma.UuidFilter<"records"> | string
   aliases?: Prisma.AliasesListRelationFilter
   record_types?: Prisma.XOR<Prisma.Record_typesScalarRelationFilter, Prisma.record_typesWhereInput>
   relations_relations_left_recordTorecords?: Prisma.RelationsListRelationFilter
   relations_relations_right_recordTorecords?: Prisma.RelationsListRelationFilter
+  recordsTocampaigns?: Prisma.XOR<Prisma.CampaignsScalarRelationFilter, Prisma.campaignsWhereInput>
 }
 
 export type recordsOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   type?: Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
+  campaign?: Prisma.SortOrder
   aliases?: Prisma.aliasesOrderByRelationAggregateInput
   record_types?: Prisma.record_typesOrderByWithRelationInput
   relations_relations_left_recordTorecords?: Prisma.relationsOrderByRelationAggregateInput
   relations_relations_right_recordTorecords?: Prisma.relationsOrderByRelationAggregateInput
+  recordsTocampaigns?: Prisma.campaignsOrderByWithRelationInput
 }
 
 export type recordsWhereUniqueInput = Prisma.AtLeast<{
@@ -189,16 +200,19 @@ export type recordsWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.recordsWhereInput | Prisma.recordsWhereInput[]
   type?: Prisma.StringFilter<"records"> | string
   notes?: Prisma.StringNullableFilter<"records"> | string | null
+  campaign?: Prisma.UuidFilter<"records"> | string
   aliases?: Prisma.AliasesListRelationFilter
   record_types?: Prisma.XOR<Prisma.Record_typesScalarRelationFilter, Prisma.record_typesWhereInput>
   relations_relations_left_recordTorecords?: Prisma.RelationsListRelationFilter
   relations_relations_right_recordTorecords?: Prisma.RelationsListRelationFilter
+  recordsTocampaigns?: Prisma.XOR<Prisma.CampaignsScalarRelationFilter, Prisma.campaignsWhereInput>
 }, "id">
 
 export type recordsOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   type?: Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
+  campaign?: Prisma.SortOrder
   _count?: Prisma.recordsCountOrderByAggregateInput
   _max?: Prisma.recordsMaxOrderByAggregateInput
   _min?: Prisma.recordsMinOrderByAggregateInput
@@ -211,6 +225,7 @@ export type recordsScalarWhereWithAggregatesInput = {
   id?: Prisma.UuidWithAggregatesFilter<"records"> | string
   type?: Prisma.StringWithAggregatesFilter<"records"> | string
   notes?: Prisma.StringNullableWithAggregatesFilter<"records"> | string | null
+  campaign?: Prisma.UuidWithAggregatesFilter<"records"> | string
 }
 
 export type recordsCreateInput = {
@@ -220,12 +235,14 @@ export type recordsCreateInput = {
   record_types: Prisma.record_typesCreateNestedOneWithoutRecordsInput
   relations_relations_left_recordTorecords?: Prisma.relationsCreateNestedManyWithoutRecords_relations_left_recordTorecordsInput
   relations_relations_right_recordTorecords?: Prisma.relationsCreateNestedManyWithoutRecords_relations_right_recordTorecordsInput
+  recordsTocampaigns: Prisma.campaignsCreateNestedOneWithoutRecordsInput
 }
 
 export type recordsUncheckedCreateInput = {
   id: string
   type: string
   notes?: string | null
+  campaign: string
   aliases?: Prisma.aliasesUncheckedCreateNestedManyWithoutRecordsInput
   relations_relations_left_recordTorecords?: Prisma.relationsUncheckedCreateNestedManyWithoutRecords_relations_left_recordTorecordsInput
   relations_relations_right_recordTorecords?: Prisma.relationsUncheckedCreateNestedManyWithoutRecords_relations_right_recordTorecordsInput
@@ -238,12 +255,14 @@ export type recordsUpdateInput = {
   record_types?: Prisma.record_typesUpdateOneRequiredWithoutRecordsNestedInput
   relations_relations_left_recordTorecords?: Prisma.relationsUpdateManyWithoutRecords_relations_left_recordTorecordsNestedInput
   relations_relations_right_recordTorecords?: Prisma.relationsUpdateManyWithoutRecords_relations_right_recordTorecordsNestedInput
+  recordsTocampaigns?: Prisma.campaignsUpdateOneRequiredWithoutRecordsNestedInput
 }
 
 export type recordsUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  campaign?: Prisma.StringFieldUpdateOperationsInput | string
   aliases?: Prisma.aliasesUncheckedUpdateManyWithoutRecordsNestedInput
   relations_relations_left_recordTorecords?: Prisma.relationsUncheckedUpdateManyWithoutRecords_relations_left_recordTorecordsNestedInput
   relations_relations_right_recordTorecords?: Prisma.relationsUncheckedUpdateManyWithoutRecords_relations_right_recordTorecordsNestedInput
@@ -253,6 +272,7 @@ export type recordsCreateManyInput = {
   id: string
   type: string
   notes?: string | null
+  campaign: string
 }
 
 export type recordsUpdateManyMutationInput = {
@@ -264,6 +284,7 @@ export type recordsUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  campaign?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type RecordsScalarRelationFilter = {
@@ -285,18 +306,21 @@ export type recordsCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   type?: Prisma.SortOrder
   notes?: Prisma.SortOrder
+  campaign?: Prisma.SortOrder
 }
 
 export type recordsMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   type?: Prisma.SortOrder
   notes?: Prisma.SortOrder
+  campaign?: Prisma.SortOrder
 }
 
 export type recordsMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   type?: Prisma.SortOrder
   notes?: Prisma.SortOrder
+  campaign?: Prisma.SortOrder
 }
 
 export type recordsCreateNestedOneWithoutAliasesInput = {
@@ -387,18 +411,62 @@ export type recordsUpdateOneRequiredWithoutRelations_relations_right_recordTorec
   update?: Prisma.XOR<Prisma.XOR<Prisma.recordsUpdateToOneWithWhereWithoutRelations_relations_right_recordTorecordsInput, Prisma.recordsUpdateWithoutRelations_relations_right_recordTorecordsInput>, Prisma.recordsUncheckedUpdateWithoutRelations_relations_right_recordTorecordsInput>
 }
 
+export type recordsCreateNestedManyWithoutRecordsTocampaignsInput = {
+  create?: Prisma.XOR<Prisma.recordsCreateWithoutRecordsTocampaignsInput, Prisma.recordsUncheckedCreateWithoutRecordsTocampaignsInput> | Prisma.recordsCreateWithoutRecordsTocampaignsInput[] | Prisma.recordsUncheckedCreateWithoutRecordsTocampaignsInput[]
+  connectOrCreate?: Prisma.recordsCreateOrConnectWithoutRecordsTocampaignsInput | Prisma.recordsCreateOrConnectWithoutRecordsTocampaignsInput[]
+  createMany?: Prisma.recordsCreateManyRecordsTocampaignsInputEnvelope
+  connect?: Prisma.recordsWhereUniqueInput | Prisma.recordsWhereUniqueInput[]
+}
+
+export type recordsUncheckedCreateNestedManyWithoutRecordsTocampaignsInput = {
+  create?: Prisma.XOR<Prisma.recordsCreateWithoutRecordsTocampaignsInput, Prisma.recordsUncheckedCreateWithoutRecordsTocampaignsInput> | Prisma.recordsCreateWithoutRecordsTocampaignsInput[] | Prisma.recordsUncheckedCreateWithoutRecordsTocampaignsInput[]
+  connectOrCreate?: Prisma.recordsCreateOrConnectWithoutRecordsTocampaignsInput | Prisma.recordsCreateOrConnectWithoutRecordsTocampaignsInput[]
+  createMany?: Prisma.recordsCreateManyRecordsTocampaignsInputEnvelope
+  connect?: Prisma.recordsWhereUniqueInput | Prisma.recordsWhereUniqueInput[]
+}
+
+export type recordsUpdateManyWithoutRecordsTocampaignsNestedInput = {
+  create?: Prisma.XOR<Prisma.recordsCreateWithoutRecordsTocampaignsInput, Prisma.recordsUncheckedCreateWithoutRecordsTocampaignsInput> | Prisma.recordsCreateWithoutRecordsTocampaignsInput[] | Prisma.recordsUncheckedCreateWithoutRecordsTocampaignsInput[]
+  connectOrCreate?: Prisma.recordsCreateOrConnectWithoutRecordsTocampaignsInput | Prisma.recordsCreateOrConnectWithoutRecordsTocampaignsInput[]
+  upsert?: Prisma.recordsUpsertWithWhereUniqueWithoutRecordsTocampaignsInput | Prisma.recordsUpsertWithWhereUniqueWithoutRecordsTocampaignsInput[]
+  createMany?: Prisma.recordsCreateManyRecordsTocampaignsInputEnvelope
+  set?: Prisma.recordsWhereUniqueInput | Prisma.recordsWhereUniqueInput[]
+  disconnect?: Prisma.recordsWhereUniqueInput | Prisma.recordsWhereUniqueInput[]
+  delete?: Prisma.recordsWhereUniqueInput | Prisma.recordsWhereUniqueInput[]
+  connect?: Prisma.recordsWhereUniqueInput | Prisma.recordsWhereUniqueInput[]
+  update?: Prisma.recordsUpdateWithWhereUniqueWithoutRecordsTocampaignsInput | Prisma.recordsUpdateWithWhereUniqueWithoutRecordsTocampaignsInput[]
+  updateMany?: Prisma.recordsUpdateManyWithWhereWithoutRecordsTocampaignsInput | Prisma.recordsUpdateManyWithWhereWithoutRecordsTocampaignsInput[]
+  deleteMany?: Prisma.recordsScalarWhereInput | Prisma.recordsScalarWhereInput[]
+}
+
+export type recordsUncheckedUpdateManyWithoutRecordsTocampaignsNestedInput = {
+  create?: Prisma.XOR<Prisma.recordsCreateWithoutRecordsTocampaignsInput, Prisma.recordsUncheckedCreateWithoutRecordsTocampaignsInput> | Prisma.recordsCreateWithoutRecordsTocampaignsInput[] | Prisma.recordsUncheckedCreateWithoutRecordsTocampaignsInput[]
+  connectOrCreate?: Prisma.recordsCreateOrConnectWithoutRecordsTocampaignsInput | Prisma.recordsCreateOrConnectWithoutRecordsTocampaignsInput[]
+  upsert?: Prisma.recordsUpsertWithWhereUniqueWithoutRecordsTocampaignsInput | Prisma.recordsUpsertWithWhereUniqueWithoutRecordsTocampaignsInput[]
+  createMany?: Prisma.recordsCreateManyRecordsTocampaignsInputEnvelope
+  set?: Prisma.recordsWhereUniqueInput | Prisma.recordsWhereUniqueInput[]
+  disconnect?: Prisma.recordsWhereUniqueInput | Prisma.recordsWhereUniqueInput[]
+  delete?: Prisma.recordsWhereUniqueInput | Prisma.recordsWhereUniqueInput[]
+  connect?: Prisma.recordsWhereUniqueInput | Prisma.recordsWhereUniqueInput[]
+  update?: Prisma.recordsUpdateWithWhereUniqueWithoutRecordsTocampaignsInput | Prisma.recordsUpdateWithWhereUniqueWithoutRecordsTocampaignsInput[]
+  updateMany?: Prisma.recordsUpdateManyWithWhereWithoutRecordsTocampaignsInput | Prisma.recordsUpdateManyWithWhereWithoutRecordsTocampaignsInput[]
+  deleteMany?: Prisma.recordsScalarWhereInput | Prisma.recordsScalarWhereInput[]
+}
+
 export type recordsCreateWithoutAliasesInput = {
   id: string
   notes?: string | null
   record_types: Prisma.record_typesCreateNestedOneWithoutRecordsInput
   relations_relations_left_recordTorecords?: Prisma.relationsCreateNestedManyWithoutRecords_relations_left_recordTorecordsInput
   relations_relations_right_recordTorecords?: Prisma.relationsCreateNestedManyWithoutRecords_relations_right_recordTorecordsInput
+  recordsTocampaigns: Prisma.campaignsCreateNestedOneWithoutRecordsInput
 }
 
 export type recordsUncheckedCreateWithoutAliasesInput = {
   id: string
   type: string
   notes?: string | null
+  campaign: string
   relations_relations_left_recordTorecords?: Prisma.relationsUncheckedCreateNestedManyWithoutRecords_relations_left_recordTorecordsInput
   relations_relations_right_recordTorecords?: Prisma.relationsUncheckedCreateNestedManyWithoutRecords_relations_right_recordTorecordsInput
 }
@@ -425,12 +493,14 @@ export type recordsUpdateWithoutAliasesInput = {
   record_types?: Prisma.record_typesUpdateOneRequiredWithoutRecordsNestedInput
   relations_relations_left_recordTorecords?: Prisma.relationsUpdateManyWithoutRecords_relations_left_recordTorecordsNestedInput
   relations_relations_right_recordTorecords?: Prisma.relationsUpdateManyWithoutRecords_relations_right_recordTorecordsNestedInput
+  recordsTocampaigns?: Prisma.campaignsUpdateOneRequiredWithoutRecordsNestedInput
 }
 
 export type recordsUncheckedUpdateWithoutAliasesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  campaign?: Prisma.StringFieldUpdateOperationsInput | string
   relations_relations_left_recordTorecords?: Prisma.relationsUncheckedUpdateManyWithoutRecords_relations_left_recordTorecordsNestedInput
   relations_relations_right_recordTorecords?: Prisma.relationsUncheckedUpdateManyWithoutRecords_relations_right_recordTorecordsNestedInput
 }
@@ -441,11 +511,13 @@ export type recordsCreateWithoutRecord_typesInput = {
   aliases?: Prisma.aliasesCreateNestedManyWithoutRecordsInput
   relations_relations_left_recordTorecords?: Prisma.relationsCreateNestedManyWithoutRecords_relations_left_recordTorecordsInput
   relations_relations_right_recordTorecords?: Prisma.relationsCreateNestedManyWithoutRecords_relations_right_recordTorecordsInput
+  recordsTocampaigns: Prisma.campaignsCreateNestedOneWithoutRecordsInput
 }
 
 export type recordsUncheckedCreateWithoutRecord_typesInput = {
   id: string
   notes?: string | null
+  campaign: string
   aliases?: Prisma.aliasesUncheckedCreateNestedManyWithoutRecordsInput
   relations_relations_left_recordTorecords?: Prisma.relationsUncheckedCreateNestedManyWithoutRecords_relations_left_recordTorecordsInput
   relations_relations_right_recordTorecords?: Prisma.relationsUncheckedCreateNestedManyWithoutRecords_relations_right_recordTorecordsInput
@@ -484,6 +556,7 @@ export type recordsScalarWhereInput = {
   id?: Prisma.UuidFilter<"records"> | string
   type?: Prisma.StringFilter<"records"> | string
   notes?: Prisma.StringNullableFilter<"records"> | string | null
+  campaign?: Prisma.UuidFilter<"records"> | string
 }
 
 export type recordsCreateWithoutRelations_relations_left_recordTorecordsInput = {
@@ -492,12 +565,14 @@ export type recordsCreateWithoutRelations_relations_left_recordTorecordsInput = 
   aliases?: Prisma.aliasesCreateNestedManyWithoutRecordsInput
   record_types: Prisma.record_typesCreateNestedOneWithoutRecordsInput
   relations_relations_right_recordTorecords?: Prisma.relationsCreateNestedManyWithoutRecords_relations_right_recordTorecordsInput
+  recordsTocampaigns: Prisma.campaignsCreateNestedOneWithoutRecordsInput
 }
 
 export type recordsUncheckedCreateWithoutRelations_relations_left_recordTorecordsInput = {
   id: string
   type: string
   notes?: string | null
+  campaign: string
   aliases?: Prisma.aliasesUncheckedCreateNestedManyWithoutRecordsInput
   relations_relations_right_recordTorecords?: Prisma.relationsUncheckedCreateNestedManyWithoutRecords_relations_right_recordTorecordsInput
 }
@@ -513,12 +588,14 @@ export type recordsCreateWithoutRelations_relations_right_recordTorecordsInput =
   aliases?: Prisma.aliasesCreateNestedManyWithoutRecordsInput
   record_types: Prisma.record_typesCreateNestedOneWithoutRecordsInput
   relations_relations_left_recordTorecords?: Prisma.relationsCreateNestedManyWithoutRecords_relations_left_recordTorecordsInput
+  recordsTocampaigns: Prisma.campaignsCreateNestedOneWithoutRecordsInput
 }
 
 export type recordsUncheckedCreateWithoutRelations_relations_right_recordTorecordsInput = {
   id: string
   type: string
   notes?: string | null
+  campaign: string
   aliases?: Prisma.aliasesUncheckedCreateNestedManyWithoutRecordsInput
   relations_relations_left_recordTorecords?: Prisma.relationsUncheckedCreateNestedManyWithoutRecords_relations_left_recordTorecordsInput
 }
@@ -545,12 +622,14 @@ export type recordsUpdateWithoutRelations_relations_left_recordTorecordsInput = 
   aliases?: Prisma.aliasesUpdateManyWithoutRecordsNestedInput
   record_types?: Prisma.record_typesUpdateOneRequiredWithoutRecordsNestedInput
   relations_relations_right_recordTorecords?: Prisma.relationsUpdateManyWithoutRecords_relations_right_recordTorecordsNestedInput
+  recordsTocampaigns?: Prisma.campaignsUpdateOneRequiredWithoutRecordsNestedInput
 }
 
 export type recordsUncheckedUpdateWithoutRelations_relations_left_recordTorecordsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  campaign?: Prisma.StringFieldUpdateOperationsInput | string
   aliases?: Prisma.aliasesUncheckedUpdateManyWithoutRecordsNestedInput
   relations_relations_right_recordTorecords?: Prisma.relationsUncheckedUpdateManyWithoutRecords_relations_right_recordTorecordsNestedInput
 }
@@ -572,19 +651,66 @@ export type recordsUpdateWithoutRelations_relations_right_recordTorecordsInput =
   aliases?: Prisma.aliasesUpdateManyWithoutRecordsNestedInput
   record_types?: Prisma.record_typesUpdateOneRequiredWithoutRecordsNestedInput
   relations_relations_left_recordTorecords?: Prisma.relationsUpdateManyWithoutRecords_relations_left_recordTorecordsNestedInput
+  recordsTocampaigns?: Prisma.campaignsUpdateOneRequiredWithoutRecordsNestedInput
 }
 
 export type recordsUncheckedUpdateWithoutRelations_relations_right_recordTorecordsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  campaign?: Prisma.StringFieldUpdateOperationsInput | string
   aliases?: Prisma.aliasesUncheckedUpdateManyWithoutRecordsNestedInput
   relations_relations_left_recordTorecords?: Prisma.relationsUncheckedUpdateManyWithoutRecords_relations_left_recordTorecordsNestedInput
+}
+
+export type recordsCreateWithoutRecordsTocampaignsInput = {
+  id: string
+  notes?: string | null
+  aliases?: Prisma.aliasesCreateNestedManyWithoutRecordsInput
+  record_types: Prisma.record_typesCreateNestedOneWithoutRecordsInput
+  relations_relations_left_recordTorecords?: Prisma.relationsCreateNestedManyWithoutRecords_relations_left_recordTorecordsInput
+  relations_relations_right_recordTorecords?: Prisma.relationsCreateNestedManyWithoutRecords_relations_right_recordTorecordsInput
+}
+
+export type recordsUncheckedCreateWithoutRecordsTocampaignsInput = {
+  id: string
+  type: string
+  notes?: string | null
+  aliases?: Prisma.aliasesUncheckedCreateNestedManyWithoutRecordsInput
+  relations_relations_left_recordTorecords?: Prisma.relationsUncheckedCreateNestedManyWithoutRecords_relations_left_recordTorecordsInput
+  relations_relations_right_recordTorecords?: Prisma.relationsUncheckedCreateNestedManyWithoutRecords_relations_right_recordTorecordsInput
+}
+
+export type recordsCreateOrConnectWithoutRecordsTocampaignsInput = {
+  where: Prisma.recordsWhereUniqueInput
+  create: Prisma.XOR<Prisma.recordsCreateWithoutRecordsTocampaignsInput, Prisma.recordsUncheckedCreateWithoutRecordsTocampaignsInput>
+}
+
+export type recordsCreateManyRecordsTocampaignsInputEnvelope = {
+  data: Prisma.recordsCreateManyRecordsTocampaignsInput | Prisma.recordsCreateManyRecordsTocampaignsInput[]
+  skipDuplicates?: boolean
+}
+
+export type recordsUpsertWithWhereUniqueWithoutRecordsTocampaignsInput = {
+  where: Prisma.recordsWhereUniqueInput
+  update: Prisma.XOR<Prisma.recordsUpdateWithoutRecordsTocampaignsInput, Prisma.recordsUncheckedUpdateWithoutRecordsTocampaignsInput>
+  create: Prisma.XOR<Prisma.recordsCreateWithoutRecordsTocampaignsInput, Prisma.recordsUncheckedCreateWithoutRecordsTocampaignsInput>
+}
+
+export type recordsUpdateWithWhereUniqueWithoutRecordsTocampaignsInput = {
+  where: Prisma.recordsWhereUniqueInput
+  data: Prisma.XOR<Prisma.recordsUpdateWithoutRecordsTocampaignsInput, Prisma.recordsUncheckedUpdateWithoutRecordsTocampaignsInput>
+}
+
+export type recordsUpdateManyWithWhereWithoutRecordsTocampaignsInput = {
+  where: Prisma.recordsScalarWhereInput
+  data: Prisma.XOR<Prisma.recordsUpdateManyMutationInput, Prisma.recordsUncheckedUpdateManyWithoutRecordsTocampaignsInput>
 }
 
 export type recordsCreateManyRecord_typesInput = {
   id: string
   notes?: string | null
+  campaign: string
 }
 
 export type recordsUpdateWithoutRecord_typesInput = {
@@ -593,11 +719,13 @@ export type recordsUpdateWithoutRecord_typesInput = {
   aliases?: Prisma.aliasesUpdateManyWithoutRecordsNestedInput
   relations_relations_left_recordTorecords?: Prisma.relationsUpdateManyWithoutRecords_relations_left_recordTorecordsNestedInput
   relations_relations_right_recordTorecords?: Prisma.relationsUpdateManyWithoutRecords_relations_right_recordTorecordsNestedInput
+  recordsTocampaigns?: Prisma.campaignsUpdateOneRequiredWithoutRecordsNestedInput
 }
 
 export type recordsUncheckedUpdateWithoutRecord_typesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  campaign?: Prisma.StringFieldUpdateOperationsInput | string
   aliases?: Prisma.aliasesUncheckedUpdateManyWithoutRecordsNestedInput
   relations_relations_left_recordTorecords?: Prisma.relationsUncheckedUpdateManyWithoutRecords_relations_left_recordTorecordsNestedInput
   relations_relations_right_recordTorecords?: Prisma.relationsUncheckedUpdateManyWithoutRecords_relations_right_recordTorecordsNestedInput
@@ -605,6 +733,37 @@ export type recordsUncheckedUpdateWithoutRecord_typesInput = {
 
 export type recordsUncheckedUpdateManyWithoutRecord_typesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  campaign?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type recordsCreateManyRecordsTocampaignsInput = {
+  id: string
+  type: string
+  notes?: string | null
+}
+
+export type recordsUpdateWithoutRecordsTocampaignsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aliases?: Prisma.aliasesUpdateManyWithoutRecordsNestedInput
+  record_types?: Prisma.record_typesUpdateOneRequiredWithoutRecordsNestedInput
+  relations_relations_left_recordTorecords?: Prisma.relationsUpdateManyWithoutRecords_relations_left_recordTorecordsNestedInput
+  relations_relations_right_recordTorecords?: Prisma.relationsUpdateManyWithoutRecords_relations_right_recordTorecordsNestedInput
+}
+
+export type recordsUncheckedUpdateWithoutRecordsTocampaignsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aliases?: Prisma.aliasesUncheckedUpdateManyWithoutRecordsNestedInput
+  relations_relations_left_recordTorecords?: Prisma.relationsUncheckedUpdateManyWithoutRecords_relations_left_recordTorecordsNestedInput
+  relations_relations_right_recordTorecords?: Prisma.relationsUncheckedUpdateManyWithoutRecords_relations_right_recordTorecordsNestedInput
+}
+
+export type recordsUncheckedUpdateManyWithoutRecordsTocampaignsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -661,10 +820,12 @@ export type recordsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   id?: boolean
   type?: boolean
   notes?: boolean
+  campaign?: boolean
   aliases?: boolean | Prisma.records$aliasesArgs<ExtArgs>
   record_types?: boolean | Prisma.record_typesDefaultArgs<ExtArgs>
   relations_relations_left_recordTorecords?: boolean | Prisma.records$relations_relations_left_recordTorecordsArgs<ExtArgs>
   relations_relations_right_recordTorecords?: boolean | Prisma.records$relations_relations_right_recordTorecordsArgs<ExtArgs>
+  recordsTocampaigns?: boolean | Prisma.campaignsDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.RecordsCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["records"]>
 
@@ -672,35 +833,43 @@ export type recordsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   id?: boolean
   type?: boolean
   notes?: boolean
+  campaign?: boolean
   record_types?: boolean | Prisma.record_typesDefaultArgs<ExtArgs>
+  recordsTocampaigns?: boolean | Prisma.campaignsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["records"]>
 
 export type recordsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   type?: boolean
   notes?: boolean
+  campaign?: boolean
   record_types?: boolean | Prisma.record_typesDefaultArgs<ExtArgs>
+  recordsTocampaigns?: boolean | Prisma.campaignsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["records"]>
 
 export type recordsSelectScalar = {
   id?: boolean
   type?: boolean
   notes?: boolean
+  campaign?: boolean
 }
 
-export type recordsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "type" | "notes", ExtArgs["result"]["records"]>
+export type recordsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "type" | "notes" | "campaign", ExtArgs["result"]["records"]>
 export type recordsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   aliases?: boolean | Prisma.records$aliasesArgs<ExtArgs>
   record_types?: boolean | Prisma.record_typesDefaultArgs<ExtArgs>
   relations_relations_left_recordTorecords?: boolean | Prisma.records$relations_relations_left_recordTorecordsArgs<ExtArgs>
   relations_relations_right_recordTorecords?: boolean | Prisma.records$relations_relations_right_recordTorecordsArgs<ExtArgs>
+  recordsTocampaigns?: boolean | Prisma.campaignsDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.RecordsCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type recordsIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   record_types?: boolean | Prisma.record_typesDefaultArgs<ExtArgs>
+  recordsTocampaigns?: boolean | Prisma.campaignsDefaultArgs<ExtArgs>
 }
 export type recordsIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   record_types?: boolean | Prisma.record_typesDefaultArgs<ExtArgs>
+  recordsTocampaigns?: boolean | Prisma.campaignsDefaultArgs<ExtArgs>
 }
 
 export type $recordsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -710,11 +879,13 @@ export type $recordsPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     record_types: Prisma.$record_typesPayload<ExtArgs>
     relations_relations_left_recordTorecords: Prisma.$relationsPayload<ExtArgs>[]
     relations_relations_right_recordTorecords: Prisma.$relationsPayload<ExtArgs>[]
+    recordsTocampaigns: Prisma.$campaignsPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     type: string
     notes: string | null
+    campaign: string
   }, ExtArgs["result"]["records"]>
   composites: {}
 }
@@ -1113,6 +1284,7 @@ export interface Prisma__recordsClient<T, Null = never, ExtArgs extends runtime.
   record_types<T extends Prisma.record_typesDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.record_typesDefaultArgs<ExtArgs>>): Prisma.Prisma__record_typesClient<runtime.Types.Result.GetResult<Prisma.$record_typesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   relations_relations_left_recordTorecords<T extends Prisma.records$relations_relations_left_recordTorecordsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.records$relations_relations_left_recordTorecordsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$relationsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   relations_relations_right_recordTorecords<T extends Prisma.records$relations_relations_right_recordTorecordsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.records$relations_relations_right_recordTorecordsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$relationsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  recordsTocampaigns<T extends Prisma.campaignsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.campaignsDefaultArgs<ExtArgs>>): Prisma.Prisma__campaignsClient<runtime.Types.Result.GetResult<Prisma.$campaignsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1145,6 +1317,7 @@ export interface recordsFieldRefs {
   readonly id: Prisma.FieldRef<"records", 'String'>
   readonly type: Prisma.FieldRef<"records", 'String'>
   readonly notes: Prisma.FieldRef<"records", 'String'>
+  readonly campaign: Prisma.FieldRef<"records", 'String'>
 }
     
 

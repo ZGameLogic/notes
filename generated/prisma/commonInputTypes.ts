@@ -164,6 +164,23 @@ export type BigIntWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedBigIntFilter<$PrismaModel>
 }
 
+export type EnumCampaignRoleFilter<$PrismaModel = never> = {
+  equals?: $Enums.CampaignRole | Prisma.EnumCampaignRoleFieldRefInput<$PrismaModel>
+  in?: $Enums.CampaignRole[] | Prisma.ListEnumCampaignRoleFieldRefInput<$PrismaModel>
+  notIn?: $Enums.CampaignRole[] | Prisma.ListEnumCampaignRoleFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumCampaignRoleFilter<$PrismaModel> | $Enums.CampaignRole
+}
+
+export type EnumCampaignRoleWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.CampaignRole | Prisma.EnumCampaignRoleFieldRefInput<$PrismaModel>
+  in?: $Enums.CampaignRole[] | Prisma.ListEnumCampaignRoleFieldRefInput<$PrismaModel>
+  notIn?: $Enums.CampaignRole[] | Prisma.ListEnumCampaignRoleFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumCampaignRoleWithAggregatesFilter<$PrismaModel> | $Enums.CampaignRole
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumCampaignRoleFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumCampaignRoleFilter<$PrismaModel>
+}
+
 export type NestedUuidFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
@@ -334,6 +351,23 @@ export type NestedFloatFilter<$PrismaModel = never> = {
   gt?: number | Prisma.FloatFieldRefInput<$PrismaModel>
   gte?: number | Prisma.FloatFieldRefInput<$PrismaModel>
   not?: Prisma.NestedFloatFilter<$PrismaModel> | number
+}
+
+export type NestedEnumCampaignRoleFilter<$PrismaModel = never> = {
+  equals?: $Enums.CampaignRole | Prisma.EnumCampaignRoleFieldRefInput<$PrismaModel>
+  in?: $Enums.CampaignRole[] | Prisma.ListEnumCampaignRoleFieldRefInput<$PrismaModel>
+  notIn?: $Enums.CampaignRole[] | Prisma.ListEnumCampaignRoleFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumCampaignRoleFilter<$PrismaModel> | $Enums.CampaignRole
+}
+
+export type NestedEnumCampaignRoleWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.CampaignRole | Prisma.EnumCampaignRoleFieldRefInput<$PrismaModel>
+  in?: $Enums.CampaignRole[] | Prisma.ListEnumCampaignRoleFieldRefInput<$PrismaModel>
+  notIn?: $Enums.CampaignRole[] | Prisma.ListEnumCampaignRoleFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumCampaignRoleWithAggregatesFilter<$PrismaModel> | $Enums.CampaignRole
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumCampaignRoleFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumCampaignRoleFilter<$PrismaModel>
 }
 
 

@@ -390,7 +390,9 @@ export const ModelName = {
   relation_types: 'relation_types',
   relations: 'relations',
   auth_data: 'auth_data',
-  users: 'users'
+  users: 'users',
+  campaigns: 'campaigns',
+  campaign_players: 'campaign_players'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -406,7 +408,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "aliases" | "record_types" | "records" | "relation_types" | "relations" | "auth_data" | "users"
+    modelProps: "aliases" | "record_types" | "records" | "relation_types" | "relations" | "auth_data" | "users" | "campaigns" | "campaign_players"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -928,6 +930,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    campaigns: {
+      payload: Prisma.$campaignsPayload<ExtArgs>
+      fields: Prisma.campaignsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.campaignsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$campaignsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.campaignsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$campaignsPayload>
+        }
+        findFirst: {
+          args: Prisma.campaignsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$campaignsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.campaignsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$campaignsPayload>
+        }
+        findMany: {
+          args: Prisma.campaignsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$campaignsPayload>[]
+        }
+        create: {
+          args: Prisma.campaignsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$campaignsPayload>
+        }
+        createMany: {
+          args: Prisma.campaignsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.campaignsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$campaignsPayload>[]
+        }
+        delete: {
+          args: Prisma.campaignsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$campaignsPayload>
+        }
+        update: {
+          args: Prisma.campaignsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$campaignsPayload>
+        }
+        deleteMany: {
+          args: Prisma.campaignsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.campaignsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.campaignsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$campaignsPayload>[]
+        }
+        upsert: {
+          args: Prisma.campaignsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$campaignsPayload>
+        }
+        aggregate: {
+          args: Prisma.CampaignsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCampaigns>
+        }
+        groupBy: {
+          args: Prisma.campaignsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CampaignsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.campaignsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CampaignsCountAggregateOutputType> | number
+        }
+      }
+    }
+    campaign_players: {
+      payload: Prisma.$campaign_playersPayload<ExtArgs>
+      fields: Prisma.campaign_playersFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.campaign_playersFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$campaign_playersPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.campaign_playersFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$campaign_playersPayload>
+        }
+        findFirst: {
+          args: Prisma.campaign_playersFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$campaign_playersPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.campaign_playersFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$campaign_playersPayload>
+        }
+        findMany: {
+          args: Prisma.campaign_playersFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$campaign_playersPayload>[]
+        }
+        create: {
+          args: Prisma.campaign_playersCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$campaign_playersPayload>
+        }
+        createMany: {
+          args: Prisma.campaign_playersCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.campaign_playersCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$campaign_playersPayload>[]
+        }
+        delete: {
+          args: Prisma.campaign_playersDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$campaign_playersPayload>
+        }
+        update: {
+          args: Prisma.campaign_playersUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$campaign_playersPayload>
+        }
+        deleteMany: {
+          args: Prisma.campaign_playersDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.campaign_playersUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.campaign_playersUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$campaign_playersPayload>[]
+        }
+        upsert: {
+          args: Prisma.campaign_playersUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$campaign_playersPayload>
+        }
+        aggregate: {
+          args: Prisma.Campaign_playersAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCampaign_players>
+        }
+        groupBy: {
+          args: Prisma.campaign_playersGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Campaign_playersGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.campaign_playersCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Campaign_playersCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -985,7 +1135,8 @@ export type Record_typesScalarFieldEnum = (typeof Record_typesScalarFieldEnum)[k
 export const RecordsScalarFieldEnum = {
   id: 'id',
   type: 'type',
-  notes: 'notes'
+  notes: 'notes',
+  campaign: 'campaign'
 } as const
 
 export type RecordsScalarFieldEnum = (typeof RecordsScalarFieldEnum)[keyof typeof RecordsScalarFieldEnum]
@@ -1030,6 +1181,23 @@ export const UsersScalarFieldEnum = {
 } as const
 
 export type UsersScalarFieldEnum = (typeof UsersScalarFieldEnum)[keyof typeof UsersScalarFieldEnum]
+
+
+export const CampaignsScalarFieldEnum = {
+  id: 'id',
+  created: 'created'
+} as const
+
+export type CampaignsScalarFieldEnum = (typeof CampaignsScalarFieldEnum)[keyof typeof CampaignsScalarFieldEnum]
+
+
+export const Campaign_playersScalarFieldEnum = {
+  campaign_id: 'campaign_id',
+  user_id: 'user_id',
+  role: 'role'
+} as const
+
+export type Campaign_playersScalarFieldEnum = (typeof Campaign_playersScalarFieldEnum)[keyof typeof Campaign_playersScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1101,6 +1269,20 @@ export type BigIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 
  * Reference to a field of type 'BigInt[]'
  */
 export type ListBigIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BigInt[]'>
+    
+
+
+/**
+ * Reference to a field of type 'CampaignRole'
+ */
+export type EnumCampaignRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CampaignRole'>
+    
+
+
+/**
+ * Reference to a field of type 'CampaignRole[]'
+ */
+export type ListEnumCampaignRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CampaignRole[]'>
     
 
 
@@ -1248,6 +1430,8 @@ export type GlobalOmitConfig = {
   relations?: Prisma.relationsOmit
   auth_data?: Prisma.auth_dataOmit
   users?: Prisma.usersOmit
+  campaigns?: Prisma.campaignsOmit
+  campaign_players?: Prisma.campaign_playersOmit
 }
 
 /* Types for Logging */

@@ -26,10 +26,12 @@ model records {
   id                                        String       @id(map: "records_pk") @db.Uuid
   type                                      String       @db.VarChar
   notes                                     String?      @db.VarChar
+  campaign                                  String       @db.Uuid
   aliases                                   aliases[]
   record_types                              record_types @relation(fields: [type], references: [record_type], onDelete: NoAction, onUpdate: NoAction, map: "records_record_types_record_type_fk")
   relations_relations_left_recordTorecords  relations[]  @relation("relations_left_recordTorecords")
   relations_relations_right_recordTorecords relations[]  @relation("relations_right_recordTorecords")
+  recordsTocampaigns                        campaigns    @relation(fields: [campaign], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "records_campaign_campaign_id_fk")
 }
 
 model relation_types {
@@ -65,8 +67,32 @@ model auth_data {
 }
 
 model users {
-  id        BigInt      @id(map: "users_pk")
-  avatar    String?     @db.VarChar
-  username  String      @db.VarChar
-  auth_data auth_data[]
+  id              BigInt             @id(map: "users_pk")
+  avatar          String?            @db.VarChar
+  username        String             @db.VarChar
+  auth_data       auth_data[]
+  campaignPlayers campaign_players[]
+}
+
+model campaigns {
+  id              String             @id(map: "campaign_pk") @db.Uuid
+  created         DateTime           @db.Timestamp(6)
+  campaignPlayers campaign_players[]
+  records         records[]
+}
+
+enum CampaignRole {
+  player
+  admin
+  owner
+}
+
+model campaign_players {
+  campaign_id                 String       @db.Uuid
+  user_id                     BigInt
+  role                        CampaignRole
+  campaign_playersTocampaigns campaigns    @relation(fields: [campaign_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "campaign_players_campaign_id_fk")
+  campaign_playersTousers     users        @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "campaign_players_users_fk")
+
+  @@id([campaign_id, user_id], map: "campaign_players_pk")
 }

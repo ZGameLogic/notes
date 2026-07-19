@@ -201,6 +201,7 @@ export type usersWhereInput = {
   avatar?: Prisma.StringNullableFilter<"users"> | string | null
   username?: Prisma.StringFilter<"users"> | string
   auth_data?: Prisma.Auth_dataListRelationFilter
+  campaignPlayers?: Prisma.Campaign_playersListRelationFilter
 }
 
 export type usersOrderByWithRelationInput = {
@@ -208,6 +209,7 @@ export type usersOrderByWithRelationInput = {
   avatar?: Prisma.SortOrderInput | Prisma.SortOrder
   username?: Prisma.SortOrder
   auth_data?: Prisma.auth_dataOrderByRelationAggregateInput
+  campaignPlayers?: Prisma.campaign_playersOrderByRelationAggregateInput
 }
 
 export type usersWhereUniqueInput = Prisma.AtLeast<{
@@ -218,6 +220,7 @@ export type usersWhereUniqueInput = Prisma.AtLeast<{
   avatar?: Prisma.StringNullableFilter<"users"> | string | null
   username?: Prisma.StringFilter<"users"> | string
   auth_data?: Prisma.Auth_dataListRelationFilter
+  campaignPlayers?: Prisma.Campaign_playersListRelationFilter
 }, "id">
 
 export type usersOrderByWithAggregationInput = {
@@ -245,6 +248,7 @@ export type usersCreateInput = {
   avatar?: string | null
   username: string
   auth_data?: Prisma.auth_dataCreateNestedManyWithoutUsersInput
+  campaignPlayers?: Prisma.campaign_playersCreateNestedManyWithoutCampaign_playersTousersInput
 }
 
 export type usersUncheckedCreateInput = {
@@ -252,6 +256,7 @@ export type usersUncheckedCreateInput = {
   avatar?: string | null
   username: string
   auth_data?: Prisma.auth_dataUncheckedCreateNestedManyWithoutUsersInput
+  campaignPlayers?: Prisma.campaign_playersUncheckedCreateNestedManyWithoutCampaign_playersTousersInput
 }
 
 export type usersUpdateInput = {
@@ -259,6 +264,7 @@ export type usersUpdateInput = {
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   username?: Prisma.StringFieldUpdateOperationsInput | string
   auth_data?: Prisma.auth_dataUpdateManyWithoutUsersNestedInput
+  campaignPlayers?: Prisma.campaign_playersUpdateManyWithoutCampaign_playersTousersNestedInput
 }
 
 export type usersUncheckedUpdateInput = {
@@ -266,6 +272,7 @@ export type usersUncheckedUpdateInput = {
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   username?: Prisma.StringFieldUpdateOperationsInput | string
   auth_data?: Prisma.auth_dataUncheckedUpdateManyWithoutUsersNestedInput
+  campaignPlayers?: Prisma.campaign_playersUncheckedUpdateManyWithoutCampaign_playersTousersNestedInput
 }
 
 export type usersCreateManyInput = {
@@ -331,16 +338,32 @@ export type usersUpdateOneRequiredWithoutAuth_dataNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.usersUpdateToOneWithWhereWithoutAuth_dataInput, Prisma.usersUpdateWithoutAuth_dataInput>, Prisma.usersUncheckedUpdateWithoutAuth_dataInput>
 }
 
+export type usersCreateNestedOneWithoutCampaignPlayersInput = {
+  create?: Prisma.XOR<Prisma.usersCreateWithoutCampaignPlayersInput, Prisma.usersUncheckedCreateWithoutCampaignPlayersInput>
+  connectOrCreate?: Prisma.usersCreateOrConnectWithoutCampaignPlayersInput
+  connect?: Prisma.usersWhereUniqueInput
+}
+
+export type usersUpdateOneRequiredWithoutCampaignPlayersNestedInput = {
+  create?: Prisma.XOR<Prisma.usersCreateWithoutCampaignPlayersInput, Prisma.usersUncheckedCreateWithoutCampaignPlayersInput>
+  connectOrCreate?: Prisma.usersCreateOrConnectWithoutCampaignPlayersInput
+  upsert?: Prisma.usersUpsertWithoutCampaignPlayersInput
+  connect?: Prisma.usersWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.usersUpdateToOneWithWhereWithoutCampaignPlayersInput, Prisma.usersUpdateWithoutCampaignPlayersInput>, Prisma.usersUncheckedUpdateWithoutCampaignPlayersInput>
+}
+
 export type usersCreateWithoutAuth_dataInput = {
   id: bigint | number
   avatar?: string | null
   username: string
+  campaignPlayers?: Prisma.campaign_playersCreateNestedManyWithoutCampaign_playersTousersInput
 }
 
 export type usersUncheckedCreateWithoutAuth_dataInput = {
   id: bigint | number
   avatar?: string | null
   username: string
+  campaignPlayers?: Prisma.campaign_playersUncheckedCreateNestedManyWithoutCampaign_playersTousersInput
 }
 
 export type usersCreateOrConnectWithoutAuth_dataInput = {
@@ -363,12 +386,58 @@ export type usersUpdateWithoutAuth_dataInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   username?: Prisma.StringFieldUpdateOperationsInput | string
+  campaignPlayers?: Prisma.campaign_playersUpdateManyWithoutCampaign_playersTousersNestedInput
 }
 
 export type usersUncheckedUpdateWithoutAuth_dataInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   username?: Prisma.StringFieldUpdateOperationsInput | string
+  campaignPlayers?: Prisma.campaign_playersUncheckedUpdateManyWithoutCampaign_playersTousersNestedInput
+}
+
+export type usersCreateWithoutCampaignPlayersInput = {
+  id: bigint | number
+  avatar?: string | null
+  username: string
+  auth_data?: Prisma.auth_dataCreateNestedManyWithoutUsersInput
+}
+
+export type usersUncheckedCreateWithoutCampaignPlayersInput = {
+  id: bigint | number
+  avatar?: string | null
+  username: string
+  auth_data?: Prisma.auth_dataUncheckedCreateNestedManyWithoutUsersInput
+}
+
+export type usersCreateOrConnectWithoutCampaignPlayersInput = {
+  where: Prisma.usersWhereUniqueInput
+  create: Prisma.XOR<Prisma.usersCreateWithoutCampaignPlayersInput, Prisma.usersUncheckedCreateWithoutCampaignPlayersInput>
+}
+
+export type usersUpsertWithoutCampaignPlayersInput = {
+  update: Prisma.XOR<Prisma.usersUpdateWithoutCampaignPlayersInput, Prisma.usersUncheckedUpdateWithoutCampaignPlayersInput>
+  create: Prisma.XOR<Prisma.usersCreateWithoutCampaignPlayersInput, Prisma.usersUncheckedCreateWithoutCampaignPlayersInput>
+  where?: Prisma.usersWhereInput
+}
+
+export type usersUpdateToOneWithWhereWithoutCampaignPlayersInput = {
+  where?: Prisma.usersWhereInput
+  data: Prisma.XOR<Prisma.usersUpdateWithoutCampaignPlayersInput, Prisma.usersUncheckedUpdateWithoutCampaignPlayersInput>
+}
+
+export type usersUpdateWithoutCampaignPlayersInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  auth_data?: Prisma.auth_dataUpdateManyWithoutUsersNestedInput
+}
+
+export type usersUncheckedUpdateWithoutCampaignPlayersInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  auth_data?: Prisma.auth_dataUncheckedUpdateManyWithoutUsersNestedInput
 }
 
 
@@ -378,10 +447,12 @@ export type usersUncheckedUpdateWithoutAuth_dataInput = {
 
 export type UsersCountOutputType = {
   auth_data: number
+  campaignPlayers: number
 }
 
 export type UsersCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   auth_data?: boolean | UsersCountOutputTypeCountAuth_dataArgs
+  campaignPlayers?: boolean | UsersCountOutputTypeCountCampaignPlayersArgs
 }
 
 /**
@@ -401,12 +472,20 @@ export type UsersCountOutputTypeCountAuth_dataArgs<ExtArgs extends runtime.Types
   where?: Prisma.auth_dataWhereInput
 }
 
+/**
+ * UsersCountOutputType without action
+ */
+export type UsersCountOutputTypeCountCampaignPlayersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.campaign_playersWhereInput
+}
+
 
 export type usersSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   avatar?: boolean
   username?: boolean
   auth_data?: boolean | Prisma.users$auth_dataArgs<ExtArgs>
+  campaignPlayers?: boolean | Prisma.users$campaignPlayersArgs<ExtArgs>
   _count?: boolean | Prisma.UsersCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["users"]>
 
@@ -431,6 +510,7 @@ export type usersSelectScalar = {
 export type usersOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "avatar" | "username", ExtArgs["result"]["users"]>
 export type usersInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   auth_data?: boolean | Prisma.users$auth_dataArgs<ExtArgs>
+  campaignPlayers?: boolean | Prisma.users$campaignPlayersArgs<ExtArgs>
   _count?: boolean | Prisma.UsersCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type usersIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -440,6 +520,7 @@ export type $usersPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   name: "users"
   objects: {
     auth_data: Prisma.$auth_dataPayload<ExtArgs>[]
+    campaignPlayers: Prisma.$campaign_playersPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: bigint
@@ -840,6 +921,7 @@ readonly fields: usersFieldRefs;
 export interface Prisma__usersClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   auth_data<T extends Prisma.users$auth_dataArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.users$auth_dataArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$auth_dataPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  campaignPlayers<T extends Prisma.users$campaignPlayersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.users$campaignPlayersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$campaign_playersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1286,6 +1368,30 @@ export type users$auth_dataArgs<ExtArgs extends runtime.Types.Extensions.Interna
   take?: number
   skip?: number
   distinct?: Prisma.Auth_dataScalarFieldEnum | Prisma.Auth_dataScalarFieldEnum[]
+}
+
+/**
+ * users.campaignPlayers
+ */
+export type users$campaignPlayersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the campaign_players
+   */
+  select?: Prisma.campaign_playersSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the campaign_players
+   */
+  omit?: Prisma.campaign_playersOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.campaign_playersInclude<ExtArgs> | null
+  where?: Prisma.campaign_playersWhereInput
+  orderBy?: Prisma.campaign_playersOrderByWithRelationInput | Prisma.campaign_playersOrderByWithRelationInput[]
+  cursor?: Prisma.campaign_playersWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Campaign_playersScalarFieldEnum | Prisma.Campaign_playersScalarFieldEnum[]
 }
 
 /**
