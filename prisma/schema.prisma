@@ -54,3 +54,19 @@ model relations {
 
   @@id([left_record, right_record, relation_type], map: "relations_pk")
 }
+
+model auth_data {
+  notes_token              String   @id(map: "auth_data_pk") @db.VarChar
+  discord_refresh_token    String   @db.VarChar
+  discord_token            String   @db.VarChar
+  discord_token_expiration DateTime @db.Timestamp(6)
+  discord_id               BigInt
+  users                    users    @relation(fields: [discord_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "auth_data_users_id_fk")
+}
+
+model users {
+  id        BigInt      @id(map: "users_pk")
+  avatar    String?     @db.VarChar
+  username  String      @db.VarChar
+  auth_data auth_data[]
+}

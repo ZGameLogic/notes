@@ -1,0 +1,6 @@
+POST localhost:3000/api/test
+Content-Type: application/json
+
+{
+  "token": "MTUyODExMjc3MzI3NDUzMzkwOA.uzN1ARSjjdCbUOMmc62HVRIWsUaVvp"
+}

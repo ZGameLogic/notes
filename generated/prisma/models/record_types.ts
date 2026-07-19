@@ -150,12 +150,14 @@ export type record_typesWhereInput = {
   OR?: Prisma.record_typesWhereInput[]
   NOT?: Prisma.record_typesWhereInput | Prisma.record_typesWhereInput[]
   record_type?: Prisma.StringFilter<"record_types"> | string
+  records?: Prisma.RecordsListRelationFilter
   relation_types_relation_types_right_record_typeTorecord_types?: Prisma.Relation_typesListRelationFilter
   relation_types_relation_types_left_record_typeTorecord_types?: Prisma.Relation_typesListRelationFilter
 }
 
 export type record_typesOrderByWithRelationInput = {
   record_type?: Prisma.SortOrder
+  records?: Prisma.recordsOrderByRelationAggregateInput
   relation_types_relation_types_right_record_typeTorecord_types?: Prisma.relation_typesOrderByRelationAggregateInput
   relation_types_relation_types_left_record_typeTorecord_types?: Prisma.relation_typesOrderByRelationAggregateInput
 }
@@ -165,6 +167,7 @@ export type record_typesWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.record_typesWhereInput | Prisma.record_typesWhereInput[]
   OR?: Prisma.record_typesWhereInput[]
   NOT?: Prisma.record_typesWhereInput | Prisma.record_typesWhereInput[]
+  records?: Prisma.RecordsListRelationFilter
   relation_types_relation_types_right_record_typeTorecord_types?: Prisma.Relation_typesListRelationFilter
   relation_types_relation_types_left_record_typeTorecord_types?: Prisma.Relation_typesListRelationFilter
 }, "record_type">
@@ -185,24 +188,28 @@ export type record_typesScalarWhereWithAggregatesInput = {
 
 export type record_typesCreateInput = {
   record_type: string
+  records?: Prisma.recordsCreateNestedManyWithoutRecord_typesInput
   relation_types_relation_types_right_record_typeTorecord_types?: Prisma.relation_typesCreateNestedManyWithoutRecord_types_relation_types_right_record_typeTorecord_typesInput
   relation_types_relation_types_left_record_typeTorecord_types?: Prisma.relation_typesCreateNestedManyWithoutRecord_types_relation_types_left_record_typeTorecord_typesInput
 }
 
 export type record_typesUncheckedCreateInput = {
   record_type: string
+  records?: Prisma.recordsUncheckedCreateNestedManyWithoutRecord_typesInput
   relation_types_relation_types_right_record_typeTorecord_types?: Prisma.relation_typesUncheckedCreateNestedManyWithoutRecord_types_relation_types_right_record_typeTorecord_typesInput
   relation_types_relation_types_left_record_typeTorecord_types?: Prisma.relation_typesUncheckedCreateNestedManyWithoutRecord_types_relation_types_left_record_typeTorecord_typesInput
 }
 
 export type record_typesUpdateInput = {
   record_type?: Prisma.StringFieldUpdateOperationsInput | string
+  records?: Prisma.recordsUpdateManyWithoutRecord_typesNestedInput
   relation_types_relation_types_right_record_typeTorecord_types?: Prisma.relation_typesUpdateManyWithoutRecord_types_relation_types_right_record_typeTorecord_typesNestedInput
   relation_types_relation_types_left_record_typeTorecord_types?: Prisma.relation_typesUpdateManyWithoutRecord_types_relation_types_left_record_typeTorecord_typesNestedInput
 }
 
 export type record_typesUncheckedUpdateInput = {
   record_type?: Prisma.StringFieldUpdateOperationsInput | string
+  records?: Prisma.recordsUncheckedUpdateManyWithoutRecord_typesNestedInput
   relation_types_relation_types_right_record_typeTorecord_types?: Prisma.relation_typesUncheckedUpdateManyWithoutRecord_types_relation_types_right_record_typeTorecord_typesNestedInput
   relation_types_relation_types_left_record_typeTorecord_types?: Prisma.relation_typesUncheckedUpdateManyWithoutRecord_types_relation_types_left_record_typeTorecord_typesNestedInput
 }
@@ -236,6 +243,20 @@ export type Record_typesScalarRelationFilter = {
   isNot?: Prisma.record_typesWhereInput
 }
 
+export type record_typesCreateNestedOneWithoutRecordsInput = {
+  create?: Prisma.XOR<Prisma.record_typesCreateWithoutRecordsInput, Prisma.record_typesUncheckedCreateWithoutRecordsInput>
+  connectOrCreate?: Prisma.record_typesCreateOrConnectWithoutRecordsInput
+  connect?: Prisma.record_typesWhereUniqueInput
+}
+
+export type record_typesUpdateOneRequiredWithoutRecordsNestedInput = {
+  create?: Prisma.XOR<Prisma.record_typesCreateWithoutRecordsInput, Prisma.record_typesUncheckedCreateWithoutRecordsInput>
+  connectOrCreate?: Prisma.record_typesCreateOrConnectWithoutRecordsInput
+  upsert?: Prisma.record_typesUpsertWithoutRecordsInput
+  connect?: Prisma.record_typesWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.record_typesUpdateToOneWithWhereWithoutRecordsInput, Prisma.record_typesUpdateWithoutRecordsInput>, Prisma.record_typesUncheckedUpdateWithoutRecordsInput>
+}
+
 export type record_typesCreateNestedOneWithoutRelation_types_relation_types_right_record_typeTorecord_typesInput = {
   create?: Prisma.XOR<Prisma.record_typesCreateWithoutRelation_types_relation_types_right_record_typeTorecord_typesInput, Prisma.record_typesUncheckedCreateWithoutRelation_types_relation_types_right_record_typeTorecord_typesInput>
   connectOrCreate?: Prisma.record_typesCreateOrConnectWithoutRelation_types_relation_types_right_record_typeTorecord_typesInput
@@ -264,13 +285,55 @@ export type record_typesUpdateOneRequiredWithoutRelation_types_relation_types_le
   update?: Prisma.XOR<Prisma.XOR<Prisma.record_typesUpdateToOneWithWhereWithoutRelation_types_relation_types_left_record_typeTorecord_typesInput, Prisma.record_typesUpdateWithoutRelation_types_relation_types_left_record_typeTorecord_typesInput>, Prisma.record_typesUncheckedUpdateWithoutRelation_types_relation_types_left_record_typeTorecord_typesInput>
 }
 
+export type record_typesCreateWithoutRecordsInput = {
+  record_type: string
+  relation_types_relation_types_right_record_typeTorecord_types?: Prisma.relation_typesCreateNestedManyWithoutRecord_types_relation_types_right_record_typeTorecord_typesInput
+  relation_types_relation_types_left_record_typeTorecord_types?: Prisma.relation_typesCreateNestedManyWithoutRecord_types_relation_types_left_record_typeTorecord_typesInput
+}
+
+export type record_typesUncheckedCreateWithoutRecordsInput = {
+  record_type: string
+  relation_types_relation_types_right_record_typeTorecord_types?: Prisma.relation_typesUncheckedCreateNestedManyWithoutRecord_types_relation_types_right_record_typeTorecord_typesInput
+  relation_types_relation_types_left_record_typeTorecord_types?: Prisma.relation_typesUncheckedCreateNestedManyWithoutRecord_types_relation_types_left_record_typeTorecord_typesInput
+}
+
+export type record_typesCreateOrConnectWithoutRecordsInput = {
+  where: Prisma.record_typesWhereUniqueInput
+  create: Prisma.XOR<Prisma.record_typesCreateWithoutRecordsInput, Prisma.record_typesUncheckedCreateWithoutRecordsInput>
+}
+
+export type record_typesUpsertWithoutRecordsInput = {
+  update: Prisma.XOR<Prisma.record_typesUpdateWithoutRecordsInput, Prisma.record_typesUncheckedUpdateWithoutRecordsInput>
+  create: Prisma.XOR<Prisma.record_typesCreateWithoutRecordsInput, Prisma.record_typesUncheckedCreateWithoutRecordsInput>
+  where?: Prisma.record_typesWhereInput
+}
+
+export type record_typesUpdateToOneWithWhereWithoutRecordsInput = {
+  where?: Prisma.record_typesWhereInput
+  data: Prisma.XOR<Prisma.record_typesUpdateWithoutRecordsInput, Prisma.record_typesUncheckedUpdateWithoutRecordsInput>
+}
+
+export type record_typesUpdateWithoutRecordsInput = {
+  record_type?: Prisma.StringFieldUpdateOperationsInput | string
+  relation_types_relation_types_right_record_typeTorecord_types?: Prisma.relation_typesUpdateManyWithoutRecord_types_relation_types_right_record_typeTorecord_typesNestedInput
+  relation_types_relation_types_left_record_typeTorecord_types?: Prisma.relation_typesUpdateManyWithoutRecord_types_relation_types_left_record_typeTorecord_typesNestedInput
+}
+
+export type record_typesUncheckedUpdateWithoutRecordsInput = {
+  record_type?: Prisma.StringFieldUpdateOperationsInput | string
+  relation_types_relation_types_right_record_typeTorecord_types?: Prisma.relation_typesUncheckedUpdateManyWithoutRecord_types_relation_types_right_record_typeTorecord_typesNestedInput
+  relation_types_relation_types_left_record_typeTorecord_types?: Prisma.relation_typesUncheckedUpdateManyWithoutRecord_types_relation_types_left_record_typeTorecord_typesNestedInput
+}
+
 export type record_typesCreateWithoutRelation_types_relation_types_right_record_typeTorecord_typesInput = {
   record_type: string
+  records?: Prisma.recordsCreateNestedManyWithoutRecord_typesInput
   relation_types_relation_types_left_record_typeTorecord_types?: Prisma.relation_typesCreateNestedManyWithoutRecord_types_relation_types_left_record_typeTorecord_typesInput
 }
 
 export type record_typesUncheckedCreateWithoutRelation_types_relation_types_right_record_typeTorecord_typesInput = {
   record_type: string
+  records?: Prisma.recordsUncheckedCreateNestedManyWithoutRecord_typesInput
   relation_types_relation_types_left_record_typeTorecord_types?: Prisma.relation_typesUncheckedCreateNestedManyWithoutRecord_types_relation_types_left_record_typeTorecord_typesInput
 }
 
@@ -281,11 +344,13 @@ export type record_typesCreateOrConnectWithoutRelation_types_relation_types_righ
 
 export type record_typesCreateWithoutRelation_types_relation_types_left_record_typeTorecord_typesInput = {
   record_type: string
+  records?: Prisma.recordsCreateNestedManyWithoutRecord_typesInput
   relation_types_relation_types_right_record_typeTorecord_types?: Prisma.relation_typesCreateNestedManyWithoutRecord_types_relation_types_right_record_typeTorecord_typesInput
 }
 
 export type record_typesUncheckedCreateWithoutRelation_types_relation_types_left_record_typeTorecord_typesInput = {
   record_type: string
+  records?: Prisma.recordsUncheckedCreateNestedManyWithoutRecord_typesInput
   relation_types_relation_types_right_record_typeTorecord_types?: Prisma.relation_typesUncheckedCreateNestedManyWithoutRecord_types_relation_types_right_record_typeTorecord_typesInput
 }
 
@@ -307,11 +372,13 @@ export type record_typesUpdateToOneWithWhereWithoutRelation_types_relation_types
 
 export type record_typesUpdateWithoutRelation_types_relation_types_right_record_typeTorecord_typesInput = {
   record_type?: Prisma.StringFieldUpdateOperationsInput | string
+  records?: Prisma.recordsUpdateManyWithoutRecord_typesNestedInput
   relation_types_relation_types_left_record_typeTorecord_types?: Prisma.relation_typesUpdateManyWithoutRecord_types_relation_types_left_record_typeTorecord_typesNestedInput
 }
 
 export type record_typesUncheckedUpdateWithoutRelation_types_relation_types_right_record_typeTorecord_typesInput = {
   record_type?: Prisma.StringFieldUpdateOperationsInput | string
+  records?: Prisma.recordsUncheckedUpdateManyWithoutRecord_typesNestedInput
   relation_types_relation_types_left_record_typeTorecord_types?: Prisma.relation_typesUncheckedUpdateManyWithoutRecord_types_relation_types_left_record_typeTorecord_typesNestedInput
 }
 
@@ -328,11 +395,13 @@ export type record_typesUpdateToOneWithWhereWithoutRelation_types_relation_types
 
 export type record_typesUpdateWithoutRelation_types_relation_types_left_record_typeTorecord_typesInput = {
   record_type?: Prisma.StringFieldUpdateOperationsInput | string
+  records?: Prisma.recordsUpdateManyWithoutRecord_typesNestedInput
   relation_types_relation_types_right_record_typeTorecord_types?: Prisma.relation_typesUpdateManyWithoutRecord_types_relation_types_right_record_typeTorecord_typesNestedInput
 }
 
 export type record_typesUncheckedUpdateWithoutRelation_types_relation_types_left_record_typeTorecord_typesInput = {
   record_type?: Prisma.StringFieldUpdateOperationsInput | string
+  records?: Prisma.recordsUncheckedUpdateManyWithoutRecord_typesNestedInput
   relation_types_relation_types_right_record_typeTorecord_types?: Prisma.relation_typesUncheckedUpdateManyWithoutRecord_types_relation_types_right_record_typeTorecord_typesNestedInput
 }
 
@@ -342,11 +411,13 @@ export type record_typesUncheckedUpdateWithoutRelation_types_relation_types_left
  */
 
 export type Record_typesCountOutputType = {
+  records: number
   relation_types_relation_types_right_record_typeTorecord_types: number
   relation_types_relation_types_left_record_typeTorecord_types: number
 }
 
 export type Record_typesCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  records?: boolean | Record_typesCountOutputTypeCountRecordsArgs
   relation_types_relation_types_right_record_typeTorecord_types?: boolean | Record_typesCountOutputTypeCountRelation_types_relation_types_right_record_typeTorecord_typesArgs
   relation_types_relation_types_left_record_typeTorecord_types?: boolean | Record_typesCountOutputTypeCountRelation_types_relation_types_left_record_typeTorecord_typesArgs
 }
@@ -359,6 +430,13 @@ export type Record_typesCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types
    * Select specific fields to fetch from the Record_typesCountOutputType
    */
   select?: Prisma.Record_typesCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * Record_typesCountOutputType without action
+ */
+export type Record_typesCountOutputTypeCountRecordsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.recordsWhereInput
 }
 
 /**
@@ -378,6 +456,7 @@ export type Record_typesCountOutputTypeCountRelation_types_relation_types_left_r
 
 export type record_typesSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   record_type?: boolean
+  records?: boolean | Prisma.record_types$recordsArgs<ExtArgs>
   relation_types_relation_types_right_record_typeTorecord_types?: boolean | Prisma.record_types$relation_types_relation_types_right_record_typeTorecord_typesArgs<ExtArgs>
   relation_types_relation_types_left_record_typeTorecord_types?: boolean | Prisma.record_types$relation_types_relation_types_left_record_typeTorecord_typesArgs<ExtArgs>
   _count?: boolean | Prisma.Record_typesCountOutputTypeDefaultArgs<ExtArgs>
@@ -397,6 +476,7 @@ export type record_typesSelectScalar = {
 
 export type record_typesOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"record_type", ExtArgs["result"]["record_types"]>
 export type record_typesInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  records?: boolean | Prisma.record_types$recordsArgs<ExtArgs>
   relation_types_relation_types_right_record_typeTorecord_types?: boolean | Prisma.record_types$relation_types_relation_types_right_record_typeTorecord_typesArgs<ExtArgs>
   relation_types_relation_types_left_record_typeTorecord_types?: boolean | Prisma.record_types$relation_types_relation_types_left_record_typeTorecord_typesArgs<ExtArgs>
   _count?: boolean | Prisma.Record_typesCountOutputTypeDefaultArgs<ExtArgs>
@@ -407,6 +487,7 @@ export type record_typesIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types
 export type $record_typesPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "record_types"
   objects: {
+    records: Prisma.$recordsPayload<ExtArgs>[]
     relation_types_relation_types_right_record_typeTorecord_types: Prisma.$relation_typesPayload<ExtArgs>[]
     relation_types_relation_types_left_record_typeTorecord_types: Prisma.$relation_typesPayload<ExtArgs>[]
   }
@@ -806,6 +887,7 @@ readonly fields: record_typesFieldRefs;
  */
 export interface Prisma__record_typesClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  records<T extends Prisma.record_types$recordsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.record_types$recordsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$recordsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   relation_types_relation_types_right_record_typeTorecord_types<T extends Prisma.record_types$relation_types_relation_types_right_record_typeTorecord_typesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.record_types$relation_types_relation_types_right_record_typeTorecord_typesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$relation_typesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   relation_types_relation_types_left_record_typeTorecord_types<T extends Prisma.record_types$relation_types_relation_types_left_record_typeTorecord_typesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.record_types$relation_types_relation_types_left_record_typeTorecord_typesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$relation_typesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -1228,6 +1310,30 @@ export type record_typesDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.
    * Limit how many record_types to delete.
    */
   limit?: number
+}
+
+/**
+ * record_types.records
+ */
+export type record_types$recordsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the records
+   */
+  select?: Prisma.recordsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the records
+   */
+  omit?: Prisma.recordsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.recordsInclude<ExtArgs> | null
+  where?: Prisma.recordsWhereInput
+  orderBy?: Prisma.recordsOrderByWithRelationInput | Prisma.recordsOrderByWithRelationInput[]
+  cursor?: Prisma.recordsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RecordsScalarFieldEnum | Prisma.RecordsScalarFieldEnum[]
 }
 
 /**
