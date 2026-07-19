@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import {ReactNode} from "react";
+import {ReactNode, Suspense} from "react";
 import ThemeWrapper from "@/app/ThemeWrapper";
 import {AppRouterCacheProvider} from "@mui/material-nextjs/v13-appRouter";
 import "./globals.css";
@@ -15,12 +15,14 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
   return <html>
     <body>
       <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-        <AuthDataProvider>
-          <ThemeWrapper>
-            <AppHeader redirect_url={process.env['discord.redirect-url'] ?? ''} client_id={process.env['discord.client.id'] ?? ''} />
-            {children}
-          </ThemeWrapper>
-        </AuthDataProvider>
+        <Suspense>
+          <AuthDataProvider>
+            <ThemeWrapper>
+              <AppHeader redirect_url={process.env['discord.redirect-url'] ?? ''} client_id={process.env['discord.client.id'] ?? ''} />
+              {children}
+            </ThemeWrapper>
+          </AuthDataProvider>
+        </Suspense>
       </AppRouterCacheProvider>
     </body>
   </html>;
