@@ -14,7 +14,7 @@ export type DiscordUserResponse = {
   accent_color: string
 }
 
-export async function authorizeWithDiscordCode(code: string, redirectUrl: string): Promise<DiscordAuthenticationResponse> {
+export async function authorizeWithDiscordCode(code: string): Promise<DiscordAuthenticationResponse> {
   const res = await fetch('https://discord.com/api/oauth2/token', {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -23,7 +23,7 @@ export async function authorizeWithDiscordCode(code: string, redirectUrl: string
       client_secret: process.env['discord.client.secret'] ?? '',
       grant_type: 'authorization_code',
       code,
-      redirect_uri: redirectUrl,
+      redirect_uri: process.env['discord.redirect-url'] ?? '',
     })
   });
 
@@ -53,6 +53,23 @@ export async function authorizeWithDiscordRefreshToken(token: string){
   }
 
   return (await res.json()) as DiscordAuthenticationResponse;
+}
+
+export async function revokeToken(token: string){
+  const res = await fetch('https://discord.com/api/oauth2/token/revoke', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({
+      client_id: process.env['discord.client.id'] ?? '',
+      client_secret: process.env['discord.client.secret'] ?? '',
+      token: token
+    })
+  });
+
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(`Discord token revoke failed: ${res.status} ${text}`);
+  }
 }
 
 export async function getDiscordUserFromDiscordToken(token: string): Promise<DiscordUserResponse>{

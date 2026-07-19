@@ -3,7 +3,8 @@ import {ReactNode} from "react";
 import ThemeWrapper from "@/app/ThemeWrapper";
 import {AppRouterCacheProvider} from "@mui/material-nextjs/v13-appRouter";
 import "./globals.css";
-import AppDrawer from "@/app/components/AppDrawer";
+import AppHeader from "@/app/components/AppHeader";
+import {AuthDataProvider} from "@/app/components/auth/AuthDataProvider";
 
 export const metadata: Metadata = {
   title: "Dungeons and Dragons Notes",
@@ -14,10 +15,12 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
   return <html>
     <body>
       <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-        <ThemeWrapper>
-          <AppDrawer />
-          {children}
-        </ThemeWrapper>
+        <AuthDataProvider>
+          <ThemeWrapper>
+            <AppHeader redirect_url={process.env['discord.redirect-url'] ?? ''} client_id={process.env['discord.client.id'] ?? ''} />
+            {children}
+          </ThemeWrapper>
+        </AuthDataProvider>
       </AppRouterCacheProvider>
     </body>
   </html>;

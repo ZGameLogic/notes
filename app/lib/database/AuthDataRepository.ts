@@ -58,4 +58,13 @@ async function findByNotesToken(notes_token: string){
   return data;
 }
 
-export { fetchExpiringDiscordTokens, findByNotesToken, saveUserAuthData }
+async function deleteByNotesToken(notes_token: string){
+  if(!databaseService?.prisma) throw new Error('Database service not initialized');
+  await databaseService.prisma.auth_data.delete({
+    where: {
+      notes_token: notes_token
+    }
+  });
+}
+
+export { fetchExpiringDiscordTokens, findByNotesToken, saveUserAuthData, deleteByNotesToken }
