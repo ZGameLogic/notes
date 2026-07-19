@@ -11,6 +11,7 @@ class ConfigService {
       profiles: [process.env.CONFIG_PROFILE ?? '']
     });
     this.config.forEach((key, value) => process.env[key] = value);
+    console.log(process.env);
     console.log(`Config Service Initialized. Profile: ${process.env.CONFIG_PROFILE}`);
   }
 }
