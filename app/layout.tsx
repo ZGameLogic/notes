@@ -3,7 +3,7 @@ import {ReactNode, Suspense} from "react";
 import ThemeWrapper from "@/app/ThemeWrapper";
 import {AppRouterCacheProvider} from "@mui/material-nextjs/v13-appRouter";
 import "./globals.css";
-import AppHeader from "@/app/components/AppHeader";
+import AppHeader from "@/app/components/header/AppHeader";
 import {AuthDataProvider} from "@/app/components/auth/AuthDataProvider";
 import {GlobalDataProvider} from "@/app/components/global/GlobalDataProvider";
 
