@@ -10,7 +10,6 @@ import {
 import { cookies } from 'next/headers';
 
 export type AuthenticationData = {
-  notes_token: string
   id: string
   username: string
   avatar: string
@@ -41,7 +40,6 @@ export async function authorizeWithCode(code: string): Promise<AuthenticationDat
   });
 
   return {
-    notes_token: savedData.notes_token,
     id: BigInt(savedData.discord_id).toString(),
     username: dUser.username,
     avatar: dUser.avatar
@@ -49,21 +47,16 @@ export async function authorizeWithCode(code: string): Promise<AuthenticationDat
 }
 
 export async function authorizeWithNotesToken(): Promise<AuthenticationData | undefined> {
-  try {
-    const notes_token = (await cookies()).get('notes_token')?.value;
-    if (!notes_token) throw new Error('No token found on cookie data');
-    const authData = await findByNotesToken(notes_token);
-    const userData = await getDiscordUserFromDiscordToken(authData.discord_token);
+  const notes_token = (await cookies()).get('notes_token')?.value;
+  if (!notes_token) throw new Error('No token found on cookie data');
+  const authData = await findByNotesToken(notes_token);
+  const userData = await getDiscordUserFromDiscordToken(authData.discord_token);
 
-    return {
-      notes_token: authData.notes_token,
-      id: BigInt(authData.discord_id).toString(),
-      username: userData.username,
-      avatar: userData.avatar
-    };
-  } catch {
-    return undefined;
-  }
+  return {
+    id: BigInt(authData.discord_id).toString(),
+    username: userData.username,
+    avatar: userData.avatar
+  };
 }
 
 export async function logout() {

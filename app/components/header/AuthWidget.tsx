@@ -1,10 +1,11 @@
 'use client';
 
 import {Avatar, ButtonBase, IconButton, ListItemIcon, Menu, MenuItem, Stack, Typography} from "@mui/material";
-import {MouseEvent, useMemo, useState} from "react";
+import {MouseEvent, useEffect, useMemo, useState} from "react";
 import {Logout} from "@mui/icons-material";
-import {useRouter} from "next/navigation";
-import {useAuthData} from "@/app/components/auth/useAuthData";
+import {usePathname, useRouter, useSearchParams} from "next/navigation";
+import {authorizeWithCode, authorizeWithNotesToken, logout} from "@/app/lib/AuthenticationService";
+import {useQuery, useQueryClient} from "@tanstack/react-query";
 
 type AuthWidgetProps = {
   redirect_url: string
@@ -13,7 +14,15 @@ type AuthWidgetProps = {
 
 export default function AuthWidget({ redirect_url, client_id }: AuthWidgetProps){
   const router = useRouter();
-  const { authData, logout } = useAuthData();
+  const queryClient = useQueryClient();
+  const code = useSearchParams().get('code');
+  const pathName = usePathname();
+  const { data } = useQuery({
+    queryKey: ['auth'],
+    queryFn: authorizeWithNotesToken,
+    retry: false,
+    throwOnError: false
+  });
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -25,20 +34,30 @@ export default function AuthWidget({ redirect_url, client_id }: AuthWidgetProps)
 
   const handleClose = () => setAnchorEl(null);
   const handleLogout = () => {
-    logout();
+    logout().then(() => {
+      queryClient.removeQueries({ queryKey: ['auth'] });
+    });
     handleClose();
   };
 
-  return authData ? <>
+  useEffect(() => {
+    if(code === null) return;
+    authorizeWithCode(code).then(authData => {
+      queryClient.setQueryData(['auth'], authData);
+      router.push(pathName);
+    }).catch(() => {});
+  }, [code, pathName, router]);
+
+  return data ? <>
     <ButtonBase
       onClick={(event: MouseEvent<HTMLElement>) => setAnchorEl(event.currentTarget)}
       sx={{ p: '1%' }}
     >
       <Stack direction={'row'} spacing={1} sx={{alignItems: 'center'}}>
-        <Typography>{authData.username}</Typography>
+        <Typography>{data.username}</Typography>
         <Avatar
           sx={{ width: 24, height: 24 }}
-          src={`https://cdn.discordapp.com/avatars/${authData.id}/${authData.avatar}.png?size=56`}
+          src={`https://cdn.discordapp.com/avatars/${data.id}/${data.avatar}.png?size=56`}
         />
       </Stack>
     </ButtonBase>
