@@ -11,6 +11,7 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchBar from "@/app/components/header/search/SearchBar";
 import AuthWidget from "@/app/components/header/AuthWidget";
+import {MenuWidget} from "@/app/components/header/MenuWidget";
 
 type AppHeaderProps = {
   redirect_url: string
@@ -32,15 +33,7 @@ export default function AppHeader({ redirect_url, client_id }: AppHeaderProps){
       >
         <Grid size={2}>
           <Stack direction={'row'} sx={{alignItems: 'center'}}>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
+          <MenuWidget />
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             DnD Notes
           </Typography>
