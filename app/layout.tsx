@@ -3,7 +3,6 @@ import {ReactNode, Suspense} from "react";
 import ThemeWrapper from "@/app/ThemeWrapper";
 import {AppRouterCacheProvider} from "@mui/material-nextjs/v13-appRouter";
 import AppHeader from "@/app/components/header/AppHeader";
-import {GlobalDataProvider} from "@/app/components/global/GlobalDataProvider";
 import QueryProvider from "@/app/components/global/QueryProvider";
 
 import "./globals.css";
@@ -21,12 +20,10 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
       <AppRouterCacheProvider options={{ enableCssLayer: true }}>
         <Suspense>
           <QueryProvider>
-            <GlobalDataProvider>
-              <ThemeWrapper>
-                <AppHeader redirect_url={process.env['discord.redirect-url'] ?? ''} client_id={process.env['discord.client.id'] ?? ''} />
-                {children}
-              </ThemeWrapper>
-            </GlobalDataProvider>
+            <ThemeWrapper>
+              <AppHeader redirect_url={process.env['discord.redirect-url'] ?? ''} client_id={process.env['discord.client.id'] ?? ''} />
+              {children}
+            </ThemeWrapper>
           </QueryProvider>
         </Suspense>
       </AppRouterCacheProvider>

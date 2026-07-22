@@ -2,19 +2,33 @@
 
 import {Divider, FormControl, InputAdornment, InputLabel, MenuItem, OutlinedInput, Paper, Select} from "@mui/material";
 import {Search} from "@mui/icons-material";
-import {useGlobalData} from "@/app/components/global/useGlobalData";
 import {useState} from "react";
+import {useQuery, useQueryClient} from "@tanstack/react-query";
+import {getAllCampaigns} from "@/app/lib/GlobalDataService";
 
 export default function SearchBar(){
-  const { selectedCampaignId, setSelectedCampaignId, campaigns } = useGlobalData();
   const [searchQuery, setSearchQuery] = useState('');
+  const queryClient = useQueryClient();
+  const { data: selectedCampaignId } = useQuery({
+    queryKey: ['camp_id'],
+    retry: false,
+    throwOnError: false,
+    queryFn: () => null
+  });
+
+  const { data: campaigns } = useQuery({
+    queryKey: ['campaigns'],
+    retry: false,
+    throwOnError: false,
+    queryFn: getAllCampaigns
+  });
 
   return <Paper
     variant="outlined"
     sx={{
       display: "flex",
       alignItems: "stretch",
-      overflow: "hidden"
+      overflow: "hidden",
     }}
   >
     <OutlinedInput
@@ -40,10 +54,10 @@ export default function SearchBar(){
         variant="standard"
         disableUnderline
         value={selectedCampaignId ?? ""}
-        onChange={(e) => setSelectedCampaignId(e.target.value)}
+        onChange={(e) => queryClient.setQueryData(['camp_id'], e.target.value)}
         sx={{ px: 2, minWidth: 220 }}
       >
-        {campaigns.map(camp => <MenuItem key={camp.id} value={camp.id}>{camp.name}</MenuItem>)}
+        {campaigns && campaigns.map(camp => <MenuItem key={camp.id} value={camp.id}>{camp.name}</MenuItem>)}
       </Select>
     </FormControl>
   </Paper>;
