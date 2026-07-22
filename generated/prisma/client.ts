@@ -86,3 +86,8 @@ export type campaigns = Prisma.campaignsModel
  * 
  */
 export type campaign_players = Prisma.campaign_playersModel
+/**
+ * Model events
+ * 
+ */
+export type events = Prisma.eventsModel

@@ -8,16 +8,20 @@ datasource db {
 }
 
 model aliases {
-  record_id String  @db.Uuid
-  alias     String  @db.VarChar
-  records   records @relation(fields: [record_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "aliases_records_id_fk")
+  record_id      String  @db.Uuid
+  alias          String  @db.VarChar
+  records        records @relation(fields: [record_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "aliases_records_id_fk")
+  created_by     BigInt
+  aliasesTousers users   @relation(fields: [created_by], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "aliases_user_fk")
 
   @@id([alias, record_id], map: "aliases_pk")
 }
 
 model record_types {
   record_type                                                   String           @id(map: "record_types_pk") @db.VarChar
+  created_by                                                    BigInt
   records                                                       records[]
+  recordstypesTousers                                           users            @relation(fields: [created_by], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "record_types_user_fk")
   relation_types_relation_types_right_record_typeTorecord_types relation_types[] @relation("relation_types_right_record_typeTorecord_types")
   relation_types_relation_types_left_record_typeTorecord_types  relation_types[] @relation("relation_types_left_record_typeTorecord_types")
 }
@@ -27,7 +31,9 @@ model records {
   type                                      String       @db.VarChar
   notes                                     String?      @db.VarChar
   campaign                                  String       @db.Uuid
+  created_by                                BigInt
   aliases                                   aliases[]
+  recordsTousers                            users        @relation(fields: [created_by], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "records_user_fk")
   record_types                              record_types @relation(fields: [type], references: [record_type], onDelete: NoAction, onUpdate: NoAction, map: "records_record_types_record_type_fk")
   relations_relations_left_recordTorecords  relations[]  @relation("relations_left_recordTorecords")
   relations_relations_right_recordTorecords relations[]  @relation("relations_right_recordTorecords")
@@ -50,6 +56,8 @@ model relations {
   right_record                            String         @db.Uuid
   notes                                   String?        @db.VarChar
   relation_type                           String         @db.VarChar
+  created_by                              BigInt
+  relationsTousers                        users          @relation(fields: [created_by], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "record_relation_user_fk")
   records_relations_left_recordTorecords  records        @relation("relations_left_recordTorecords", fields: [left_record], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "relations_records_id_fk")
   records_relations_right_recordTorecords records        @relation("relations_right_recordTorecords", fields: [right_record], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "relations_records_id_fk_2")
   relation_types                          relation_types @relation(fields: [relation_type], references: [relation_type], onDelete: NoAction, onUpdate: NoAction, map: "relations_relation_types_relation_type_fk")
@@ -72,6 +80,11 @@ model users {
   username        String             @db.VarChar
   auth_data       auth_data[]
   campaignPlayers campaign_players[]
+  records         records[]
+  recordTypes     record_types[]
+  aliases         aliases[]
+  relations       relations[]
+  events          events[]
 }
 
 model campaigns {
@@ -96,4 +109,18 @@ model campaign_players {
   campaign_playersTousers     users        @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "campaign_players_users_fk")
 
   @@id([campaign_id, user_id], map: "campaign_players_pk")
+}
+
+enum EventType {
+  create
+  update
+}
+
+model events {
+  event_id      String    @id(map: "events_pk") @db.Uuid
+  user_id       BigInt
+  action        EventType
+  time          DateTime  @db.Timestamp(6)
+  details       Json      @db.JsonB
+  eventsTousers users     @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "event_user_fk")
 }

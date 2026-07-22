@@ -365,14 +365,6 @@ export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
 }
 
-export type BigIntFieldUpdateOperationsInput = {
-  set?: bigint | number
-  increment?: bigint | number
-  decrement?: bigint | number
-  multiply?: bigint | number
-  divide?: bigint | number
-}
-
 export type auth_dataCreateNestedManyWithoutUsersInput = {
   create?: Prisma.XOR<Prisma.auth_dataCreateWithoutUsersInput, Prisma.auth_dataUncheckedCreateWithoutUsersInput> | Prisma.auth_dataCreateWithoutUsersInput[] | Prisma.auth_dataUncheckedCreateWithoutUsersInput[]
   connectOrCreate?: Prisma.auth_dataCreateOrConnectWithoutUsersInput | Prisma.auth_dataCreateOrConnectWithoutUsersInput[]

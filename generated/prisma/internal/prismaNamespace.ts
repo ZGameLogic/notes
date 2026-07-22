@@ -392,7 +392,8 @@ export const ModelName = {
   auth_data: 'auth_data',
   users: 'users',
   campaigns: 'campaigns',
-  campaign_players: 'campaign_players'
+  campaign_players: 'campaign_players',
+  events: 'events'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -408,7 +409,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "aliases" | "record_types" | "records" | "relation_types" | "relations" | "auth_data" | "users" | "campaigns" | "campaign_players"
+    modelProps: "aliases" | "record_types" | "records" | "relation_types" | "relations" | "auth_data" | "users" | "campaigns" | "campaign_players" | "events"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1078,6 +1079,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    events: {
+      payload: Prisma.$eventsPayload<ExtArgs>
+      fields: Prisma.eventsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.eventsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$eventsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.eventsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$eventsPayload>
+        }
+        findFirst: {
+          args: Prisma.eventsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$eventsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.eventsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$eventsPayload>
+        }
+        findMany: {
+          args: Prisma.eventsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$eventsPayload>[]
+        }
+        create: {
+          args: Prisma.eventsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$eventsPayload>
+        }
+        createMany: {
+          args: Prisma.eventsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.eventsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$eventsPayload>[]
+        }
+        delete: {
+          args: Prisma.eventsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$eventsPayload>
+        }
+        update: {
+          args: Prisma.eventsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$eventsPayload>
+        }
+        deleteMany: {
+          args: Prisma.eventsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.eventsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.eventsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$eventsPayload>[]
+        }
+        upsert: {
+          args: Prisma.eventsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$eventsPayload>
+        }
+        aggregate: {
+          args: Prisma.EventsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateEvents>
+        }
+        groupBy: {
+          args: Prisma.eventsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EventsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.eventsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EventsCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1119,14 +1194,16 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 
 export const AliasesScalarFieldEnum = {
   record_id: 'record_id',
-  alias: 'alias'
+  alias: 'alias',
+  created_by: 'created_by'
 } as const
 
 export type AliasesScalarFieldEnum = (typeof AliasesScalarFieldEnum)[keyof typeof AliasesScalarFieldEnum]
 
 
 export const Record_typesScalarFieldEnum = {
-  record_type: 'record_type'
+  record_type: 'record_type',
+  created_by: 'created_by'
 } as const
 
 export type Record_typesScalarFieldEnum = (typeof Record_typesScalarFieldEnum)[keyof typeof Record_typesScalarFieldEnum]
@@ -1136,7 +1213,8 @@ export const RecordsScalarFieldEnum = {
   id: 'id',
   type: 'type',
   notes: 'notes',
-  campaign: 'campaign'
+  campaign: 'campaign',
+  created_by: 'created_by'
 } as const
 
 export type RecordsScalarFieldEnum = (typeof RecordsScalarFieldEnum)[keyof typeof RecordsScalarFieldEnum]
@@ -1157,7 +1235,8 @@ export const RelationsScalarFieldEnum = {
   left_record: 'left_record',
   right_record: 'right_record',
   notes: 'notes',
-  relation_type: 'relation_type'
+  relation_type: 'relation_type',
+  created_by: 'created_by'
 } as const
 
 export type RelationsScalarFieldEnum = (typeof RelationsScalarFieldEnum)[keyof typeof RelationsScalarFieldEnum]
@@ -1201,12 +1280,30 @@ export const Campaign_playersScalarFieldEnum = {
 export type Campaign_playersScalarFieldEnum = (typeof Campaign_playersScalarFieldEnum)[keyof typeof Campaign_playersScalarFieldEnum]
 
 
+export const EventsScalarFieldEnum = {
+  event_id: 'event_id',
+  user_id: 'user_id',
+  action: 'action',
+  time: 'time',
+  details: 'details'
+} as const
+
+export type EventsScalarFieldEnum = (typeof EventsScalarFieldEnum)[keyof typeof EventsScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const QueryMode = {
@@ -1223,6 +1320,15 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
 
@@ -1246,20 +1352,6 @@ export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMod
 
 
 /**
- * Reference to a field of type 'DateTime'
- */
-export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
-    
-
-
-/**
- * Reference to a field of type 'DateTime[]'
- */
-export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
-    
-
-
-/**
  * Reference to a field of type 'BigInt'
  */
 export type BigIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BigInt'>
@@ -1274,6 +1366,20 @@ export type ListBigIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMod
 
 
 /**
+ * Reference to a field of type 'DateTime'
+ */
+export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+/**
+ * Reference to a field of type 'DateTime[]'
+ */
+export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+/**
  * Reference to a field of type 'CampaignRole'
  */
 export type EnumCampaignRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CampaignRole'>
@@ -1284,6 +1390,34 @@ export type EnumCampaignRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$Pri
  * Reference to a field of type 'CampaignRole[]'
  */
 export type ListEnumCampaignRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CampaignRole[]'>
+    
+
+
+/**
+ * Reference to a field of type 'EventType'
+ */
+export type EnumEventTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EventType'>
+    
+
+
+/**
+ * Reference to a field of type 'EventType[]'
+ */
+export type ListEnumEventTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EventType[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Json'
+ */
+export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+/**
+ * Reference to a field of type 'QueryMode'
+ */
+export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
 
@@ -1433,6 +1567,7 @@ export type GlobalOmitConfig = {
   users?: Prisma.usersOmit
   campaigns?: Prisma.campaignsOmit
   campaign_players?: Prisma.campaign_playersOmit
+  events?: Prisma.eventsOmit
 }
 
 /* Types for Logging */

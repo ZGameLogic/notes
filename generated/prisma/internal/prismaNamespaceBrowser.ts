@@ -59,7 +59,8 @@ export const ModelName = {
   auth_data: 'auth_data',
   users: 'users',
   campaigns: 'campaigns',
-  campaign_players: 'campaign_players'
+  campaign_players: 'campaign_players',
+  events: 'events'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -80,14 +81,16 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 
 export const AliasesScalarFieldEnum = {
   record_id: 'record_id',
-  alias: 'alias'
+  alias: 'alias',
+  created_by: 'created_by'
 } as const
 
 export type AliasesScalarFieldEnum = (typeof AliasesScalarFieldEnum)[keyof typeof AliasesScalarFieldEnum]
 
 
 export const Record_typesScalarFieldEnum = {
-  record_type: 'record_type'
+  record_type: 'record_type',
+  created_by: 'created_by'
 } as const
 
 export type Record_typesScalarFieldEnum = (typeof Record_typesScalarFieldEnum)[keyof typeof Record_typesScalarFieldEnum]
@@ -97,7 +100,8 @@ export const RecordsScalarFieldEnum = {
   id: 'id',
   type: 'type',
   notes: 'notes',
-  campaign: 'campaign'
+  campaign: 'campaign',
+  created_by: 'created_by'
 } as const
 
 export type RecordsScalarFieldEnum = (typeof RecordsScalarFieldEnum)[keyof typeof RecordsScalarFieldEnum]
@@ -118,7 +122,8 @@ export const RelationsScalarFieldEnum = {
   left_record: 'left_record',
   right_record: 'right_record',
   notes: 'notes',
-  relation_type: 'relation_type'
+  relation_type: 'relation_type',
+  created_by: 'created_by'
 } as const
 
 export type RelationsScalarFieldEnum = (typeof RelationsScalarFieldEnum)[keyof typeof RelationsScalarFieldEnum]
@@ -162,12 +167,30 @@ export const Campaign_playersScalarFieldEnum = {
 export type Campaign_playersScalarFieldEnum = (typeof Campaign_playersScalarFieldEnum)[keyof typeof Campaign_playersScalarFieldEnum]
 
 
+export const EventsScalarFieldEnum = {
+  event_id: 'event_id',
+  user_id: 'user_id',
+  action: 'action',
+  time: 'time',
+  details: 'details'
+} as const
+
+export type EventsScalarFieldEnum = (typeof EventsScalarFieldEnum)[keyof typeof EventsScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const QueryMode = {
@@ -184,4 +207,13 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 

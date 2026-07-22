@@ -202,6 +202,11 @@ export type usersWhereInput = {
   username?: Prisma.StringFilter<"users"> | string
   auth_data?: Prisma.Auth_dataListRelationFilter
   campaignPlayers?: Prisma.Campaign_playersListRelationFilter
+  records?: Prisma.RecordsListRelationFilter
+  recordTypes?: Prisma.Record_typesListRelationFilter
+  aliases?: Prisma.AliasesListRelationFilter
+  relations?: Prisma.RelationsListRelationFilter
+  events?: Prisma.EventsListRelationFilter
 }
 
 export type usersOrderByWithRelationInput = {
@@ -210,6 +215,11 @@ export type usersOrderByWithRelationInput = {
   username?: Prisma.SortOrder
   auth_data?: Prisma.auth_dataOrderByRelationAggregateInput
   campaignPlayers?: Prisma.campaign_playersOrderByRelationAggregateInput
+  records?: Prisma.recordsOrderByRelationAggregateInput
+  recordTypes?: Prisma.record_typesOrderByRelationAggregateInput
+  aliases?: Prisma.aliasesOrderByRelationAggregateInput
+  relations?: Prisma.relationsOrderByRelationAggregateInput
+  events?: Prisma.eventsOrderByRelationAggregateInput
 }
 
 export type usersWhereUniqueInput = Prisma.AtLeast<{
@@ -221,6 +231,11 @@ export type usersWhereUniqueInput = Prisma.AtLeast<{
   username?: Prisma.StringFilter<"users"> | string
   auth_data?: Prisma.Auth_dataListRelationFilter
   campaignPlayers?: Prisma.Campaign_playersListRelationFilter
+  records?: Prisma.RecordsListRelationFilter
+  recordTypes?: Prisma.Record_typesListRelationFilter
+  aliases?: Prisma.AliasesListRelationFilter
+  relations?: Prisma.RelationsListRelationFilter
+  events?: Prisma.EventsListRelationFilter
 }, "id">
 
 export type usersOrderByWithAggregationInput = {
@@ -249,6 +264,11 @@ export type usersCreateInput = {
   username: string
   auth_data?: Prisma.auth_dataCreateNestedManyWithoutUsersInput
   campaignPlayers?: Prisma.campaign_playersCreateNestedManyWithoutCampaign_playersTousersInput
+  records?: Prisma.recordsCreateNestedManyWithoutRecordsTousersInput
+  recordTypes?: Prisma.record_typesCreateNestedManyWithoutRecordstypesTousersInput
+  aliases?: Prisma.aliasesCreateNestedManyWithoutAliasesTousersInput
+  relations?: Prisma.relationsCreateNestedManyWithoutRelationsTousersInput
+  events?: Prisma.eventsCreateNestedManyWithoutEventsTousersInput
 }
 
 export type usersUncheckedCreateInput = {
@@ -257,6 +277,11 @@ export type usersUncheckedCreateInput = {
   username: string
   auth_data?: Prisma.auth_dataUncheckedCreateNestedManyWithoutUsersInput
   campaignPlayers?: Prisma.campaign_playersUncheckedCreateNestedManyWithoutCampaign_playersTousersInput
+  records?: Prisma.recordsUncheckedCreateNestedManyWithoutRecordsTousersInput
+  recordTypes?: Prisma.record_typesUncheckedCreateNestedManyWithoutRecordstypesTousersInput
+  aliases?: Prisma.aliasesUncheckedCreateNestedManyWithoutAliasesTousersInput
+  relations?: Prisma.relationsUncheckedCreateNestedManyWithoutRelationsTousersInput
+  events?: Prisma.eventsUncheckedCreateNestedManyWithoutEventsTousersInput
 }
 
 export type usersUpdateInput = {
@@ -265,6 +290,11 @@ export type usersUpdateInput = {
   username?: Prisma.StringFieldUpdateOperationsInput | string
   auth_data?: Prisma.auth_dataUpdateManyWithoutUsersNestedInput
   campaignPlayers?: Prisma.campaign_playersUpdateManyWithoutCampaign_playersTousersNestedInput
+  records?: Prisma.recordsUpdateManyWithoutRecordsTousersNestedInput
+  recordTypes?: Prisma.record_typesUpdateManyWithoutRecordstypesTousersNestedInput
+  aliases?: Prisma.aliasesUpdateManyWithoutAliasesTousersNestedInput
+  relations?: Prisma.relationsUpdateManyWithoutRelationsTousersNestedInput
+  events?: Prisma.eventsUpdateManyWithoutEventsTousersNestedInput
 }
 
 export type usersUncheckedUpdateInput = {
@@ -273,6 +303,11 @@ export type usersUncheckedUpdateInput = {
   username?: Prisma.StringFieldUpdateOperationsInput | string
   auth_data?: Prisma.auth_dataUncheckedUpdateManyWithoutUsersNestedInput
   campaignPlayers?: Prisma.campaign_playersUncheckedUpdateManyWithoutCampaign_playersTousersNestedInput
+  records?: Prisma.recordsUncheckedUpdateManyWithoutRecordsTousersNestedInput
+  recordTypes?: Prisma.record_typesUncheckedUpdateManyWithoutRecordstypesTousersNestedInput
+  aliases?: Prisma.aliasesUncheckedUpdateManyWithoutAliasesTousersNestedInput
+  relations?: Prisma.relationsUncheckedUpdateManyWithoutRelationsTousersNestedInput
+  events?: Prisma.eventsUncheckedUpdateManyWithoutEventsTousersNestedInput
 }
 
 export type usersCreateManyInput = {
@@ -324,6 +359,62 @@ export type usersSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
 }
 
+export type usersCreateNestedOneWithoutAliasesInput = {
+  create?: Prisma.XOR<Prisma.usersCreateWithoutAliasesInput, Prisma.usersUncheckedCreateWithoutAliasesInput>
+  connectOrCreate?: Prisma.usersCreateOrConnectWithoutAliasesInput
+  connect?: Prisma.usersWhereUniqueInput
+}
+
+export type usersUpdateOneRequiredWithoutAliasesNestedInput = {
+  create?: Prisma.XOR<Prisma.usersCreateWithoutAliasesInput, Prisma.usersUncheckedCreateWithoutAliasesInput>
+  connectOrCreate?: Prisma.usersCreateOrConnectWithoutAliasesInput
+  upsert?: Prisma.usersUpsertWithoutAliasesInput
+  connect?: Prisma.usersWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.usersUpdateToOneWithWhereWithoutAliasesInput, Prisma.usersUpdateWithoutAliasesInput>, Prisma.usersUncheckedUpdateWithoutAliasesInput>
+}
+
+export type usersCreateNestedOneWithoutRecordTypesInput = {
+  create?: Prisma.XOR<Prisma.usersCreateWithoutRecordTypesInput, Prisma.usersUncheckedCreateWithoutRecordTypesInput>
+  connectOrCreate?: Prisma.usersCreateOrConnectWithoutRecordTypesInput
+  connect?: Prisma.usersWhereUniqueInput
+}
+
+export type usersUpdateOneRequiredWithoutRecordTypesNestedInput = {
+  create?: Prisma.XOR<Prisma.usersCreateWithoutRecordTypesInput, Prisma.usersUncheckedCreateWithoutRecordTypesInput>
+  connectOrCreate?: Prisma.usersCreateOrConnectWithoutRecordTypesInput
+  upsert?: Prisma.usersUpsertWithoutRecordTypesInput
+  connect?: Prisma.usersWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.usersUpdateToOneWithWhereWithoutRecordTypesInput, Prisma.usersUpdateWithoutRecordTypesInput>, Prisma.usersUncheckedUpdateWithoutRecordTypesInput>
+}
+
+export type usersCreateNestedOneWithoutRecordsInput = {
+  create?: Prisma.XOR<Prisma.usersCreateWithoutRecordsInput, Prisma.usersUncheckedCreateWithoutRecordsInput>
+  connectOrCreate?: Prisma.usersCreateOrConnectWithoutRecordsInput
+  connect?: Prisma.usersWhereUniqueInput
+}
+
+export type usersUpdateOneRequiredWithoutRecordsNestedInput = {
+  create?: Prisma.XOR<Prisma.usersCreateWithoutRecordsInput, Prisma.usersUncheckedCreateWithoutRecordsInput>
+  connectOrCreate?: Prisma.usersCreateOrConnectWithoutRecordsInput
+  upsert?: Prisma.usersUpsertWithoutRecordsInput
+  connect?: Prisma.usersWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.usersUpdateToOneWithWhereWithoutRecordsInput, Prisma.usersUpdateWithoutRecordsInput>, Prisma.usersUncheckedUpdateWithoutRecordsInput>
+}
+
+export type usersCreateNestedOneWithoutRelationsInput = {
+  create?: Prisma.XOR<Prisma.usersCreateWithoutRelationsInput, Prisma.usersUncheckedCreateWithoutRelationsInput>
+  connectOrCreate?: Prisma.usersCreateOrConnectWithoutRelationsInput
+  connect?: Prisma.usersWhereUniqueInput
+}
+
+export type usersUpdateOneRequiredWithoutRelationsNestedInput = {
+  create?: Prisma.XOR<Prisma.usersCreateWithoutRelationsInput, Prisma.usersUncheckedCreateWithoutRelationsInput>
+  connectOrCreate?: Prisma.usersCreateOrConnectWithoutRelationsInput
+  upsert?: Prisma.usersUpsertWithoutRelationsInput
+  connect?: Prisma.usersWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.usersUpdateToOneWithWhereWithoutRelationsInput, Prisma.usersUpdateWithoutRelationsInput>, Prisma.usersUncheckedUpdateWithoutRelationsInput>
+}
+
 export type usersCreateNestedOneWithoutAuth_dataInput = {
   create?: Prisma.XOR<Prisma.usersCreateWithoutAuth_dataInput, Prisma.usersUncheckedCreateWithoutAuth_dataInput>
   connectOrCreate?: Prisma.usersCreateOrConnectWithoutAuth_dataInput
@@ -352,11 +443,286 @@ export type usersUpdateOneRequiredWithoutCampaignPlayersNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.usersUpdateToOneWithWhereWithoutCampaignPlayersInput, Prisma.usersUpdateWithoutCampaignPlayersInput>, Prisma.usersUncheckedUpdateWithoutCampaignPlayersInput>
 }
 
+export type usersCreateNestedOneWithoutEventsInput = {
+  create?: Prisma.XOR<Prisma.usersCreateWithoutEventsInput, Prisma.usersUncheckedCreateWithoutEventsInput>
+  connectOrCreate?: Prisma.usersCreateOrConnectWithoutEventsInput
+  connect?: Prisma.usersWhereUniqueInput
+}
+
+export type usersUpdateOneRequiredWithoutEventsNestedInput = {
+  create?: Prisma.XOR<Prisma.usersCreateWithoutEventsInput, Prisma.usersUncheckedCreateWithoutEventsInput>
+  connectOrCreate?: Prisma.usersCreateOrConnectWithoutEventsInput
+  upsert?: Prisma.usersUpsertWithoutEventsInput
+  connect?: Prisma.usersWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.usersUpdateToOneWithWhereWithoutEventsInput, Prisma.usersUpdateWithoutEventsInput>, Prisma.usersUncheckedUpdateWithoutEventsInput>
+}
+
+export type usersCreateWithoutAliasesInput = {
+  id: bigint | number
+  avatar?: string | null
+  username: string
+  auth_data?: Prisma.auth_dataCreateNestedManyWithoutUsersInput
+  campaignPlayers?: Prisma.campaign_playersCreateNestedManyWithoutCampaign_playersTousersInput
+  records?: Prisma.recordsCreateNestedManyWithoutRecordsTousersInput
+  recordTypes?: Prisma.record_typesCreateNestedManyWithoutRecordstypesTousersInput
+  relations?: Prisma.relationsCreateNestedManyWithoutRelationsTousersInput
+  events?: Prisma.eventsCreateNestedManyWithoutEventsTousersInput
+}
+
+export type usersUncheckedCreateWithoutAliasesInput = {
+  id: bigint | number
+  avatar?: string | null
+  username: string
+  auth_data?: Prisma.auth_dataUncheckedCreateNestedManyWithoutUsersInput
+  campaignPlayers?: Prisma.campaign_playersUncheckedCreateNestedManyWithoutCampaign_playersTousersInput
+  records?: Prisma.recordsUncheckedCreateNestedManyWithoutRecordsTousersInput
+  recordTypes?: Prisma.record_typesUncheckedCreateNestedManyWithoutRecordstypesTousersInput
+  relations?: Prisma.relationsUncheckedCreateNestedManyWithoutRelationsTousersInput
+  events?: Prisma.eventsUncheckedCreateNestedManyWithoutEventsTousersInput
+}
+
+export type usersCreateOrConnectWithoutAliasesInput = {
+  where: Prisma.usersWhereUniqueInput
+  create: Prisma.XOR<Prisma.usersCreateWithoutAliasesInput, Prisma.usersUncheckedCreateWithoutAliasesInput>
+}
+
+export type usersUpsertWithoutAliasesInput = {
+  update: Prisma.XOR<Prisma.usersUpdateWithoutAliasesInput, Prisma.usersUncheckedUpdateWithoutAliasesInput>
+  create: Prisma.XOR<Prisma.usersCreateWithoutAliasesInput, Prisma.usersUncheckedCreateWithoutAliasesInput>
+  where?: Prisma.usersWhereInput
+}
+
+export type usersUpdateToOneWithWhereWithoutAliasesInput = {
+  where?: Prisma.usersWhereInput
+  data: Prisma.XOR<Prisma.usersUpdateWithoutAliasesInput, Prisma.usersUncheckedUpdateWithoutAliasesInput>
+}
+
+export type usersUpdateWithoutAliasesInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  auth_data?: Prisma.auth_dataUpdateManyWithoutUsersNestedInput
+  campaignPlayers?: Prisma.campaign_playersUpdateManyWithoutCampaign_playersTousersNestedInput
+  records?: Prisma.recordsUpdateManyWithoutRecordsTousersNestedInput
+  recordTypes?: Prisma.record_typesUpdateManyWithoutRecordstypesTousersNestedInput
+  relations?: Prisma.relationsUpdateManyWithoutRelationsTousersNestedInput
+  events?: Prisma.eventsUpdateManyWithoutEventsTousersNestedInput
+}
+
+export type usersUncheckedUpdateWithoutAliasesInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  auth_data?: Prisma.auth_dataUncheckedUpdateManyWithoutUsersNestedInput
+  campaignPlayers?: Prisma.campaign_playersUncheckedUpdateManyWithoutCampaign_playersTousersNestedInput
+  records?: Prisma.recordsUncheckedUpdateManyWithoutRecordsTousersNestedInput
+  recordTypes?: Prisma.record_typesUncheckedUpdateManyWithoutRecordstypesTousersNestedInput
+  relations?: Prisma.relationsUncheckedUpdateManyWithoutRelationsTousersNestedInput
+  events?: Prisma.eventsUncheckedUpdateManyWithoutEventsTousersNestedInput
+}
+
+export type usersCreateWithoutRecordTypesInput = {
+  id: bigint | number
+  avatar?: string | null
+  username: string
+  auth_data?: Prisma.auth_dataCreateNestedManyWithoutUsersInput
+  campaignPlayers?: Prisma.campaign_playersCreateNestedManyWithoutCampaign_playersTousersInput
+  records?: Prisma.recordsCreateNestedManyWithoutRecordsTousersInput
+  aliases?: Prisma.aliasesCreateNestedManyWithoutAliasesTousersInput
+  relations?: Prisma.relationsCreateNestedManyWithoutRelationsTousersInput
+  events?: Prisma.eventsCreateNestedManyWithoutEventsTousersInput
+}
+
+export type usersUncheckedCreateWithoutRecordTypesInput = {
+  id: bigint | number
+  avatar?: string | null
+  username: string
+  auth_data?: Prisma.auth_dataUncheckedCreateNestedManyWithoutUsersInput
+  campaignPlayers?: Prisma.campaign_playersUncheckedCreateNestedManyWithoutCampaign_playersTousersInput
+  records?: Prisma.recordsUncheckedCreateNestedManyWithoutRecordsTousersInput
+  aliases?: Prisma.aliasesUncheckedCreateNestedManyWithoutAliasesTousersInput
+  relations?: Prisma.relationsUncheckedCreateNestedManyWithoutRelationsTousersInput
+  events?: Prisma.eventsUncheckedCreateNestedManyWithoutEventsTousersInput
+}
+
+export type usersCreateOrConnectWithoutRecordTypesInput = {
+  where: Prisma.usersWhereUniqueInput
+  create: Prisma.XOR<Prisma.usersCreateWithoutRecordTypesInput, Prisma.usersUncheckedCreateWithoutRecordTypesInput>
+}
+
+export type usersUpsertWithoutRecordTypesInput = {
+  update: Prisma.XOR<Prisma.usersUpdateWithoutRecordTypesInput, Prisma.usersUncheckedUpdateWithoutRecordTypesInput>
+  create: Prisma.XOR<Prisma.usersCreateWithoutRecordTypesInput, Prisma.usersUncheckedCreateWithoutRecordTypesInput>
+  where?: Prisma.usersWhereInput
+}
+
+export type usersUpdateToOneWithWhereWithoutRecordTypesInput = {
+  where?: Prisma.usersWhereInput
+  data: Prisma.XOR<Prisma.usersUpdateWithoutRecordTypesInput, Prisma.usersUncheckedUpdateWithoutRecordTypesInput>
+}
+
+export type usersUpdateWithoutRecordTypesInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  auth_data?: Prisma.auth_dataUpdateManyWithoutUsersNestedInput
+  campaignPlayers?: Prisma.campaign_playersUpdateManyWithoutCampaign_playersTousersNestedInput
+  records?: Prisma.recordsUpdateManyWithoutRecordsTousersNestedInput
+  aliases?: Prisma.aliasesUpdateManyWithoutAliasesTousersNestedInput
+  relations?: Prisma.relationsUpdateManyWithoutRelationsTousersNestedInput
+  events?: Prisma.eventsUpdateManyWithoutEventsTousersNestedInput
+}
+
+export type usersUncheckedUpdateWithoutRecordTypesInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  auth_data?: Prisma.auth_dataUncheckedUpdateManyWithoutUsersNestedInput
+  campaignPlayers?: Prisma.campaign_playersUncheckedUpdateManyWithoutCampaign_playersTousersNestedInput
+  records?: Prisma.recordsUncheckedUpdateManyWithoutRecordsTousersNestedInput
+  aliases?: Prisma.aliasesUncheckedUpdateManyWithoutAliasesTousersNestedInput
+  relations?: Prisma.relationsUncheckedUpdateManyWithoutRelationsTousersNestedInput
+  events?: Prisma.eventsUncheckedUpdateManyWithoutEventsTousersNestedInput
+}
+
+export type usersCreateWithoutRecordsInput = {
+  id: bigint | number
+  avatar?: string | null
+  username: string
+  auth_data?: Prisma.auth_dataCreateNestedManyWithoutUsersInput
+  campaignPlayers?: Prisma.campaign_playersCreateNestedManyWithoutCampaign_playersTousersInput
+  recordTypes?: Prisma.record_typesCreateNestedManyWithoutRecordstypesTousersInput
+  aliases?: Prisma.aliasesCreateNestedManyWithoutAliasesTousersInput
+  relations?: Prisma.relationsCreateNestedManyWithoutRelationsTousersInput
+  events?: Prisma.eventsCreateNestedManyWithoutEventsTousersInput
+}
+
+export type usersUncheckedCreateWithoutRecordsInput = {
+  id: bigint | number
+  avatar?: string | null
+  username: string
+  auth_data?: Prisma.auth_dataUncheckedCreateNestedManyWithoutUsersInput
+  campaignPlayers?: Prisma.campaign_playersUncheckedCreateNestedManyWithoutCampaign_playersTousersInput
+  recordTypes?: Prisma.record_typesUncheckedCreateNestedManyWithoutRecordstypesTousersInput
+  aliases?: Prisma.aliasesUncheckedCreateNestedManyWithoutAliasesTousersInput
+  relations?: Prisma.relationsUncheckedCreateNestedManyWithoutRelationsTousersInput
+  events?: Prisma.eventsUncheckedCreateNestedManyWithoutEventsTousersInput
+}
+
+export type usersCreateOrConnectWithoutRecordsInput = {
+  where: Prisma.usersWhereUniqueInput
+  create: Prisma.XOR<Prisma.usersCreateWithoutRecordsInput, Prisma.usersUncheckedCreateWithoutRecordsInput>
+}
+
+export type usersUpsertWithoutRecordsInput = {
+  update: Prisma.XOR<Prisma.usersUpdateWithoutRecordsInput, Prisma.usersUncheckedUpdateWithoutRecordsInput>
+  create: Prisma.XOR<Prisma.usersCreateWithoutRecordsInput, Prisma.usersUncheckedCreateWithoutRecordsInput>
+  where?: Prisma.usersWhereInput
+}
+
+export type usersUpdateToOneWithWhereWithoutRecordsInput = {
+  where?: Prisma.usersWhereInput
+  data: Prisma.XOR<Prisma.usersUpdateWithoutRecordsInput, Prisma.usersUncheckedUpdateWithoutRecordsInput>
+}
+
+export type usersUpdateWithoutRecordsInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  auth_data?: Prisma.auth_dataUpdateManyWithoutUsersNestedInput
+  campaignPlayers?: Prisma.campaign_playersUpdateManyWithoutCampaign_playersTousersNestedInput
+  recordTypes?: Prisma.record_typesUpdateManyWithoutRecordstypesTousersNestedInput
+  aliases?: Prisma.aliasesUpdateManyWithoutAliasesTousersNestedInput
+  relations?: Prisma.relationsUpdateManyWithoutRelationsTousersNestedInput
+  events?: Prisma.eventsUpdateManyWithoutEventsTousersNestedInput
+}
+
+export type usersUncheckedUpdateWithoutRecordsInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  auth_data?: Prisma.auth_dataUncheckedUpdateManyWithoutUsersNestedInput
+  campaignPlayers?: Prisma.campaign_playersUncheckedUpdateManyWithoutCampaign_playersTousersNestedInput
+  recordTypes?: Prisma.record_typesUncheckedUpdateManyWithoutRecordstypesTousersNestedInput
+  aliases?: Prisma.aliasesUncheckedUpdateManyWithoutAliasesTousersNestedInput
+  relations?: Prisma.relationsUncheckedUpdateManyWithoutRelationsTousersNestedInput
+  events?: Prisma.eventsUncheckedUpdateManyWithoutEventsTousersNestedInput
+}
+
+export type usersCreateWithoutRelationsInput = {
+  id: bigint | number
+  avatar?: string | null
+  username: string
+  auth_data?: Prisma.auth_dataCreateNestedManyWithoutUsersInput
+  campaignPlayers?: Prisma.campaign_playersCreateNestedManyWithoutCampaign_playersTousersInput
+  records?: Prisma.recordsCreateNestedManyWithoutRecordsTousersInput
+  recordTypes?: Prisma.record_typesCreateNestedManyWithoutRecordstypesTousersInput
+  aliases?: Prisma.aliasesCreateNestedManyWithoutAliasesTousersInput
+  events?: Prisma.eventsCreateNestedManyWithoutEventsTousersInput
+}
+
+export type usersUncheckedCreateWithoutRelationsInput = {
+  id: bigint | number
+  avatar?: string | null
+  username: string
+  auth_data?: Prisma.auth_dataUncheckedCreateNestedManyWithoutUsersInput
+  campaignPlayers?: Prisma.campaign_playersUncheckedCreateNestedManyWithoutCampaign_playersTousersInput
+  records?: Prisma.recordsUncheckedCreateNestedManyWithoutRecordsTousersInput
+  recordTypes?: Prisma.record_typesUncheckedCreateNestedManyWithoutRecordstypesTousersInput
+  aliases?: Prisma.aliasesUncheckedCreateNestedManyWithoutAliasesTousersInput
+  events?: Prisma.eventsUncheckedCreateNestedManyWithoutEventsTousersInput
+}
+
+export type usersCreateOrConnectWithoutRelationsInput = {
+  where: Prisma.usersWhereUniqueInput
+  create: Prisma.XOR<Prisma.usersCreateWithoutRelationsInput, Prisma.usersUncheckedCreateWithoutRelationsInput>
+}
+
+export type usersUpsertWithoutRelationsInput = {
+  update: Prisma.XOR<Prisma.usersUpdateWithoutRelationsInput, Prisma.usersUncheckedUpdateWithoutRelationsInput>
+  create: Prisma.XOR<Prisma.usersCreateWithoutRelationsInput, Prisma.usersUncheckedCreateWithoutRelationsInput>
+  where?: Prisma.usersWhereInput
+}
+
+export type usersUpdateToOneWithWhereWithoutRelationsInput = {
+  where?: Prisma.usersWhereInput
+  data: Prisma.XOR<Prisma.usersUpdateWithoutRelationsInput, Prisma.usersUncheckedUpdateWithoutRelationsInput>
+}
+
+export type usersUpdateWithoutRelationsInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  auth_data?: Prisma.auth_dataUpdateManyWithoutUsersNestedInput
+  campaignPlayers?: Prisma.campaign_playersUpdateManyWithoutCampaign_playersTousersNestedInput
+  records?: Prisma.recordsUpdateManyWithoutRecordsTousersNestedInput
+  recordTypes?: Prisma.record_typesUpdateManyWithoutRecordstypesTousersNestedInput
+  aliases?: Prisma.aliasesUpdateManyWithoutAliasesTousersNestedInput
+  events?: Prisma.eventsUpdateManyWithoutEventsTousersNestedInput
+}
+
+export type usersUncheckedUpdateWithoutRelationsInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  auth_data?: Prisma.auth_dataUncheckedUpdateManyWithoutUsersNestedInput
+  campaignPlayers?: Prisma.campaign_playersUncheckedUpdateManyWithoutCampaign_playersTousersNestedInput
+  records?: Prisma.recordsUncheckedUpdateManyWithoutRecordsTousersNestedInput
+  recordTypes?: Prisma.record_typesUncheckedUpdateManyWithoutRecordstypesTousersNestedInput
+  aliases?: Prisma.aliasesUncheckedUpdateManyWithoutAliasesTousersNestedInput
+  events?: Prisma.eventsUncheckedUpdateManyWithoutEventsTousersNestedInput
+}
+
 export type usersCreateWithoutAuth_dataInput = {
   id: bigint | number
   avatar?: string | null
   username: string
   campaignPlayers?: Prisma.campaign_playersCreateNestedManyWithoutCampaign_playersTousersInput
+  records?: Prisma.recordsCreateNestedManyWithoutRecordsTousersInput
+  recordTypes?: Prisma.record_typesCreateNestedManyWithoutRecordstypesTousersInput
+  aliases?: Prisma.aliasesCreateNestedManyWithoutAliasesTousersInput
+  relations?: Prisma.relationsCreateNestedManyWithoutRelationsTousersInput
+  events?: Prisma.eventsCreateNestedManyWithoutEventsTousersInput
 }
 
 export type usersUncheckedCreateWithoutAuth_dataInput = {
@@ -364,6 +730,11 @@ export type usersUncheckedCreateWithoutAuth_dataInput = {
   avatar?: string | null
   username: string
   campaignPlayers?: Prisma.campaign_playersUncheckedCreateNestedManyWithoutCampaign_playersTousersInput
+  records?: Prisma.recordsUncheckedCreateNestedManyWithoutRecordsTousersInput
+  recordTypes?: Prisma.record_typesUncheckedCreateNestedManyWithoutRecordstypesTousersInput
+  aliases?: Prisma.aliasesUncheckedCreateNestedManyWithoutAliasesTousersInput
+  relations?: Prisma.relationsUncheckedCreateNestedManyWithoutRelationsTousersInput
+  events?: Prisma.eventsUncheckedCreateNestedManyWithoutEventsTousersInput
 }
 
 export type usersCreateOrConnectWithoutAuth_dataInput = {
@@ -387,6 +758,11 @@ export type usersUpdateWithoutAuth_dataInput = {
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   username?: Prisma.StringFieldUpdateOperationsInput | string
   campaignPlayers?: Prisma.campaign_playersUpdateManyWithoutCampaign_playersTousersNestedInput
+  records?: Prisma.recordsUpdateManyWithoutRecordsTousersNestedInput
+  recordTypes?: Prisma.record_typesUpdateManyWithoutRecordstypesTousersNestedInput
+  aliases?: Prisma.aliasesUpdateManyWithoutAliasesTousersNestedInput
+  relations?: Prisma.relationsUpdateManyWithoutRelationsTousersNestedInput
+  events?: Prisma.eventsUpdateManyWithoutEventsTousersNestedInput
 }
 
 export type usersUncheckedUpdateWithoutAuth_dataInput = {
@@ -394,6 +770,11 @@ export type usersUncheckedUpdateWithoutAuth_dataInput = {
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   username?: Prisma.StringFieldUpdateOperationsInput | string
   campaignPlayers?: Prisma.campaign_playersUncheckedUpdateManyWithoutCampaign_playersTousersNestedInput
+  records?: Prisma.recordsUncheckedUpdateManyWithoutRecordsTousersNestedInput
+  recordTypes?: Prisma.record_typesUncheckedUpdateManyWithoutRecordstypesTousersNestedInput
+  aliases?: Prisma.aliasesUncheckedUpdateManyWithoutAliasesTousersNestedInput
+  relations?: Prisma.relationsUncheckedUpdateManyWithoutRelationsTousersNestedInput
+  events?: Prisma.eventsUncheckedUpdateManyWithoutEventsTousersNestedInput
 }
 
 export type usersCreateWithoutCampaignPlayersInput = {
@@ -401,6 +782,11 @@ export type usersCreateWithoutCampaignPlayersInput = {
   avatar?: string | null
   username: string
   auth_data?: Prisma.auth_dataCreateNestedManyWithoutUsersInput
+  records?: Prisma.recordsCreateNestedManyWithoutRecordsTousersInput
+  recordTypes?: Prisma.record_typesCreateNestedManyWithoutRecordstypesTousersInput
+  aliases?: Prisma.aliasesCreateNestedManyWithoutAliasesTousersInput
+  relations?: Prisma.relationsCreateNestedManyWithoutRelationsTousersInput
+  events?: Prisma.eventsCreateNestedManyWithoutEventsTousersInput
 }
 
 export type usersUncheckedCreateWithoutCampaignPlayersInput = {
@@ -408,6 +794,11 @@ export type usersUncheckedCreateWithoutCampaignPlayersInput = {
   avatar?: string | null
   username: string
   auth_data?: Prisma.auth_dataUncheckedCreateNestedManyWithoutUsersInput
+  records?: Prisma.recordsUncheckedCreateNestedManyWithoutRecordsTousersInput
+  recordTypes?: Prisma.record_typesUncheckedCreateNestedManyWithoutRecordstypesTousersInput
+  aliases?: Prisma.aliasesUncheckedCreateNestedManyWithoutAliasesTousersInput
+  relations?: Prisma.relationsUncheckedCreateNestedManyWithoutRelationsTousersInput
+  events?: Prisma.eventsUncheckedCreateNestedManyWithoutEventsTousersInput
 }
 
 export type usersCreateOrConnectWithoutCampaignPlayersInput = {
@@ -431,6 +822,11 @@ export type usersUpdateWithoutCampaignPlayersInput = {
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   username?: Prisma.StringFieldUpdateOperationsInput | string
   auth_data?: Prisma.auth_dataUpdateManyWithoutUsersNestedInput
+  records?: Prisma.recordsUpdateManyWithoutRecordsTousersNestedInput
+  recordTypes?: Prisma.record_typesUpdateManyWithoutRecordstypesTousersNestedInput
+  aliases?: Prisma.aliasesUpdateManyWithoutAliasesTousersNestedInput
+  relations?: Prisma.relationsUpdateManyWithoutRelationsTousersNestedInput
+  events?: Prisma.eventsUpdateManyWithoutEventsTousersNestedInput
 }
 
 export type usersUncheckedUpdateWithoutCampaignPlayersInput = {
@@ -438,6 +834,75 @@ export type usersUncheckedUpdateWithoutCampaignPlayersInput = {
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   username?: Prisma.StringFieldUpdateOperationsInput | string
   auth_data?: Prisma.auth_dataUncheckedUpdateManyWithoutUsersNestedInput
+  records?: Prisma.recordsUncheckedUpdateManyWithoutRecordsTousersNestedInput
+  recordTypes?: Prisma.record_typesUncheckedUpdateManyWithoutRecordstypesTousersNestedInput
+  aliases?: Prisma.aliasesUncheckedUpdateManyWithoutAliasesTousersNestedInput
+  relations?: Prisma.relationsUncheckedUpdateManyWithoutRelationsTousersNestedInput
+  events?: Prisma.eventsUncheckedUpdateManyWithoutEventsTousersNestedInput
+}
+
+export type usersCreateWithoutEventsInput = {
+  id: bigint | number
+  avatar?: string | null
+  username: string
+  auth_data?: Prisma.auth_dataCreateNestedManyWithoutUsersInput
+  campaignPlayers?: Prisma.campaign_playersCreateNestedManyWithoutCampaign_playersTousersInput
+  records?: Prisma.recordsCreateNestedManyWithoutRecordsTousersInput
+  recordTypes?: Prisma.record_typesCreateNestedManyWithoutRecordstypesTousersInput
+  aliases?: Prisma.aliasesCreateNestedManyWithoutAliasesTousersInput
+  relations?: Prisma.relationsCreateNestedManyWithoutRelationsTousersInput
+}
+
+export type usersUncheckedCreateWithoutEventsInput = {
+  id: bigint | number
+  avatar?: string | null
+  username: string
+  auth_data?: Prisma.auth_dataUncheckedCreateNestedManyWithoutUsersInput
+  campaignPlayers?: Prisma.campaign_playersUncheckedCreateNestedManyWithoutCampaign_playersTousersInput
+  records?: Prisma.recordsUncheckedCreateNestedManyWithoutRecordsTousersInput
+  recordTypes?: Prisma.record_typesUncheckedCreateNestedManyWithoutRecordstypesTousersInput
+  aliases?: Prisma.aliasesUncheckedCreateNestedManyWithoutAliasesTousersInput
+  relations?: Prisma.relationsUncheckedCreateNestedManyWithoutRelationsTousersInput
+}
+
+export type usersCreateOrConnectWithoutEventsInput = {
+  where: Prisma.usersWhereUniqueInput
+  create: Prisma.XOR<Prisma.usersCreateWithoutEventsInput, Prisma.usersUncheckedCreateWithoutEventsInput>
+}
+
+export type usersUpsertWithoutEventsInput = {
+  update: Prisma.XOR<Prisma.usersUpdateWithoutEventsInput, Prisma.usersUncheckedUpdateWithoutEventsInput>
+  create: Prisma.XOR<Prisma.usersCreateWithoutEventsInput, Prisma.usersUncheckedCreateWithoutEventsInput>
+  where?: Prisma.usersWhereInput
+}
+
+export type usersUpdateToOneWithWhereWithoutEventsInput = {
+  where?: Prisma.usersWhereInput
+  data: Prisma.XOR<Prisma.usersUpdateWithoutEventsInput, Prisma.usersUncheckedUpdateWithoutEventsInput>
+}
+
+export type usersUpdateWithoutEventsInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  auth_data?: Prisma.auth_dataUpdateManyWithoutUsersNestedInput
+  campaignPlayers?: Prisma.campaign_playersUpdateManyWithoutCampaign_playersTousersNestedInput
+  records?: Prisma.recordsUpdateManyWithoutRecordsTousersNestedInput
+  recordTypes?: Prisma.record_typesUpdateManyWithoutRecordstypesTousersNestedInput
+  aliases?: Prisma.aliasesUpdateManyWithoutAliasesTousersNestedInput
+  relations?: Prisma.relationsUpdateManyWithoutRelationsTousersNestedInput
+}
+
+export type usersUncheckedUpdateWithoutEventsInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  auth_data?: Prisma.auth_dataUncheckedUpdateManyWithoutUsersNestedInput
+  campaignPlayers?: Prisma.campaign_playersUncheckedUpdateManyWithoutCampaign_playersTousersNestedInput
+  records?: Prisma.recordsUncheckedUpdateManyWithoutRecordsTousersNestedInput
+  recordTypes?: Prisma.record_typesUncheckedUpdateManyWithoutRecordstypesTousersNestedInput
+  aliases?: Prisma.aliasesUncheckedUpdateManyWithoutAliasesTousersNestedInput
+  relations?: Prisma.relationsUncheckedUpdateManyWithoutRelationsTousersNestedInput
 }
 
 
@@ -448,11 +913,21 @@ export type usersUncheckedUpdateWithoutCampaignPlayersInput = {
 export type UsersCountOutputType = {
   auth_data: number
   campaignPlayers: number
+  records: number
+  recordTypes: number
+  aliases: number
+  relations: number
+  events: number
 }
 
 export type UsersCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   auth_data?: boolean | UsersCountOutputTypeCountAuth_dataArgs
   campaignPlayers?: boolean | UsersCountOutputTypeCountCampaignPlayersArgs
+  records?: boolean | UsersCountOutputTypeCountRecordsArgs
+  recordTypes?: boolean | UsersCountOutputTypeCountRecordTypesArgs
+  aliases?: boolean | UsersCountOutputTypeCountAliasesArgs
+  relations?: boolean | UsersCountOutputTypeCountRelationsArgs
+  events?: boolean | UsersCountOutputTypeCountEventsArgs
 }
 
 /**
@@ -479,6 +954,41 @@ export type UsersCountOutputTypeCountCampaignPlayersArgs<ExtArgs extends runtime
   where?: Prisma.campaign_playersWhereInput
 }
 
+/**
+ * UsersCountOutputType without action
+ */
+export type UsersCountOutputTypeCountRecordsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.recordsWhereInput
+}
+
+/**
+ * UsersCountOutputType without action
+ */
+export type UsersCountOutputTypeCountRecordTypesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.record_typesWhereInput
+}
+
+/**
+ * UsersCountOutputType without action
+ */
+export type UsersCountOutputTypeCountAliasesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.aliasesWhereInput
+}
+
+/**
+ * UsersCountOutputType without action
+ */
+export type UsersCountOutputTypeCountRelationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.relationsWhereInput
+}
+
+/**
+ * UsersCountOutputType without action
+ */
+export type UsersCountOutputTypeCountEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.eventsWhereInput
+}
+
 
 export type usersSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -486,6 +996,11 @@ export type usersSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   username?: boolean
   auth_data?: boolean | Prisma.users$auth_dataArgs<ExtArgs>
   campaignPlayers?: boolean | Prisma.users$campaignPlayersArgs<ExtArgs>
+  records?: boolean | Prisma.users$recordsArgs<ExtArgs>
+  recordTypes?: boolean | Prisma.users$recordTypesArgs<ExtArgs>
+  aliases?: boolean | Prisma.users$aliasesArgs<ExtArgs>
+  relations?: boolean | Prisma.users$relationsArgs<ExtArgs>
+  events?: boolean | Prisma.users$eventsArgs<ExtArgs>
   _count?: boolean | Prisma.UsersCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["users"]>
 
@@ -511,6 +1026,11 @@ export type usersOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = ru
 export type usersInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   auth_data?: boolean | Prisma.users$auth_dataArgs<ExtArgs>
   campaignPlayers?: boolean | Prisma.users$campaignPlayersArgs<ExtArgs>
+  records?: boolean | Prisma.users$recordsArgs<ExtArgs>
+  recordTypes?: boolean | Prisma.users$recordTypesArgs<ExtArgs>
+  aliases?: boolean | Prisma.users$aliasesArgs<ExtArgs>
+  relations?: boolean | Prisma.users$relationsArgs<ExtArgs>
+  events?: boolean | Prisma.users$eventsArgs<ExtArgs>
   _count?: boolean | Prisma.UsersCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type usersIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -521,6 +1041,11 @@ export type $usersPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   objects: {
     auth_data: Prisma.$auth_dataPayload<ExtArgs>[]
     campaignPlayers: Prisma.$campaign_playersPayload<ExtArgs>[]
+    records: Prisma.$recordsPayload<ExtArgs>[]
+    recordTypes: Prisma.$record_typesPayload<ExtArgs>[]
+    aliases: Prisma.$aliasesPayload<ExtArgs>[]
+    relations: Prisma.$relationsPayload<ExtArgs>[]
+    events: Prisma.$eventsPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: bigint
@@ -922,6 +1447,11 @@ export interface Prisma__usersClient<T, Null = never, ExtArgs extends runtime.Ty
   readonly [Symbol.toStringTag]: "PrismaPromise"
   auth_data<T extends Prisma.users$auth_dataArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.users$auth_dataArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$auth_dataPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   campaignPlayers<T extends Prisma.users$campaignPlayersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.users$campaignPlayersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$campaign_playersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  records<T extends Prisma.users$recordsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.users$recordsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$recordsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  recordTypes<T extends Prisma.users$recordTypesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.users$recordTypesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$record_typesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  aliases<T extends Prisma.users$aliasesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.users$aliasesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$aliasesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  relations<T extends Prisma.users$relationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.users$relationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$relationsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  events<T extends Prisma.users$eventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.users$eventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$eventsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1392,6 +1922,126 @@ export type users$campaignPlayersArgs<ExtArgs extends runtime.Types.Extensions.I
   take?: number
   skip?: number
   distinct?: Prisma.Campaign_playersScalarFieldEnum | Prisma.Campaign_playersScalarFieldEnum[]
+}
+
+/**
+ * users.records
+ */
+export type users$recordsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the records
+   */
+  select?: Prisma.recordsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the records
+   */
+  omit?: Prisma.recordsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.recordsInclude<ExtArgs> | null
+  where?: Prisma.recordsWhereInput
+  orderBy?: Prisma.recordsOrderByWithRelationInput | Prisma.recordsOrderByWithRelationInput[]
+  cursor?: Prisma.recordsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RecordsScalarFieldEnum | Prisma.RecordsScalarFieldEnum[]
+}
+
+/**
+ * users.recordTypes
+ */
+export type users$recordTypesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the record_types
+   */
+  select?: Prisma.record_typesSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the record_types
+   */
+  omit?: Prisma.record_typesOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.record_typesInclude<ExtArgs> | null
+  where?: Prisma.record_typesWhereInput
+  orderBy?: Prisma.record_typesOrderByWithRelationInput | Prisma.record_typesOrderByWithRelationInput[]
+  cursor?: Prisma.record_typesWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Record_typesScalarFieldEnum | Prisma.Record_typesScalarFieldEnum[]
+}
+
+/**
+ * users.aliases
+ */
+export type users$aliasesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the aliases
+   */
+  select?: Prisma.aliasesSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the aliases
+   */
+  omit?: Prisma.aliasesOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.aliasesInclude<ExtArgs> | null
+  where?: Prisma.aliasesWhereInput
+  orderBy?: Prisma.aliasesOrderByWithRelationInput | Prisma.aliasesOrderByWithRelationInput[]
+  cursor?: Prisma.aliasesWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AliasesScalarFieldEnum | Prisma.AliasesScalarFieldEnum[]
+}
+
+/**
+ * users.relations
+ */
+export type users$relationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the relations
+   */
+  select?: Prisma.relationsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the relations
+   */
+  omit?: Prisma.relationsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.relationsInclude<ExtArgs> | null
+  where?: Prisma.relationsWhereInput
+  orderBy?: Prisma.relationsOrderByWithRelationInput | Prisma.relationsOrderByWithRelationInput[]
+  cursor?: Prisma.relationsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RelationsScalarFieldEnum | Prisma.RelationsScalarFieldEnum[]
+}
+
+/**
+ * users.events
+ */
+export type users$eventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the events
+   */
+  select?: Prisma.eventsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the events
+   */
+  omit?: Prisma.eventsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.eventsInclude<ExtArgs> | null
+  where?: Prisma.eventsWhereInput
+  orderBy?: Prisma.eventsOrderByWithRelationInput | Prisma.eventsOrderByWithRelationInput[]
+  cursor?: Prisma.eventsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EventsScalarFieldEnum | Prisma.EventsScalarFieldEnum[]
 }
 
 /**

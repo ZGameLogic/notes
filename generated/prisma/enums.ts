@@ -16,3 +16,11 @@ export const CampaignRole = {
 } as const
 
 export type CampaignRole = (typeof CampaignRole)[keyof typeof CampaignRole]
+
+
+export const EventType = {
+  create: 'create',
+  update: 'update'
+} as const
+
+export type EventType = (typeof EventType)[keyof typeof EventType]

@@ -20,8 +20,18 @@ export type relationsModel = runtime.Types.Result.DefaultSelection<Prisma.$relat
 
 export type AggregateRelations = {
   _count: RelationsCountAggregateOutputType | null
+  _avg: RelationsAvgAggregateOutputType | null
+  _sum: RelationsSumAggregateOutputType | null
   _min: RelationsMinAggregateOutputType | null
   _max: RelationsMaxAggregateOutputType | null
+}
+
+export type RelationsAvgAggregateOutputType = {
+  created_by: number | null
+}
+
+export type RelationsSumAggregateOutputType = {
+  created_by: bigint | null
 }
 
 export type RelationsMinAggregateOutputType = {
@@ -29,6 +39,7 @@ export type RelationsMinAggregateOutputType = {
   right_record: string | null
   notes: string | null
   relation_type: string | null
+  created_by: bigint | null
 }
 
 export type RelationsMaxAggregateOutputType = {
@@ -36,6 +47,7 @@ export type RelationsMaxAggregateOutputType = {
   right_record: string | null
   notes: string | null
   relation_type: string | null
+  created_by: bigint | null
 }
 
 export type RelationsCountAggregateOutputType = {
@@ -43,15 +55,25 @@ export type RelationsCountAggregateOutputType = {
   right_record: number
   notes: number
   relation_type: number
+  created_by: number
   _all: number
 }
 
+
+export type RelationsAvgAggregateInputType = {
+  created_by?: true
+}
+
+export type RelationsSumAggregateInputType = {
+  created_by?: true
+}
 
 export type RelationsMinAggregateInputType = {
   left_record?: true
   right_record?: true
   notes?: true
   relation_type?: true
+  created_by?: true
 }
 
 export type RelationsMaxAggregateInputType = {
@@ -59,6 +81,7 @@ export type RelationsMaxAggregateInputType = {
   right_record?: true
   notes?: true
   relation_type?: true
+  created_by?: true
 }
 
 export type RelationsCountAggregateInputType = {
@@ -66,6 +89,7 @@ export type RelationsCountAggregateInputType = {
   right_record?: true
   notes?: true
   relation_type?: true
+  created_by?: true
   _all?: true
 }
 
@@ -107,6 +131,18 @@ export type RelationsAggregateArgs<ExtArgs extends runtime.Types.Extensions.Inte
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: RelationsAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: RelationsSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: RelationsMinAggregateInputType
@@ -137,6 +173,8 @@ export type relationsGroupByArgs<ExtArgs extends runtime.Types.Extensions.Intern
   take?: number
   skip?: number
   _count?: RelationsCountAggregateInputType | true
+  _avg?: RelationsAvgAggregateInputType
+  _sum?: RelationsSumAggregateInputType
   _min?: RelationsMinAggregateInputType
   _max?: RelationsMaxAggregateInputType
 }
@@ -146,7 +184,10 @@ export type RelationsGroupByOutputType = {
   right_record: string
   notes: string | null
   relation_type: string
+  created_by: bigint
   _count: RelationsCountAggregateOutputType | null
+  _avg: RelationsAvgAggregateOutputType | null
+  _sum: RelationsSumAggregateOutputType | null
   _min: RelationsMinAggregateOutputType | null
   _max: RelationsMaxAggregateOutputType | null
 }
@@ -174,6 +215,8 @@ export type relationsWhereInput = {
   right_record?: Prisma.UuidFilter<"relations"> | string
   notes?: Prisma.StringNullableFilter<"relations"> | string | null
   relation_type?: Prisma.StringFilter<"relations"> | string
+  created_by?: Prisma.BigIntFilter<"relations"> | bigint | number
+  relationsTousers?: Prisma.XOR<Prisma.UsersScalarRelationFilter, Prisma.usersWhereInput>
   records_relations_left_recordTorecords?: Prisma.XOR<Prisma.RecordsScalarRelationFilter, Prisma.recordsWhereInput>
   records_relations_right_recordTorecords?: Prisma.XOR<Prisma.RecordsScalarRelationFilter, Prisma.recordsWhereInput>
   relation_types?: Prisma.XOR<Prisma.Relation_typesScalarRelationFilter, Prisma.relation_typesWhereInput>
@@ -184,6 +227,8 @@ export type relationsOrderByWithRelationInput = {
   right_record?: Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
   relation_type?: Prisma.SortOrder
+  created_by?: Prisma.SortOrder
+  relationsTousers?: Prisma.usersOrderByWithRelationInput
   records_relations_left_recordTorecords?: Prisma.recordsOrderByWithRelationInput
   records_relations_right_recordTorecords?: Prisma.recordsOrderByWithRelationInput
   relation_types?: Prisma.relation_typesOrderByWithRelationInput
@@ -198,6 +243,8 @@ export type relationsWhereUniqueInput = Prisma.AtLeast<{
   right_record?: Prisma.UuidFilter<"relations"> | string
   notes?: Prisma.StringNullableFilter<"relations"> | string | null
   relation_type?: Prisma.StringFilter<"relations"> | string
+  created_by?: Prisma.BigIntFilter<"relations"> | bigint | number
+  relationsTousers?: Prisma.XOR<Prisma.UsersScalarRelationFilter, Prisma.usersWhereInput>
   records_relations_left_recordTorecords?: Prisma.XOR<Prisma.RecordsScalarRelationFilter, Prisma.recordsWhereInput>
   records_relations_right_recordTorecords?: Prisma.XOR<Prisma.RecordsScalarRelationFilter, Prisma.recordsWhereInput>
   relation_types?: Prisma.XOR<Prisma.Relation_typesScalarRelationFilter, Prisma.relation_typesWhereInput>
@@ -208,9 +255,12 @@ export type relationsOrderByWithAggregationInput = {
   right_record?: Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
   relation_type?: Prisma.SortOrder
+  created_by?: Prisma.SortOrder
   _count?: Prisma.relationsCountOrderByAggregateInput
+  _avg?: Prisma.relationsAvgOrderByAggregateInput
   _max?: Prisma.relationsMaxOrderByAggregateInput
   _min?: Prisma.relationsMinOrderByAggregateInput
+  _sum?: Prisma.relationsSumOrderByAggregateInput
 }
 
 export type relationsScalarWhereWithAggregatesInput = {
@@ -221,10 +271,12 @@ export type relationsScalarWhereWithAggregatesInput = {
   right_record?: Prisma.UuidWithAggregatesFilter<"relations"> | string
   notes?: Prisma.StringNullableWithAggregatesFilter<"relations"> | string | null
   relation_type?: Prisma.StringWithAggregatesFilter<"relations"> | string
+  created_by?: Prisma.BigIntWithAggregatesFilter<"relations"> | bigint | number
 }
 
 export type relationsCreateInput = {
   notes?: string | null
+  relationsTousers: Prisma.usersCreateNestedOneWithoutRelationsInput
   records_relations_left_recordTorecords: Prisma.recordsCreateNestedOneWithoutRelations_relations_left_recordTorecordsInput
   records_relations_right_recordTorecords: Prisma.recordsCreateNestedOneWithoutRelations_relations_right_recordTorecordsInput
   relation_types: Prisma.relation_typesCreateNestedOneWithoutRelationsInput
@@ -235,10 +287,12 @@ export type relationsUncheckedCreateInput = {
   right_record: string
   notes?: string | null
   relation_type: string
+  created_by: bigint | number
 }
 
 export type relationsUpdateInput = {
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  relationsTousers?: Prisma.usersUpdateOneRequiredWithoutRelationsNestedInput
   records_relations_left_recordTorecords?: Prisma.recordsUpdateOneRequiredWithoutRelations_relations_left_recordTorecordsNestedInput
   records_relations_right_recordTorecords?: Prisma.recordsUpdateOneRequiredWithoutRelations_relations_right_recordTorecordsNestedInput
   relation_types?: Prisma.relation_typesUpdateOneRequiredWithoutRelationsNestedInput
@@ -249,6 +303,7 @@ export type relationsUncheckedUpdateInput = {
   right_record?: Prisma.StringFieldUpdateOperationsInput | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   relation_type?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
 }
 
 export type relationsCreateManyInput = {
@@ -256,6 +311,7 @@ export type relationsCreateManyInput = {
   right_record: string
   notes?: string | null
   relation_type: string
+  created_by: bigint | number
 }
 
 export type relationsUpdateManyMutationInput = {
@@ -267,6 +323,7 @@ export type relationsUncheckedUpdateManyInput = {
   right_record?: Prisma.StringFieldUpdateOperationsInput | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   relation_type?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
 }
 
 export type RelationsListRelationFilter = {
@@ -290,6 +347,11 @@ export type relationsCountOrderByAggregateInput = {
   right_record?: Prisma.SortOrder
   notes?: Prisma.SortOrder
   relation_type?: Prisma.SortOrder
+  created_by?: Prisma.SortOrder
+}
+
+export type relationsAvgOrderByAggregateInput = {
+  created_by?: Prisma.SortOrder
 }
 
 export type relationsMaxOrderByAggregateInput = {
@@ -297,6 +359,7 @@ export type relationsMaxOrderByAggregateInput = {
   right_record?: Prisma.SortOrder
   notes?: Prisma.SortOrder
   relation_type?: Prisma.SortOrder
+  created_by?: Prisma.SortOrder
 }
 
 export type relationsMinOrderByAggregateInput = {
@@ -304,6 +367,11 @@ export type relationsMinOrderByAggregateInput = {
   right_record?: Prisma.SortOrder
   notes?: Prisma.SortOrder
   relation_type?: Prisma.SortOrder
+  created_by?: Prisma.SortOrder
+}
+
+export type relationsSumOrderByAggregateInput = {
+  created_by?: Prisma.SortOrder
 }
 
 export type relationsCreateNestedManyWithoutRecords_relations_left_recordTorecordsInput = {
@@ -432,8 +500,51 @@ export type relationsUncheckedUpdateManyWithoutRelation_typesNestedInput = {
   deleteMany?: Prisma.relationsScalarWhereInput | Prisma.relationsScalarWhereInput[]
 }
 
+export type relationsCreateNestedManyWithoutRelationsTousersInput = {
+  create?: Prisma.XOR<Prisma.relationsCreateWithoutRelationsTousersInput, Prisma.relationsUncheckedCreateWithoutRelationsTousersInput> | Prisma.relationsCreateWithoutRelationsTousersInput[] | Prisma.relationsUncheckedCreateWithoutRelationsTousersInput[]
+  connectOrCreate?: Prisma.relationsCreateOrConnectWithoutRelationsTousersInput | Prisma.relationsCreateOrConnectWithoutRelationsTousersInput[]
+  createMany?: Prisma.relationsCreateManyRelationsTousersInputEnvelope
+  connect?: Prisma.relationsWhereUniqueInput | Prisma.relationsWhereUniqueInput[]
+}
+
+export type relationsUncheckedCreateNestedManyWithoutRelationsTousersInput = {
+  create?: Prisma.XOR<Prisma.relationsCreateWithoutRelationsTousersInput, Prisma.relationsUncheckedCreateWithoutRelationsTousersInput> | Prisma.relationsCreateWithoutRelationsTousersInput[] | Prisma.relationsUncheckedCreateWithoutRelationsTousersInput[]
+  connectOrCreate?: Prisma.relationsCreateOrConnectWithoutRelationsTousersInput | Prisma.relationsCreateOrConnectWithoutRelationsTousersInput[]
+  createMany?: Prisma.relationsCreateManyRelationsTousersInputEnvelope
+  connect?: Prisma.relationsWhereUniqueInput | Prisma.relationsWhereUniqueInput[]
+}
+
+export type relationsUpdateManyWithoutRelationsTousersNestedInput = {
+  create?: Prisma.XOR<Prisma.relationsCreateWithoutRelationsTousersInput, Prisma.relationsUncheckedCreateWithoutRelationsTousersInput> | Prisma.relationsCreateWithoutRelationsTousersInput[] | Prisma.relationsUncheckedCreateWithoutRelationsTousersInput[]
+  connectOrCreate?: Prisma.relationsCreateOrConnectWithoutRelationsTousersInput | Prisma.relationsCreateOrConnectWithoutRelationsTousersInput[]
+  upsert?: Prisma.relationsUpsertWithWhereUniqueWithoutRelationsTousersInput | Prisma.relationsUpsertWithWhereUniqueWithoutRelationsTousersInput[]
+  createMany?: Prisma.relationsCreateManyRelationsTousersInputEnvelope
+  set?: Prisma.relationsWhereUniqueInput | Prisma.relationsWhereUniqueInput[]
+  disconnect?: Prisma.relationsWhereUniqueInput | Prisma.relationsWhereUniqueInput[]
+  delete?: Prisma.relationsWhereUniqueInput | Prisma.relationsWhereUniqueInput[]
+  connect?: Prisma.relationsWhereUniqueInput | Prisma.relationsWhereUniqueInput[]
+  update?: Prisma.relationsUpdateWithWhereUniqueWithoutRelationsTousersInput | Prisma.relationsUpdateWithWhereUniqueWithoutRelationsTousersInput[]
+  updateMany?: Prisma.relationsUpdateManyWithWhereWithoutRelationsTousersInput | Prisma.relationsUpdateManyWithWhereWithoutRelationsTousersInput[]
+  deleteMany?: Prisma.relationsScalarWhereInput | Prisma.relationsScalarWhereInput[]
+}
+
+export type relationsUncheckedUpdateManyWithoutRelationsTousersNestedInput = {
+  create?: Prisma.XOR<Prisma.relationsCreateWithoutRelationsTousersInput, Prisma.relationsUncheckedCreateWithoutRelationsTousersInput> | Prisma.relationsCreateWithoutRelationsTousersInput[] | Prisma.relationsUncheckedCreateWithoutRelationsTousersInput[]
+  connectOrCreate?: Prisma.relationsCreateOrConnectWithoutRelationsTousersInput | Prisma.relationsCreateOrConnectWithoutRelationsTousersInput[]
+  upsert?: Prisma.relationsUpsertWithWhereUniqueWithoutRelationsTousersInput | Prisma.relationsUpsertWithWhereUniqueWithoutRelationsTousersInput[]
+  createMany?: Prisma.relationsCreateManyRelationsTousersInputEnvelope
+  set?: Prisma.relationsWhereUniqueInput | Prisma.relationsWhereUniqueInput[]
+  disconnect?: Prisma.relationsWhereUniqueInput | Prisma.relationsWhereUniqueInput[]
+  delete?: Prisma.relationsWhereUniqueInput | Prisma.relationsWhereUniqueInput[]
+  connect?: Prisma.relationsWhereUniqueInput | Prisma.relationsWhereUniqueInput[]
+  update?: Prisma.relationsUpdateWithWhereUniqueWithoutRelationsTousersInput | Prisma.relationsUpdateWithWhereUniqueWithoutRelationsTousersInput[]
+  updateMany?: Prisma.relationsUpdateManyWithWhereWithoutRelationsTousersInput | Prisma.relationsUpdateManyWithWhereWithoutRelationsTousersInput[]
+  deleteMany?: Prisma.relationsScalarWhereInput | Prisma.relationsScalarWhereInput[]
+}
+
 export type relationsCreateWithoutRecords_relations_left_recordTorecordsInput = {
   notes?: string | null
+  relationsTousers: Prisma.usersCreateNestedOneWithoutRelationsInput
   records_relations_right_recordTorecords: Prisma.recordsCreateNestedOneWithoutRelations_relations_right_recordTorecordsInput
   relation_types: Prisma.relation_typesCreateNestedOneWithoutRelationsInput
 }
@@ -442,6 +553,7 @@ export type relationsUncheckedCreateWithoutRecords_relations_left_recordTorecord
   right_record: string
   notes?: string | null
   relation_type: string
+  created_by: bigint | number
 }
 
 export type relationsCreateOrConnectWithoutRecords_relations_left_recordTorecordsInput = {
@@ -456,6 +568,7 @@ export type relationsCreateManyRecords_relations_left_recordTorecordsInputEnvelo
 
 export type relationsCreateWithoutRecords_relations_right_recordTorecordsInput = {
   notes?: string | null
+  relationsTousers: Prisma.usersCreateNestedOneWithoutRelationsInput
   records_relations_left_recordTorecords: Prisma.recordsCreateNestedOneWithoutRelations_relations_left_recordTorecordsInput
   relation_types: Prisma.relation_typesCreateNestedOneWithoutRelationsInput
 }
@@ -464,6 +577,7 @@ export type relationsUncheckedCreateWithoutRecords_relations_right_recordTorecor
   left_record: string
   notes?: string | null
   relation_type: string
+  created_by: bigint | number
 }
 
 export type relationsCreateOrConnectWithoutRecords_relations_right_recordTorecordsInput = {
@@ -500,6 +614,7 @@ export type relationsScalarWhereInput = {
   right_record?: Prisma.UuidFilter<"relations"> | string
   notes?: Prisma.StringNullableFilter<"relations"> | string | null
   relation_type?: Prisma.StringFilter<"relations"> | string
+  created_by?: Prisma.BigIntFilter<"relations"> | bigint | number
 }
 
 export type relationsUpsertWithWhereUniqueWithoutRecords_relations_right_recordTorecordsInput = {
@@ -520,6 +635,7 @@ export type relationsUpdateManyWithWhereWithoutRecords_relations_right_recordTor
 
 export type relationsCreateWithoutRelation_typesInput = {
   notes?: string | null
+  relationsTousers: Prisma.usersCreateNestedOneWithoutRelationsInput
   records_relations_left_recordTorecords: Prisma.recordsCreateNestedOneWithoutRelations_relations_left_recordTorecordsInput
   records_relations_right_recordTorecords: Prisma.recordsCreateNestedOneWithoutRelations_relations_right_recordTorecordsInput
 }
@@ -528,6 +644,7 @@ export type relationsUncheckedCreateWithoutRelation_typesInput = {
   left_record: string
   right_record: string
   notes?: string | null
+  created_by: bigint | number
 }
 
 export type relationsCreateOrConnectWithoutRelation_typesInput = {
@@ -556,20 +673,63 @@ export type relationsUpdateManyWithWhereWithoutRelation_typesInput = {
   data: Prisma.XOR<Prisma.relationsUpdateManyMutationInput, Prisma.relationsUncheckedUpdateManyWithoutRelation_typesInput>
 }
 
+export type relationsCreateWithoutRelationsTousersInput = {
+  notes?: string | null
+  records_relations_left_recordTorecords: Prisma.recordsCreateNestedOneWithoutRelations_relations_left_recordTorecordsInput
+  records_relations_right_recordTorecords: Prisma.recordsCreateNestedOneWithoutRelations_relations_right_recordTorecordsInput
+  relation_types: Prisma.relation_typesCreateNestedOneWithoutRelationsInput
+}
+
+export type relationsUncheckedCreateWithoutRelationsTousersInput = {
+  left_record: string
+  right_record: string
+  notes?: string | null
+  relation_type: string
+}
+
+export type relationsCreateOrConnectWithoutRelationsTousersInput = {
+  where: Prisma.relationsWhereUniqueInput
+  create: Prisma.XOR<Prisma.relationsCreateWithoutRelationsTousersInput, Prisma.relationsUncheckedCreateWithoutRelationsTousersInput>
+}
+
+export type relationsCreateManyRelationsTousersInputEnvelope = {
+  data: Prisma.relationsCreateManyRelationsTousersInput | Prisma.relationsCreateManyRelationsTousersInput[]
+  skipDuplicates?: boolean
+}
+
+export type relationsUpsertWithWhereUniqueWithoutRelationsTousersInput = {
+  where: Prisma.relationsWhereUniqueInput
+  update: Prisma.XOR<Prisma.relationsUpdateWithoutRelationsTousersInput, Prisma.relationsUncheckedUpdateWithoutRelationsTousersInput>
+  create: Prisma.XOR<Prisma.relationsCreateWithoutRelationsTousersInput, Prisma.relationsUncheckedCreateWithoutRelationsTousersInput>
+}
+
+export type relationsUpdateWithWhereUniqueWithoutRelationsTousersInput = {
+  where: Prisma.relationsWhereUniqueInput
+  data: Prisma.XOR<Prisma.relationsUpdateWithoutRelationsTousersInput, Prisma.relationsUncheckedUpdateWithoutRelationsTousersInput>
+}
+
+export type relationsUpdateManyWithWhereWithoutRelationsTousersInput = {
+  where: Prisma.relationsScalarWhereInput
+  data: Prisma.XOR<Prisma.relationsUpdateManyMutationInput, Prisma.relationsUncheckedUpdateManyWithoutRelationsTousersInput>
+}
+
 export type relationsCreateManyRecords_relations_left_recordTorecordsInput = {
   right_record: string
   notes?: string | null
   relation_type: string
+  created_by: bigint | number
 }
 
 export type relationsCreateManyRecords_relations_right_recordTorecordsInput = {
   left_record: string
   notes?: string | null
   relation_type: string
+  created_by: bigint | number
 }
 
 export type relationsUpdateWithoutRecords_relations_left_recordTorecordsInput = {
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  relationsTousers?: Prisma.usersUpdateOneRequiredWithoutRelationsNestedInput
   records_relations_right_recordTorecords?: Prisma.recordsUpdateOneRequiredWithoutRelations_relations_right_recordTorecordsNestedInput
   relation_types?: Prisma.relation_typesUpdateOneRequiredWithoutRelationsNestedInput
 }
@@ -578,16 +738,19 @@ export type relationsUncheckedUpdateWithoutRecords_relations_left_recordTorecord
   right_record?: Prisma.StringFieldUpdateOperationsInput | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   relation_type?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
 }
 
 export type relationsUncheckedUpdateManyWithoutRecords_relations_left_recordTorecordsInput = {
   right_record?: Prisma.StringFieldUpdateOperationsInput | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   relation_type?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
 }
 
 export type relationsUpdateWithoutRecords_relations_right_recordTorecordsInput = {
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  relationsTousers?: Prisma.usersUpdateOneRequiredWithoutRelationsNestedInput
   records_relations_left_recordTorecords?: Prisma.recordsUpdateOneRequiredWithoutRelations_relations_left_recordTorecordsNestedInput
   relation_types?: Prisma.relation_typesUpdateOneRequiredWithoutRelationsNestedInput
 }
@@ -596,22 +759,26 @@ export type relationsUncheckedUpdateWithoutRecords_relations_right_recordTorecor
   left_record?: Prisma.StringFieldUpdateOperationsInput | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   relation_type?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
 }
 
 export type relationsUncheckedUpdateManyWithoutRecords_relations_right_recordTorecordsInput = {
   left_record?: Prisma.StringFieldUpdateOperationsInput | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   relation_type?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
 }
 
 export type relationsCreateManyRelation_typesInput = {
   left_record: string
   right_record: string
   notes?: string | null
+  created_by: bigint | number
 }
 
 export type relationsUpdateWithoutRelation_typesInput = {
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  relationsTousers?: Prisma.usersUpdateOneRequiredWithoutRelationsNestedInput
   records_relations_left_recordTorecords?: Prisma.recordsUpdateOneRequiredWithoutRelations_relations_left_recordTorecordsNestedInput
   records_relations_right_recordTorecords?: Prisma.recordsUpdateOneRequiredWithoutRelations_relations_right_recordTorecordsNestedInput
 }
@@ -620,12 +787,42 @@ export type relationsUncheckedUpdateWithoutRelation_typesInput = {
   left_record?: Prisma.StringFieldUpdateOperationsInput | string
   right_record?: Prisma.StringFieldUpdateOperationsInput | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_by?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
 }
 
 export type relationsUncheckedUpdateManyWithoutRelation_typesInput = {
   left_record?: Prisma.StringFieldUpdateOperationsInput | string
   right_record?: Prisma.StringFieldUpdateOperationsInput | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_by?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+}
+
+export type relationsCreateManyRelationsTousersInput = {
+  left_record: string
+  right_record: string
+  notes?: string | null
+  relation_type: string
+}
+
+export type relationsUpdateWithoutRelationsTousersInput = {
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  records_relations_left_recordTorecords?: Prisma.recordsUpdateOneRequiredWithoutRelations_relations_left_recordTorecordsNestedInput
+  records_relations_right_recordTorecords?: Prisma.recordsUpdateOneRequiredWithoutRelations_relations_right_recordTorecordsNestedInput
+  relation_types?: Prisma.relation_typesUpdateOneRequiredWithoutRelationsNestedInput
+}
+
+export type relationsUncheckedUpdateWithoutRelationsTousersInput = {
+  left_record?: Prisma.StringFieldUpdateOperationsInput | string
+  right_record?: Prisma.StringFieldUpdateOperationsInput | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  relation_type?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type relationsUncheckedUpdateManyWithoutRelationsTousersInput = {
+  left_record?: Prisma.StringFieldUpdateOperationsInput | string
+  right_record?: Prisma.StringFieldUpdateOperationsInput | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  relation_type?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -635,6 +832,8 @@ export type relationsSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   right_record?: boolean
   notes?: boolean
   relation_type?: boolean
+  created_by?: boolean
+  relationsTousers?: boolean | Prisma.usersDefaultArgs<ExtArgs>
   records_relations_left_recordTorecords?: boolean | Prisma.recordsDefaultArgs<ExtArgs>
   records_relations_right_recordTorecords?: boolean | Prisma.recordsDefaultArgs<ExtArgs>
   relation_types?: boolean | Prisma.relation_typesDefaultArgs<ExtArgs>
@@ -645,6 +844,8 @@ export type relationsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   right_record?: boolean
   notes?: boolean
   relation_type?: boolean
+  created_by?: boolean
+  relationsTousers?: boolean | Prisma.usersDefaultArgs<ExtArgs>
   records_relations_left_recordTorecords?: boolean | Prisma.recordsDefaultArgs<ExtArgs>
   records_relations_right_recordTorecords?: boolean | Prisma.recordsDefaultArgs<ExtArgs>
   relation_types?: boolean | Prisma.relation_typesDefaultArgs<ExtArgs>
@@ -655,6 +856,8 @@ export type relationsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   right_record?: boolean
   notes?: boolean
   relation_type?: boolean
+  created_by?: boolean
+  relationsTousers?: boolean | Prisma.usersDefaultArgs<ExtArgs>
   records_relations_left_recordTorecords?: boolean | Prisma.recordsDefaultArgs<ExtArgs>
   records_relations_right_recordTorecords?: boolean | Prisma.recordsDefaultArgs<ExtArgs>
   relation_types?: boolean | Prisma.relation_typesDefaultArgs<ExtArgs>
@@ -665,20 +868,24 @@ export type relationsSelectScalar = {
   right_record?: boolean
   notes?: boolean
   relation_type?: boolean
+  created_by?: boolean
 }
 
-export type relationsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"left_record" | "right_record" | "notes" | "relation_type", ExtArgs["result"]["relations"]>
+export type relationsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"left_record" | "right_record" | "notes" | "relation_type" | "created_by", ExtArgs["result"]["relations"]>
 export type relationsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  relationsTousers?: boolean | Prisma.usersDefaultArgs<ExtArgs>
   records_relations_left_recordTorecords?: boolean | Prisma.recordsDefaultArgs<ExtArgs>
   records_relations_right_recordTorecords?: boolean | Prisma.recordsDefaultArgs<ExtArgs>
   relation_types?: boolean | Prisma.relation_typesDefaultArgs<ExtArgs>
 }
 export type relationsIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  relationsTousers?: boolean | Prisma.usersDefaultArgs<ExtArgs>
   records_relations_left_recordTorecords?: boolean | Prisma.recordsDefaultArgs<ExtArgs>
   records_relations_right_recordTorecords?: boolean | Prisma.recordsDefaultArgs<ExtArgs>
   relation_types?: boolean | Prisma.relation_typesDefaultArgs<ExtArgs>
 }
 export type relationsIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  relationsTousers?: boolean | Prisma.usersDefaultArgs<ExtArgs>
   records_relations_left_recordTorecords?: boolean | Prisma.recordsDefaultArgs<ExtArgs>
   records_relations_right_recordTorecords?: boolean | Prisma.recordsDefaultArgs<ExtArgs>
   relation_types?: boolean | Prisma.relation_typesDefaultArgs<ExtArgs>
@@ -687,6 +894,7 @@ export type relationsIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
 export type $relationsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "relations"
   objects: {
+    relationsTousers: Prisma.$usersPayload<ExtArgs>
     records_relations_left_recordTorecords: Prisma.$recordsPayload<ExtArgs>
     records_relations_right_recordTorecords: Prisma.$recordsPayload<ExtArgs>
     relation_types: Prisma.$relation_typesPayload<ExtArgs>
@@ -696,6 +904,7 @@ export type $relationsPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     right_record: string
     notes: string | null
     relation_type: string
+    created_by: bigint
   }, ExtArgs["result"]["relations"]>
   composites: {}
 }
@@ -1090,6 +1299,7 @@ readonly fields: relationsFieldRefs;
  */
 export interface Prisma__relationsClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  relationsTousers<T extends Prisma.usersDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.usersDefaultArgs<ExtArgs>>): Prisma.Prisma__usersClient<runtime.Types.Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   records_relations_left_recordTorecords<T extends Prisma.recordsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.recordsDefaultArgs<ExtArgs>>): Prisma.Prisma__recordsClient<runtime.Types.Result.GetResult<Prisma.$recordsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   records_relations_right_recordTorecords<T extends Prisma.recordsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.recordsDefaultArgs<ExtArgs>>): Prisma.Prisma__recordsClient<runtime.Types.Result.GetResult<Prisma.$recordsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   relation_types<T extends Prisma.relation_typesDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.relation_typesDefaultArgs<ExtArgs>>): Prisma.Prisma__relation_typesClient<runtime.Types.Result.GetResult<Prisma.$relation_typesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
@@ -1126,6 +1336,7 @@ export interface relationsFieldRefs {
   readonly right_record: Prisma.FieldRef<"relations", 'String'>
   readonly notes: Prisma.FieldRef<"relations", 'String'>
   readonly relation_type: Prisma.FieldRef<"relations", 'String'>
+  readonly created_by: Prisma.FieldRef<"relations", 'BigInt'>
 }
     
 

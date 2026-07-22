@@ -40,5 +40,3 @@ next-env.d.ts
 .idea/Project_default.xml
 .idea/vcs.xml
 /.idea/inspectionProfiles/Project_Default.xml
-
-/prisma/migrations

@@ -20,40 +20,64 @@ export type aliasesModel = runtime.Types.Result.DefaultSelection<Prisma.$aliases
 
 export type AggregateAliases = {
   _count: AliasesCountAggregateOutputType | null
+  _avg: AliasesAvgAggregateOutputType | null
+  _sum: AliasesSumAggregateOutputType | null
   _min: AliasesMinAggregateOutputType | null
   _max: AliasesMaxAggregateOutputType | null
+}
+
+export type AliasesAvgAggregateOutputType = {
+  created_by: number | null
+}
+
+export type AliasesSumAggregateOutputType = {
+  created_by: bigint | null
 }
 
 export type AliasesMinAggregateOutputType = {
   record_id: string | null
   alias: string | null
+  created_by: bigint | null
 }
 
 export type AliasesMaxAggregateOutputType = {
   record_id: string | null
   alias: string | null
+  created_by: bigint | null
 }
 
 export type AliasesCountAggregateOutputType = {
   record_id: number
   alias: number
+  created_by: number
   _all: number
 }
 
 
+export type AliasesAvgAggregateInputType = {
+  created_by?: true
+}
+
+export type AliasesSumAggregateInputType = {
+  created_by?: true
+}
+
 export type AliasesMinAggregateInputType = {
   record_id?: true
   alias?: true
+  created_by?: true
 }
 
 export type AliasesMaxAggregateInputType = {
   record_id?: true
   alias?: true
+  created_by?: true
 }
 
 export type AliasesCountAggregateInputType = {
   record_id?: true
   alias?: true
+  created_by?: true
   _all?: true
 }
 
@@ -95,6 +119,18 @@ export type AliasesAggregateArgs<ExtArgs extends runtime.Types.Extensions.Intern
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: AliasesAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: AliasesSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: AliasesMinAggregateInputType
@@ -125,6 +161,8 @@ export type aliasesGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   _count?: AliasesCountAggregateInputType | true
+  _avg?: AliasesAvgAggregateInputType
+  _sum?: AliasesSumAggregateInputType
   _min?: AliasesMinAggregateInputType
   _max?: AliasesMaxAggregateInputType
 }
@@ -132,7 +170,10 @@ export type aliasesGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 export type AliasesGroupByOutputType = {
   record_id: string
   alias: string
+  created_by: bigint
   _count: AliasesCountAggregateOutputType | null
+  _avg: AliasesAvgAggregateOutputType | null
+  _sum: AliasesSumAggregateOutputType | null
   _min: AliasesMinAggregateOutputType | null
   _max: AliasesMaxAggregateOutputType | null
 }
@@ -158,13 +199,17 @@ export type aliasesWhereInput = {
   NOT?: Prisma.aliasesWhereInput | Prisma.aliasesWhereInput[]
   record_id?: Prisma.UuidFilter<"aliases"> | string
   alias?: Prisma.StringFilter<"aliases"> | string
+  created_by?: Prisma.BigIntFilter<"aliases"> | bigint | number
   records?: Prisma.XOR<Prisma.RecordsScalarRelationFilter, Prisma.recordsWhereInput>
+  aliasesTousers?: Prisma.XOR<Prisma.UsersScalarRelationFilter, Prisma.usersWhereInput>
 }
 
 export type aliasesOrderByWithRelationInput = {
   record_id?: Prisma.SortOrder
   alias?: Prisma.SortOrder
+  created_by?: Prisma.SortOrder
   records?: Prisma.recordsOrderByWithRelationInput
+  aliasesTousers?: Prisma.usersOrderByWithRelationInput
 }
 
 export type aliasesWhereUniqueInput = Prisma.AtLeast<{
@@ -174,15 +219,20 @@ export type aliasesWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.aliasesWhereInput | Prisma.aliasesWhereInput[]
   record_id?: Prisma.UuidFilter<"aliases"> | string
   alias?: Prisma.StringFilter<"aliases"> | string
+  created_by?: Prisma.BigIntFilter<"aliases"> | bigint | number
   records?: Prisma.XOR<Prisma.RecordsScalarRelationFilter, Prisma.recordsWhereInput>
+  aliasesTousers?: Prisma.XOR<Prisma.UsersScalarRelationFilter, Prisma.usersWhereInput>
 }, "alias_record_id">
 
 export type aliasesOrderByWithAggregationInput = {
   record_id?: Prisma.SortOrder
   alias?: Prisma.SortOrder
+  created_by?: Prisma.SortOrder
   _count?: Prisma.aliasesCountOrderByAggregateInput
+  _avg?: Prisma.aliasesAvgOrderByAggregateInput
   _max?: Prisma.aliasesMaxOrderByAggregateInput
   _min?: Prisma.aliasesMinOrderByAggregateInput
+  _sum?: Prisma.aliasesSumOrderByAggregateInput
 }
 
 export type aliasesScalarWhereWithAggregatesInput = {
@@ -191,31 +241,37 @@ export type aliasesScalarWhereWithAggregatesInput = {
   NOT?: Prisma.aliasesScalarWhereWithAggregatesInput | Prisma.aliasesScalarWhereWithAggregatesInput[]
   record_id?: Prisma.UuidWithAggregatesFilter<"aliases"> | string
   alias?: Prisma.StringWithAggregatesFilter<"aliases"> | string
+  created_by?: Prisma.BigIntWithAggregatesFilter<"aliases"> | bigint | number
 }
 
 export type aliasesCreateInput = {
   alias: string
   records: Prisma.recordsCreateNestedOneWithoutAliasesInput
+  aliasesTousers: Prisma.usersCreateNestedOneWithoutAliasesInput
 }
 
 export type aliasesUncheckedCreateInput = {
   record_id: string
   alias: string
+  created_by: bigint | number
 }
 
 export type aliasesUpdateInput = {
   alias?: Prisma.StringFieldUpdateOperationsInput | string
   records?: Prisma.recordsUpdateOneRequiredWithoutAliasesNestedInput
+  aliasesTousers?: Prisma.usersUpdateOneRequiredWithoutAliasesNestedInput
 }
 
 export type aliasesUncheckedUpdateInput = {
   record_id?: Prisma.StringFieldUpdateOperationsInput | string
   alias?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
 }
 
 export type aliasesCreateManyInput = {
   record_id: string
   alias: string
+  created_by: bigint | number
 }
 
 export type aliasesUpdateManyMutationInput = {
@@ -225,6 +281,7 @@ export type aliasesUpdateManyMutationInput = {
 export type aliasesUncheckedUpdateManyInput = {
   record_id?: Prisma.StringFieldUpdateOperationsInput | string
   alias?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
 }
 
 export type aliasesAliasRecord_idCompoundUniqueInput = {
@@ -235,16 +292,27 @@ export type aliasesAliasRecord_idCompoundUniqueInput = {
 export type aliasesCountOrderByAggregateInput = {
   record_id?: Prisma.SortOrder
   alias?: Prisma.SortOrder
+  created_by?: Prisma.SortOrder
+}
+
+export type aliasesAvgOrderByAggregateInput = {
+  created_by?: Prisma.SortOrder
 }
 
 export type aliasesMaxOrderByAggregateInput = {
   record_id?: Prisma.SortOrder
   alias?: Prisma.SortOrder
+  created_by?: Prisma.SortOrder
 }
 
 export type aliasesMinOrderByAggregateInput = {
   record_id?: Prisma.SortOrder
   alias?: Prisma.SortOrder
+  created_by?: Prisma.SortOrder
+}
+
+export type aliasesSumOrderByAggregateInput = {
+  created_by?: Prisma.SortOrder
 }
 
 export type AliasesListRelationFilter = {
@@ -259,6 +327,14 @@ export type aliasesOrderByRelationAggregateInput = {
 
 export type StringFieldUpdateOperationsInput = {
   set?: string
+}
+
+export type BigIntFieldUpdateOperationsInput = {
+  set?: bigint | number
+  increment?: bigint | number
+  decrement?: bigint | number
+  multiply?: bigint | number
+  divide?: bigint | number
 }
 
 export type aliasesCreateNestedManyWithoutRecordsInput = {
@@ -303,12 +379,56 @@ export type aliasesUncheckedUpdateManyWithoutRecordsNestedInput = {
   deleteMany?: Prisma.aliasesScalarWhereInput | Prisma.aliasesScalarWhereInput[]
 }
 
+export type aliasesCreateNestedManyWithoutAliasesTousersInput = {
+  create?: Prisma.XOR<Prisma.aliasesCreateWithoutAliasesTousersInput, Prisma.aliasesUncheckedCreateWithoutAliasesTousersInput> | Prisma.aliasesCreateWithoutAliasesTousersInput[] | Prisma.aliasesUncheckedCreateWithoutAliasesTousersInput[]
+  connectOrCreate?: Prisma.aliasesCreateOrConnectWithoutAliasesTousersInput | Prisma.aliasesCreateOrConnectWithoutAliasesTousersInput[]
+  createMany?: Prisma.aliasesCreateManyAliasesTousersInputEnvelope
+  connect?: Prisma.aliasesWhereUniqueInput | Prisma.aliasesWhereUniqueInput[]
+}
+
+export type aliasesUncheckedCreateNestedManyWithoutAliasesTousersInput = {
+  create?: Prisma.XOR<Prisma.aliasesCreateWithoutAliasesTousersInput, Prisma.aliasesUncheckedCreateWithoutAliasesTousersInput> | Prisma.aliasesCreateWithoutAliasesTousersInput[] | Prisma.aliasesUncheckedCreateWithoutAliasesTousersInput[]
+  connectOrCreate?: Prisma.aliasesCreateOrConnectWithoutAliasesTousersInput | Prisma.aliasesCreateOrConnectWithoutAliasesTousersInput[]
+  createMany?: Prisma.aliasesCreateManyAliasesTousersInputEnvelope
+  connect?: Prisma.aliasesWhereUniqueInput | Prisma.aliasesWhereUniqueInput[]
+}
+
+export type aliasesUpdateManyWithoutAliasesTousersNestedInput = {
+  create?: Prisma.XOR<Prisma.aliasesCreateWithoutAliasesTousersInput, Prisma.aliasesUncheckedCreateWithoutAliasesTousersInput> | Prisma.aliasesCreateWithoutAliasesTousersInput[] | Prisma.aliasesUncheckedCreateWithoutAliasesTousersInput[]
+  connectOrCreate?: Prisma.aliasesCreateOrConnectWithoutAliasesTousersInput | Prisma.aliasesCreateOrConnectWithoutAliasesTousersInput[]
+  upsert?: Prisma.aliasesUpsertWithWhereUniqueWithoutAliasesTousersInput | Prisma.aliasesUpsertWithWhereUniqueWithoutAliasesTousersInput[]
+  createMany?: Prisma.aliasesCreateManyAliasesTousersInputEnvelope
+  set?: Prisma.aliasesWhereUniqueInput | Prisma.aliasesWhereUniqueInput[]
+  disconnect?: Prisma.aliasesWhereUniqueInput | Prisma.aliasesWhereUniqueInput[]
+  delete?: Prisma.aliasesWhereUniqueInput | Prisma.aliasesWhereUniqueInput[]
+  connect?: Prisma.aliasesWhereUniqueInput | Prisma.aliasesWhereUniqueInput[]
+  update?: Prisma.aliasesUpdateWithWhereUniqueWithoutAliasesTousersInput | Prisma.aliasesUpdateWithWhereUniqueWithoutAliasesTousersInput[]
+  updateMany?: Prisma.aliasesUpdateManyWithWhereWithoutAliasesTousersInput | Prisma.aliasesUpdateManyWithWhereWithoutAliasesTousersInput[]
+  deleteMany?: Prisma.aliasesScalarWhereInput | Prisma.aliasesScalarWhereInput[]
+}
+
+export type aliasesUncheckedUpdateManyWithoutAliasesTousersNestedInput = {
+  create?: Prisma.XOR<Prisma.aliasesCreateWithoutAliasesTousersInput, Prisma.aliasesUncheckedCreateWithoutAliasesTousersInput> | Prisma.aliasesCreateWithoutAliasesTousersInput[] | Prisma.aliasesUncheckedCreateWithoutAliasesTousersInput[]
+  connectOrCreate?: Prisma.aliasesCreateOrConnectWithoutAliasesTousersInput | Prisma.aliasesCreateOrConnectWithoutAliasesTousersInput[]
+  upsert?: Prisma.aliasesUpsertWithWhereUniqueWithoutAliasesTousersInput | Prisma.aliasesUpsertWithWhereUniqueWithoutAliasesTousersInput[]
+  createMany?: Prisma.aliasesCreateManyAliasesTousersInputEnvelope
+  set?: Prisma.aliasesWhereUniqueInput | Prisma.aliasesWhereUniqueInput[]
+  disconnect?: Prisma.aliasesWhereUniqueInput | Prisma.aliasesWhereUniqueInput[]
+  delete?: Prisma.aliasesWhereUniqueInput | Prisma.aliasesWhereUniqueInput[]
+  connect?: Prisma.aliasesWhereUniqueInput | Prisma.aliasesWhereUniqueInput[]
+  update?: Prisma.aliasesUpdateWithWhereUniqueWithoutAliasesTousersInput | Prisma.aliasesUpdateWithWhereUniqueWithoutAliasesTousersInput[]
+  updateMany?: Prisma.aliasesUpdateManyWithWhereWithoutAliasesTousersInput | Prisma.aliasesUpdateManyWithWhereWithoutAliasesTousersInput[]
+  deleteMany?: Prisma.aliasesScalarWhereInput | Prisma.aliasesScalarWhereInput[]
+}
+
 export type aliasesCreateWithoutRecordsInput = {
   alias: string
+  aliasesTousers: Prisma.usersCreateNestedOneWithoutAliasesInput
 }
 
 export type aliasesUncheckedCreateWithoutRecordsInput = {
   alias: string
+  created_by: bigint | number
 }
 
 export type aliasesCreateOrConnectWithoutRecordsInput = {
@@ -343,21 +463,82 @@ export type aliasesScalarWhereInput = {
   NOT?: Prisma.aliasesScalarWhereInput | Prisma.aliasesScalarWhereInput[]
   record_id?: Prisma.UuidFilter<"aliases"> | string
   alias?: Prisma.StringFilter<"aliases"> | string
+  created_by?: Prisma.BigIntFilter<"aliases"> | bigint | number
+}
+
+export type aliasesCreateWithoutAliasesTousersInput = {
+  alias: string
+  records: Prisma.recordsCreateNestedOneWithoutAliasesInput
+}
+
+export type aliasesUncheckedCreateWithoutAliasesTousersInput = {
+  record_id: string
+  alias: string
+}
+
+export type aliasesCreateOrConnectWithoutAliasesTousersInput = {
+  where: Prisma.aliasesWhereUniqueInput
+  create: Prisma.XOR<Prisma.aliasesCreateWithoutAliasesTousersInput, Prisma.aliasesUncheckedCreateWithoutAliasesTousersInput>
+}
+
+export type aliasesCreateManyAliasesTousersInputEnvelope = {
+  data: Prisma.aliasesCreateManyAliasesTousersInput | Prisma.aliasesCreateManyAliasesTousersInput[]
+  skipDuplicates?: boolean
+}
+
+export type aliasesUpsertWithWhereUniqueWithoutAliasesTousersInput = {
+  where: Prisma.aliasesWhereUniqueInput
+  update: Prisma.XOR<Prisma.aliasesUpdateWithoutAliasesTousersInput, Prisma.aliasesUncheckedUpdateWithoutAliasesTousersInput>
+  create: Prisma.XOR<Prisma.aliasesCreateWithoutAliasesTousersInput, Prisma.aliasesUncheckedCreateWithoutAliasesTousersInput>
+}
+
+export type aliasesUpdateWithWhereUniqueWithoutAliasesTousersInput = {
+  where: Prisma.aliasesWhereUniqueInput
+  data: Prisma.XOR<Prisma.aliasesUpdateWithoutAliasesTousersInput, Prisma.aliasesUncheckedUpdateWithoutAliasesTousersInput>
+}
+
+export type aliasesUpdateManyWithWhereWithoutAliasesTousersInput = {
+  where: Prisma.aliasesScalarWhereInput
+  data: Prisma.XOR<Prisma.aliasesUpdateManyMutationInput, Prisma.aliasesUncheckedUpdateManyWithoutAliasesTousersInput>
 }
 
 export type aliasesCreateManyRecordsInput = {
   alias: string
+  created_by: bigint | number
 }
 
 export type aliasesUpdateWithoutRecordsInput = {
   alias?: Prisma.StringFieldUpdateOperationsInput | string
+  aliasesTousers?: Prisma.usersUpdateOneRequiredWithoutAliasesNestedInput
 }
 
 export type aliasesUncheckedUpdateWithoutRecordsInput = {
   alias?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
 }
 
 export type aliasesUncheckedUpdateManyWithoutRecordsInput = {
+  alias?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+}
+
+export type aliasesCreateManyAliasesTousersInput = {
+  record_id: string
+  alias: string
+}
+
+export type aliasesUpdateWithoutAliasesTousersInput = {
+  alias?: Prisma.StringFieldUpdateOperationsInput | string
+  records?: Prisma.recordsUpdateOneRequiredWithoutAliasesNestedInput
+}
+
+export type aliasesUncheckedUpdateWithoutAliasesTousersInput = {
+  record_id?: Prisma.StringFieldUpdateOperationsInput | string
+  alias?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type aliasesUncheckedUpdateManyWithoutAliasesTousersInput = {
+  record_id?: Prisma.StringFieldUpdateOperationsInput | string
   alias?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -366,45 +547,57 @@ export type aliasesUncheckedUpdateManyWithoutRecordsInput = {
 export type aliasesSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   record_id?: boolean
   alias?: boolean
+  created_by?: boolean
   records?: boolean | Prisma.recordsDefaultArgs<ExtArgs>
+  aliasesTousers?: boolean | Prisma.usersDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["aliases"]>
 
 export type aliasesSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   record_id?: boolean
   alias?: boolean
+  created_by?: boolean
   records?: boolean | Prisma.recordsDefaultArgs<ExtArgs>
+  aliasesTousers?: boolean | Prisma.usersDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["aliases"]>
 
 export type aliasesSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   record_id?: boolean
   alias?: boolean
+  created_by?: boolean
   records?: boolean | Prisma.recordsDefaultArgs<ExtArgs>
+  aliasesTousers?: boolean | Prisma.usersDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["aliases"]>
 
 export type aliasesSelectScalar = {
   record_id?: boolean
   alias?: boolean
+  created_by?: boolean
 }
 
-export type aliasesOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"record_id" | "alias", ExtArgs["result"]["aliases"]>
+export type aliasesOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"record_id" | "alias" | "created_by", ExtArgs["result"]["aliases"]>
 export type aliasesInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   records?: boolean | Prisma.recordsDefaultArgs<ExtArgs>
+  aliasesTousers?: boolean | Prisma.usersDefaultArgs<ExtArgs>
 }
 export type aliasesIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   records?: boolean | Prisma.recordsDefaultArgs<ExtArgs>
+  aliasesTousers?: boolean | Prisma.usersDefaultArgs<ExtArgs>
 }
 export type aliasesIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   records?: boolean | Prisma.recordsDefaultArgs<ExtArgs>
+  aliasesTousers?: boolean | Prisma.usersDefaultArgs<ExtArgs>
 }
 
 export type $aliasesPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "aliases"
   objects: {
     records: Prisma.$recordsPayload<ExtArgs>
+    aliasesTousers: Prisma.$usersPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     record_id: string
     alias: string
+    created_by: bigint
   }, ExtArgs["result"]["aliases"]>
   composites: {}
 }
@@ -800,6 +993,7 @@ readonly fields: aliasesFieldRefs;
 export interface Prisma__aliasesClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   records<T extends Prisma.recordsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.recordsDefaultArgs<ExtArgs>>): Prisma.Prisma__recordsClient<runtime.Types.Result.GetResult<Prisma.$recordsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  aliasesTousers<T extends Prisma.usersDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.usersDefaultArgs<ExtArgs>>): Prisma.Prisma__usersClient<runtime.Types.Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -831,6 +1025,7 @@ export interface Prisma__aliasesClient<T, Null = never, ExtArgs extends runtime.
 export interface aliasesFieldRefs {
   readonly record_id: Prisma.FieldRef<"aliases", 'String'>
   readonly alias: Prisma.FieldRef<"aliases", 'String'>
+  readonly created_by: Prisma.FieldRef<"aliases", 'BigInt'>
 }
     
 
