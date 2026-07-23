@@ -5,9 +5,9 @@ async function fetchAllCampaigns(): Promise<campaigns[]> {
   return await databaseService.prisma.campaigns.findMany();
 }
 
-async function fetchAllUser(): Promise<users[]> {
+async function fetchAllUsers(): Promise<users[]> {
   if (!databaseService?.prisma) return [];
   return await databaseService.prisma.users.findMany();
 }
 
-export { fetchAllCampaigns, fetchAllUser };
+export { fetchAllCampaigns, fetchAllUsers };
