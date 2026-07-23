@@ -47,7 +47,7 @@ export default function AuthWidget({ redirect_url, client_id }: AuthWidgetProps)
       queryClient.setQueryData(['auth'], authData);
       router.push(pathName);
     }).catch(() => {});
-  }, [code, pathName, router]);
+  }, [code, pathName, queryClient, router]);
 
   return data ? <>
     <ButtonBase

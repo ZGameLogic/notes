@@ -3,12 +3,10 @@
 import {
   AppBar,
   Grid,
-  IconButton,
   Stack,
   Toolbar,
   Typography
 } from "@mui/material";
-import MenuIcon from '@mui/icons-material/Menu';
 import SearchBar from "@/app/components/header/search/SearchBar";
 import AuthWidget from "@/app/components/header/AuthWidget";
 import {MenuWidget} from "@/app/components/header/MenuWidget";

@@ -1,7 +1,7 @@
 'use client';
 
 import { Dispatch, SetStateAction } from "react";
-import { Box, Modal, TextField } from "@mui/material";
+import {Box, Button, Modal, Stack, TextField, Typography} from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { fetchAllUsers } from "@/app/lib/database/GlobalDataRepository";
 import { useForm, Controller } from "react-hook-form";
@@ -38,7 +38,7 @@ export function CreateCampaignForm({open, setOpenAction}: CreateCampaignFormProp
 
   const onSubmit = handleSubmit((data) => console.log(data));
 
-  const { data } = useQuery({
+  const { data: users } = useQuery({
     queryKey: ['users'],
     queryFn: fetchAllUsers,
     refetchOnMount: 'always',
@@ -51,17 +51,26 @@ export function CreateCampaignForm({open, setOpenAction}: CreateCampaignFormProp
     onClose={() => setOpenAction(false)}
   >
     <Box sx={{...style}} component={'form'} onSubmit={onSubmit}>
-      <Controller
-        name='name'
-        control={control}
-        render={({ field }) =>
-          <TextField
-            sx={{width: '100%'}}
-            label={'Name'}
-            {...field}
-          />
-        }
-      />
+      <Stack spacing={2}>
+        <Typography variant={'h4'}>Create Campaign</Typography>
+        <Controller
+          name='name'
+          control={control}
+          render={({ field }) =>
+            <TextField
+              sx={{width: '100%'}}
+              label={'Name'}
+              {...field}
+            />
+          }
+        />
+        <Button
+          variant={'outlined'}
+          type={'submit'}
+        >
+          Create
+        </Button>
+      </Stack>
     </Box>
   </Modal>;
 }
