@@ -1,7 +1,15 @@
 'use server';
 
-import {fetchAllCampaigns} from "@/app/lib/database/CampaignRepository";
-import {campaigns} from "@/generated/prisma/client";
+import {fetchAllCampaigns, fetchAllUser} from "@/app/lib/database/GlobalDataRepository";
+import {campaigns, users} from "@/generated/prisma/client";
+
+export async function getAllUsers(): Promise<users[]>{
+  try {
+    return await fetchAllUser();
+  } catch {
+    return [];
+  }
+}
 
 export async function getAllCampaigns(): Promise<campaigns[]>{
   try {
