@@ -1,13 +1,18 @@
 'use client';
 
-import {Dispatch, SetStateAction, SubmitEvent} from "react";
-import {Box, Modal, TextField} from "@mui/material";
-import {useQuery} from "@tanstack/react-query";
-import {fetchAllUsers} from "@/app/lib/database/GlobalDataRepository";
+import { Dispatch, SetStateAction } from "react";
+import { Box, Modal, TextField } from "@mui/material";
+import { useQuery } from "@tanstack/react-query";
+import { fetchAllUsers } from "@/app/lib/database/GlobalDataRepository";
+import { useForm, Controller } from "react-hook-form";
 
 type CreateCampaignFormProps = {
   open: boolean
   setOpenAction: Dispatch<SetStateAction<boolean>>
+}
+
+type CreateCampaignFormData = {
+  name: string
 }
 
 export function CreateCampaignForm({open, setOpenAction}: CreateCampaignFormProps){
@@ -25,6 +30,14 @@ export function CreateCampaignForm({open, setOpenAction}: CreateCampaignFormProp
     pb: 3,
   };
 
+  const { control, handleSubmit } = useForm<CreateCampaignFormData>({
+    defaultValues: {
+      name: ''
+    }
+  });
+
+  const onSubmit = handleSubmit((data) => console.log(data));
+
   const { data } = useQuery({
     queryKey: ['users'],
     queryFn: fetchAllUsers,
@@ -33,21 +46,21 @@ export function CreateCampaignForm({open, setOpenAction}: CreateCampaignFormProp
     throwOnError: false
   });
 
-  function submitForm(event: SubmitEvent<HTMLFormElement>) {
-    event.preventDefault();
-    console.log(new FormData(event.currentTarget).get('name'))
-
-    console.log(event.currentTarget);
-  }
-
   return <Modal
     open={open}
     onClose={() => setOpenAction(false)}
   >
-    <Box sx={{...style}} component={'form'} onSubmit={submitForm}>
-      <TextField
-        label={'Name'}
-        sx={{ width: '100%' }}
+    <Box sx={{...style}} component={'form'} onSubmit={onSubmit}>
+      <Controller
+        name='name'
+        control={control}
+        render={({ field }) =>
+          <TextField
+            sx={{width: '100%'}}
+            label={'Name'}
+            {...field}
+          />
+        }
       />
     </Box>
   </Modal>;
