@@ -20,6 +20,7 @@ export default function AuthWidget({ redirect_url, client_id }: AuthWidgetProps)
   const { data } = useQuery({
     queryKey: ['auth'],
     queryFn: authorizeWithNotesToken,
+    refetchOnMount: 'always',
     retry: false,
     throwOnError: false
   });
