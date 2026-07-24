@@ -10,7 +10,9 @@
     "start": "next start",
     "lint": "eslint",
     "prisma:pull": "prisma db pull",
-    "prisma:generate": "prisma generate"
+    "prisma:generate": "prisma generate",
+    "prisma:migrate:dev": "CONFIG_PROFILE=development prisma migrate dev",
+    "prisma:migrate:deploy": "CONFIG_PROFILE=production prisma migrate deploy"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",

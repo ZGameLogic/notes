@@ -1285,7 +1285,8 @@ export const EventsScalarFieldEnum = {
   user_id: 'user_id',
   action: 'action',
   time: 'time',
-  details: 'details'
+  details: 'details',
+  record_id: 'record_id'
 } as const
 
 export type EventsScalarFieldEnum = (typeof EventsScalarFieldEnum)[keyof typeof EventsScalarFieldEnum]
@@ -1299,11 +1300,12 @@ export const SortOrder = {
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
-export const JsonNullValueInput = {
+export const NullableJsonNullValueInput = {
+  DbNull: DbNull,
   JsonNull: JsonNull
 } as const
 
-export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
 
 
 export const QueryMode = {

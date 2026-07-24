@@ -1,10 +1,12 @@
 'use client';
 
 import { Dispatch, SetStateAction } from "react";
-import {Box, Button, Modal, Stack, TextField, Typography} from "@mui/material";
+import { Box, Button, Modal, Stack, TextField, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
-import { fetchAllUsers } from "@/app/lib/database/GlobalDataRepository";
 import { useForm, Controller } from "react-hook-form";
+import { getAllUsers } from "@/app/lib/GlobalDataService";
+import { authorizeWithNotesToken } from "@/app/lib/AuthenticationService";
+import {createCampaign} from "@/app/lib/CampaignService";
 
 type CreateCampaignFormProps = {
   open: boolean
@@ -30,20 +32,33 @@ export function CreateCampaignForm({open, setOpenAction}: CreateCampaignFormProp
     pb: 3,
   };
 
-  const { control, handleSubmit } = useForm<CreateCampaignFormData>({
+  const { control, handleSubmit, reset } = useForm<CreateCampaignFormData>({
     defaultValues: {
       name: ''
     }
   });
 
-  const onSubmit = handleSubmit((data) => console.log(data));
-
   const { data: users } = useQuery({
     queryKey: ['users'],
-    queryFn: fetchAllUsers,
+    queryFn: getAllUsers,
     refetchOnMount: 'always',
     retry: false,
     throwOnError: false
+  });
+
+  const { data: authData } = useQuery({
+    queryKey: ['auth'],
+    queryFn: authorizeWithNotesToken,
+    retry: false,
+    throwOnError: false
+  });
+
+  const onSubmit = handleSubmit((data) => {
+    if(!authData) return;
+    createCampaign(data.name, authData.id).then(() => {
+      setOpenAction(false);
+      reset();
+    });
   });
 
   return <Modal

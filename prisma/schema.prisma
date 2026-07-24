@@ -114,6 +114,9 @@ model campaign_players {
 enum EventType {
   create
   update
+  delete
+  add
+  remove
 }
 
 model events {
@@ -121,6 +124,7 @@ model events {
   user_id       BigInt
   action        EventType
   time          DateTime  @db.Timestamp(6)
-  details       Json      @db.JsonB
+  details       Json?     @db.JsonB
+  record_id     String?   @db.Uuid
   eventsTousers users     @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "event_user_fk")
 }

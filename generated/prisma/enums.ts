@@ -20,7 +20,10 @@ export type CampaignRole = (typeof CampaignRole)[keyof typeof CampaignRole]
 
 export const EventType = {
   create: 'create',
-  update: 'update'
+  update: 'update',
+  delete: 'delete',
+  add: 'add',
+  remove: 'remove'
 } as const
 
 export type EventType = (typeof EventType)[keyof typeof EventType]

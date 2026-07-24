@@ -39,6 +39,7 @@ export type EventsMinAggregateOutputType = {
   user_id: bigint | null
   action: $Enums.EventType | null
   time: Date | null
+  record_id: string | null
 }
 
 export type EventsMaxAggregateOutputType = {
@@ -46,6 +47,7 @@ export type EventsMaxAggregateOutputType = {
   user_id: bigint | null
   action: $Enums.EventType | null
   time: Date | null
+  record_id: string | null
 }
 
 export type EventsCountAggregateOutputType = {
@@ -54,6 +56,7 @@ export type EventsCountAggregateOutputType = {
   action: number
   time: number
   details: number
+  record_id: number
   _all: number
 }
 
@@ -71,6 +74,7 @@ export type EventsMinAggregateInputType = {
   user_id?: true
   action?: true
   time?: true
+  record_id?: true
 }
 
 export type EventsMaxAggregateInputType = {
@@ -78,6 +82,7 @@ export type EventsMaxAggregateInputType = {
   user_id?: true
   action?: true
   time?: true
+  record_id?: true
 }
 
 export type EventsCountAggregateInputType = {
@@ -86,6 +91,7 @@ export type EventsCountAggregateInputType = {
   action?: true
   time?: true
   details?: true
+  record_id?: true
   _all?: true
 }
 
@@ -180,7 +186,8 @@ export type EventsGroupByOutputType = {
   user_id: bigint
   action: $Enums.EventType
   time: Date
-  details: runtime.JsonValue
+  details: runtime.JsonValue | null
+  record_id: string | null
   _count: EventsCountAggregateOutputType | null
   _avg: EventsAvgAggregateOutputType | null
   _sum: EventsSumAggregateOutputType | null
@@ -211,7 +218,8 @@ export type eventsWhereInput = {
   user_id?: Prisma.BigIntFilter<"events"> | bigint | number
   action?: Prisma.EnumEventTypeFilter<"events"> | $Enums.EventType
   time?: Prisma.DateTimeFilter<"events"> | Date | string
-  details?: Prisma.JsonFilter<"events">
+  details?: Prisma.JsonNullableFilter<"events">
+  record_id?: Prisma.UuidNullableFilter<"events"> | string | null
   eventsTousers?: Prisma.XOR<Prisma.UsersScalarRelationFilter, Prisma.usersWhereInput>
 }
 
@@ -220,7 +228,8 @@ export type eventsOrderByWithRelationInput = {
   user_id?: Prisma.SortOrder
   action?: Prisma.SortOrder
   time?: Prisma.SortOrder
-  details?: Prisma.SortOrder
+  details?: Prisma.SortOrderInput | Prisma.SortOrder
+  record_id?: Prisma.SortOrderInput | Prisma.SortOrder
   eventsTousers?: Prisma.usersOrderByWithRelationInput
 }
 
@@ -232,7 +241,8 @@ export type eventsWhereUniqueInput = Prisma.AtLeast<{
   user_id?: Prisma.BigIntFilter<"events"> | bigint | number
   action?: Prisma.EnumEventTypeFilter<"events"> | $Enums.EventType
   time?: Prisma.DateTimeFilter<"events"> | Date | string
-  details?: Prisma.JsonFilter<"events">
+  details?: Prisma.JsonNullableFilter<"events">
+  record_id?: Prisma.UuidNullableFilter<"events"> | string | null
   eventsTousers?: Prisma.XOR<Prisma.UsersScalarRelationFilter, Prisma.usersWhereInput>
 }, "event_id">
 
@@ -241,7 +251,8 @@ export type eventsOrderByWithAggregationInput = {
   user_id?: Prisma.SortOrder
   action?: Prisma.SortOrder
   time?: Prisma.SortOrder
-  details?: Prisma.SortOrder
+  details?: Prisma.SortOrderInput | Prisma.SortOrder
+  record_id?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.eventsCountOrderByAggregateInput
   _avg?: Prisma.eventsAvgOrderByAggregateInput
   _max?: Prisma.eventsMaxOrderByAggregateInput
@@ -257,14 +268,16 @@ export type eventsScalarWhereWithAggregatesInput = {
   user_id?: Prisma.BigIntWithAggregatesFilter<"events"> | bigint | number
   action?: Prisma.EnumEventTypeWithAggregatesFilter<"events"> | $Enums.EventType
   time?: Prisma.DateTimeWithAggregatesFilter<"events"> | Date | string
-  details?: Prisma.JsonWithAggregatesFilter<"events">
+  details?: Prisma.JsonNullableWithAggregatesFilter<"events">
+  record_id?: Prisma.UuidNullableWithAggregatesFilter<"events"> | string | null
 }
 
 export type eventsCreateInput = {
   event_id: string
   action: $Enums.EventType
   time: Date | string
-  details: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  details?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  record_id?: string | null
   eventsTousers: Prisma.usersCreateNestedOneWithoutEventsInput
 }
 
@@ -273,14 +286,16 @@ export type eventsUncheckedCreateInput = {
   user_id: bigint | number
   action: $Enums.EventType
   time: Date | string
-  details: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  details?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  record_id?: string | null
 }
 
 export type eventsUpdateInput = {
   event_id?: Prisma.StringFieldUpdateOperationsInput | string
   action?: Prisma.EnumEventTypeFieldUpdateOperationsInput | $Enums.EventType
   time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  details?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  details?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  record_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   eventsTousers?: Prisma.usersUpdateOneRequiredWithoutEventsNestedInput
 }
 
@@ -289,7 +304,8 @@ export type eventsUncheckedUpdateInput = {
   user_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   action?: Prisma.EnumEventTypeFieldUpdateOperationsInput | $Enums.EventType
   time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  details?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  details?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  record_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type eventsCreateManyInput = {
@@ -297,14 +313,16 @@ export type eventsCreateManyInput = {
   user_id: bigint | number
   action: $Enums.EventType
   time: Date | string
-  details: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  details?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  record_id?: string | null
 }
 
 export type eventsUpdateManyMutationInput = {
   event_id?: Prisma.StringFieldUpdateOperationsInput | string
   action?: Prisma.EnumEventTypeFieldUpdateOperationsInput | $Enums.EventType
   time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  details?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  details?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  record_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type eventsUncheckedUpdateManyInput = {
@@ -312,7 +330,8 @@ export type eventsUncheckedUpdateManyInput = {
   user_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   action?: Prisma.EnumEventTypeFieldUpdateOperationsInput | $Enums.EventType
   time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  details?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  details?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  record_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type EventsListRelationFilter = {
@@ -331,6 +350,7 @@ export type eventsCountOrderByAggregateInput = {
   action?: Prisma.SortOrder
   time?: Prisma.SortOrder
   details?: Prisma.SortOrder
+  record_id?: Prisma.SortOrder
 }
 
 export type eventsAvgOrderByAggregateInput = {
@@ -342,6 +362,7 @@ export type eventsMaxOrderByAggregateInput = {
   user_id?: Prisma.SortOrder
   action?: Prisma.SortOrder
   time?: Prisma.SortOrder
+  record_id?: Prisma.SortOrder
 }
 
 export type eventsMinOrderByAggregateInput = {
@@ -349,6 +370,7 @@ export type eventsMinOrderByAggregateInput = {
   user_id?: Prisma.SortOrder
   action?: Prisma.SortOrder
   time?: Prisma.SortOrder
+  record_id?: Prisma.SortOrder
 }
 
 export type eventsSumOrderByAggregateInput = {
@@ -405,14 +427,16 @@ export type eventsCreateWithoutEventsTousersInput = {
   event_id: string
   action: $Enums.EventType
   time: Date | string
-  details: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  details?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  record_id?: string | null
 }
 
 export type eventsUncheckedCreateWithoutEventsTousersInput = {
   event_id: string
   action: $Enums.EventType
   time: Date | string
-  details: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  details?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  record_id?: string | null
 }
 
 export type eventsCreateOrConnectWithoutEventsTousersInput = {
@@ -449,35 +473,40 @@ export type eventsScalarWhereInput = {
   user_id?: Prisma.BigIntFilter<"events"> | bigint | number
   action?: Prisma.EnumEventTypeFilter<"events"> | $Enums.EventType
   time?: Prisma.DateTimeFilter<"events"> | Date | string
-  details?: Prisma.JsonFilter<"events">
+  details?: Prisma.JsonNullableFilter<"events">
+  record_id?: Prisma.UuidNullableFilter<"events"> | string | null
 }
 
 export type eventsCreateManyEventsTousersInput = {
   event_id: string
   action: $Enums.EventType
   time: Date | string
-  details: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  details?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  record_id?: string | null
 }
 
 export type eventsUpdateWithoutEventsTousersInput = {
   event_id?: Prisma.StringFieldUpdateOperationsInput | string
   action?: Prisma.EnumEventTypeFieldUpdateOperationsInput | $Enums.EventType
   time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  details?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  details?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  record_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type eventsUncheckedUpdateWithoutEventsTousersInput = {
   event_id?: Prisma.StringFieldUpdateOperationsInput | string
   action?: Prisma.EnumEventTypeFieldUpdateOperationsInput | $Enums.EventType
   time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  details?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  details?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  record_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type eventsUncheckedUpdateManyWithoutEventsTousersInput = {
   event_id?: Prisma.StringFieldUpdateOperationsInput | string
   action?: Prisma.EnumEventTypeFieldUpdateOperationsInput | $Enums.EventType
   time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  details?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  details?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  record_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -488,6 +517,7 @@ export type eventsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   action?: boolean
   time?: boolean
   details?: boolean
+  record_id?: boolean
   eventsTousers?: boolean | Prisma.usersDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["events"]>
 
@@ -497,6 +527,7 @@ export type eventsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   action?: boolean
   time?: boolean
   details?: boolean
+  record_id?: boolean
   eventsTousers?: boolean | Prisma.usersDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["events"]>
 
@@ -506,6 +537,7 @@ export type eventsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   action?: boolean
   time?: boolean
   details?: boolean
+  record_id?: boolean
   eventsTousers?: boolean | Prisma.usersDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["events"]>
 
@@ -515,9 +547,10 @@ export type eventsSelectScalar = {
   action?: boolean
   time?: boolean
   details?: boolean
+  record_id?: boolean
 }
 
-export type eventsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"event_id" | "user_id" | "action" | "time" | "details", ExtArgs["result"]["events"]>
+export type eventsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"event_id" | "user_id" | "action" | "time" | "details" | "record_id", ExtArgs["result"]["events"]>
 export type eventsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   eventsTousers?: boolean | Prisma.usersDefaultArgs<ExtArgs>
 }
@@ -538,7 +571,8 @@ export type $eventsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     user_id: bigint
     action: $Enums.EventType
     time: Date
-    details: runtime.JsonValue
+    details: runtime.JsonValue | null
+    record_id: string | null
   }, ExtArgs["result"]["events"]>
   composites: {}
 }
@@ -968,6 +1002,7 @@ export interface eventsFieldRefs {
   readonly action: Prisma.FieldRef<"events", 'EventType'>
   readonly time: Prisma.FieldRef<"events", 'DateTime'>
   readonly details: Prisma.FieldRef<"events", 'Json'>
+  readonly record_id: Prisma.FieldRef<"events", 'String'>
 }
     
 
