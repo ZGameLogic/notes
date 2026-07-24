@@ -5,7 +5,7 @@ import {IconButton, ListItemIcon, Menu, MenuItem} from "@mui/material";
 import {MouseEvent, useState} from "react";
 import AddIcon from '@mui/icons-material/Add';
 import AssignmentIcon from '@mui/icons-material/Assignment';
-import {CreateCampaignForm} from "@/app/components/header/CreateCampaignForm";
+import {CreateCampaignForm} from "@/components/header/CreateCampaignForm";
 
 export function MenuWidget(){
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);

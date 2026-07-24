@@ -1,12 +1,12 @@
-import { configService } from "@/app/lib/ConfigService";
+import { configService } from "@/lib/ConfigService";
 import {Cron} from "croner";
-import {refreshExpiredTokens} from "@/app/lib/AuthenticationService";
+import {refreshExpiredTokens} from "@/lib/AuthenticationService";
 
 export async function register() {
   await configService.init();
 
   if (process.env.NEXT_RUNTIME === "nodejs") {
-    const {databaseService} = await import("@/app/lib/DatabaseService");
+    const {databaseService} = await import("@/lib/DatabaseService");
     await databaseService.init();
   }
 

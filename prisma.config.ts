@@ -2,7 +2,7 @@
 // npm install --save-dev prisma dotenv
 import "dotenv/config";
 import { defineConfig } from "prisma/config";
-import { configService } from "./app/lib/ConfigService";
+import { configService } from "./lib/ConfigService";
 
 process.env.CONFIG_PROFILE = process.env.CONFIG_PROFILE || 'development';
 await configService.init();

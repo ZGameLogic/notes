@@ -4,9 +4,9 @@ import { Dispatch, SetStateAction } from "react";
 import { Box, Button, Modal, Stack, TextField, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { useForm, Controller } from "react-hook-form";
-import { getAllUsers } from "@/app/lib/GlobalDataService";
-import { authorizeWithNotesToken } from "@/app/lib/AuthenticationService";
-import {createCampaign} from "@/app/lib/CampaignService";
+import { getAllUsers } from "@/lib/GlobalDataService";
+import { authorizeWithNotesToken } from "@/lib/AuthenticationService";
+import {createCampaign} from "@/lib/CampaignService";
 
 type CreateCampaignFormProps = {
   open: boolean

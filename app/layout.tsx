@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import {ReactNode, Suspense} from "react";
 import ThemeWrapper from "@/app/ThemeWrapper";
 import {AppRouterCacheProvider} from "@mui/material-nextjs/v13-appRouter";
-import AppHeader from "@/app/components/header/AppHeader";
-import QueryProvider from "@/app/components/global/QueryProvider";
+import AppHeader from "@/components/header/AppHeader";
+import QueryProvider from "@/components/global/QueryProvider";
 
 import "./globals.css";
 

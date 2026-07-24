@@ -7,9 +7,9 @@ import {
   Toolbar,
   Typography
 } from "@mui/material";
-import SearchBar from "@/app/components/header/search/SearchBar";
-import AuthWidget from "@/app/components/header/AuthWidget";
-import {MenuWidget} from "@/app/components/header/MenuWidget";
+import SearchBar from "@/components/header/search/SearchBar";
+import AuthWidget from "@/components/header/AuthWidget";
+import {MenuWidget} from "@/components/header/MenuWidget";
 
 type AppHeaderProps = {
   redirect_url: string

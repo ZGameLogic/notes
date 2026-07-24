@@ -1,5 +1,5 @@
 import {auth_data} from "@/generated/prisma/client";
-import {DiscordAuthenticationResponse, DiscordUserResponse} from "@/app/lib/DiscordService";
+import {DiscordAuthenticationResponse, DiscordUserResponse} from "@/lib/DiscordService";
 
 async function fetchExpiringDiscordTokens(): Promise<auth_data[]> {
   if (!databaseService?.prisma) return [];

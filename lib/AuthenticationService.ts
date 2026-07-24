@@ -1,12 +1,12 @@
 'use server';
 
-import {fetchExpiringDiscordTokens, findByNotesToken, saveUserAuthData, deleteByNotesToken} from "@/app/lib/database/AuthDataRepository";
+import {fetchExpiringDiscordTokens, findByNotesToken, saveUserAuthData, deleteByNotesToken} from "@/lib/database/AuthDataRepository";
 import {
   authorizeWithDiscordCode,
   authorizeWithDiscordRefreshToken,
   getDiscordUserFromDiscordToken,
   revokeToken
-} from "@/app/lib/DiscordService";
+} from "@/lib/DiscordService";
 import { cookies } from 'next/headers';
 
 export type AuthenticationData = {

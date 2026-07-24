@@ -4,7 +4,7 @@ import {Divider, FormControl, InputAdornment, InputLabel, MenuItem, OutlinedInpu
 import {Search} from "@mui/icons-material";
 import {useState} from "react";
 import {useQuery, useQueryClient} from "@tanstack/react-query";
-import {getAllCampaigns} from "@/app/lib/GlobalDataService";
+import {getAllCampaigns} from "@/lib/GlobalDataService";
 
 export default function SearchBar(){
   const [searchQuery, setSearchQuery] = useState('');

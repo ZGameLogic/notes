@@ -4,7 +4,7 @@ import {Avatar, ButtonBase, IconButton, ListItemIcon, Menu, MenuItem, Stack, Typ
 import {MouseEvent, useEffect, useMemo, useState} from "react";
 import {Logout} from "@mui/icons-material";
 import {usePathname, useRouter, useSearchParams} from "next/navigation";
-import {authorizeWithCode, authorizeWithNotesToken, logout} from "@/app/lib/AuthenticationService";
+import {authorizeWithCode, authorizeWithNotesToken, logout} from "@/lib/AuthenticationService";
 import {useQuery, useQueryClient} from "@tanstack/react-query";
 
 type AuthWidgetProps = {
