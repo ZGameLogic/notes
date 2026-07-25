@@ -3,18 +3,13 @@
 import {Divider, FormControl, InputAdornment, InputLabel, MenuItem, OutlinedInput, Paper, Select} from "@mui/material";
 import {Search} from "@mui/icons-material";
 import {useState} from "react";
-import {useQuery, useQueryClient} from "@tanstack/react-query";
+import {useQuery} from "@tanstack/react-query";
 import {getAllCampaigns} from "@/lib/GlobalDataService";
+import useLocalData from "@/components/useLocalData";
 
 export default function SearchBar(){
   const [searchQuery, setSearchQuery] = useState('');
-  const queryClient = useQueryClient();
-  const { data: selectedCampaignId } = useQuery({
-    queryKey: ['camp_id'],
-    retry: false,
-    throwOnError: false,
-    queryFn: () => null
-  });
+  const[campId, setCampId] = useLocalData<string>('camp_id');
 
   const { data: campaigns } = useQuery({
     queryKey: ['campaigns'],
@@ -32,7 +27,7 @@ export default function SearchBar(){
     }}
   >
     <OutlinedInput
-      placeholder={selectedCampaignId ? 'Search' : 'Select campaign first ->'}
+      placeholder={campId ? 'Search' : 'Select campaign first ->'}
       endAdornment={
         <InputAdornment position="end">
           <Search />
@@ -44,7 +39,7 @@ export default function SearchBar(){
       }}
       value={searchQuery}
       onChange={(e) => setSearchQuery(e.target.value)}
-      disabled={!selectedCampaignId}
+      disabled={!campId}
     />
     <Divider orientation="vertical" flexItem />
     <FormControl>
@@ -53,8 +48,8 @@ export default function SearchBar(){
         label={'Campaign'}
         variant="standard"
         disableUnderline
-        value={selectedCampaignId ?? ""}
-        onChange={(e) => queryClient.setQueryData(['camp_id'], e.target.value)}
+        value={campId ?? ""}
+        onChange={(e) => setCampId(e.target.value)}
         sx={{ px: 2, minWidth: 220 }}
       >
         {campaigns && campaigns.map(camp => <MenuItem key={camp.id} value={camp.id}>{camp.name}</MenuItem>)}
