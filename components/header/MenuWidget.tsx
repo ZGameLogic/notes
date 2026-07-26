@@ -6,11 +6,20 @@ import {MouseEvent, useState} from "react";
 import AddIcon from '@mui/icons-material/Add';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import {CreateCampaignForm} from "@/components/header/CreateCampaignForm";
+import {useQuery} from "@tanstack/react-query";
+import {authorizeWithNotesToken} from "@/lib/AuthenticationService";
 
 export function MenuWidget(){
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const [createCampaignOpen, setCreateCampaignOpen] = useState(false);
+
+  const { data: authData } = useQuery({
+    queryKey: ['auth'],
+    queryFn: authorizeWithNotesToken,
+    retry: false,
+    throwOnError: false
+  });
 
   return <>
     <IconButton
@@ -36,10 +45,13 @@ export function MenuWidget(){
         <ListItemIcon> <AssignmentIcon /> </ListItemIcon>
         My Campaigns
       </MenuItem>
-      <MenuItem onClick={() => {
-        setAnchorEl(null);
-        setCreateCampaignOpen(true)
-      }}>
+      <MenuItem
+        disabled={!authData}
+        onClick={() => {
+          setAnchorEl(null);
+          setCreateCampaignOpen(true)
+        }}
+      >
         <ListItemIcon> <AddIcon /> </ListItemIcon>
         Create Campaign
       </MenuItem>
