@@ -7,8 +7,12 @@ export default function useLocalData<T>(key: string, initialValue?: T): [T | und
     if(!window.localStorage) return;
     const v = window.localStorage.getItem(key);
     if(v === null) return;
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setValue(JSON.parse(v));
+    try {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setValue(JSON.parse(v));
+    } catch {
+      window.localStorage.removeItem(key);
+    }
   }, []);
   
   useEffect(() => {
