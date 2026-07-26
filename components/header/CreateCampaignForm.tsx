@@ -5,7 +5,6 @@ import { Box, Button, Modal, Stack, TextField, Typography } from "@mui/material"
 import { useQuery } from "@tanstack/react-query";
 import { useForm, Controller } from "react-hook-form";
 import { getAllUsers } from "@/lib/GlobalDataService";
-import { authorizeWithNotesToken } from "@/lib/AuthenticationService";
 import {createCampaign} from "@/lib/CampaignService";
 
 type CreateCampaignFormProps = {
@@ -46,16 +45,8 @@ export function CreateCampaignForm({open, setOpenAction}: CreateCampaignFormProp
     throwOnError: false
   });
 
-  const { data: authData } = useQuery({
-    queryKey: ['auth'],
-    queryFn: authorizeWithNotesToken,
-    retry: false,
-    throwOnError: false
-  });
-
   const onSubmit = handleSubmit((data) => {
-    if(!authData) return;
-    createCampaign(data.name, authData.id).then(() => {
+    createCampaign(data.name).then(() => {
       setOpenAction(false);
       reset();
     });
