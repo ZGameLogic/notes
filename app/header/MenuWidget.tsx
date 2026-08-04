@@ -5,7 +5,7 @@ import {IconButton, ListItemIcon, Menu, MenuItem} from "@mui/material";
 import {MouseEvent, useState} from "react";
 import AddIcon from '@mui/icons-material/Add';
 import AssignmentIcon from '@mui/icons-material/Assignment';
-import {CreateCampaignForm} from "@/components/header/CreateCampaignForm";
+import {CreateCampaignForm} from "@/app/header/CreateCampaignForm";
 import {useQuery} from "@tanstack/react-query";
 import {authorizeWithNotesToken} from "@/lib/AuthenticationService";
 

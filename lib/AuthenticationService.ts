@@ -52,6 +52,33 @@ export async function authorizeWithNotesToken(): Promise<AuthenticationData | un
   const authData = await findByNotesToken(notes_token);
   const userData = await getDiscordUserFromDiscordToken(authData.discord_token);
 
+  (await cookies()).set({
+    name: 'id',
+    value: BigInt(authData.discord_id).toString(),
+    httpOnly: true,
+    path: '/',
+    secure: process.env.NODE_ENV === 'production',
+    maxAge: 2147483647
+  });
+
+  (await cookies()).set({
+    name: 'username',
+    value: userData.username,
+    httpOnly: true,
+    path: '/',
+    secure: process.env.NODE_ENV === 'production',
+    maxAge: 2147483647
+  });
+
+  (await cookies()).set({
+    name: 'avatar',
+    value: userData.avatar,
+    httpOnly: true,
+    path: '/',
+    secure: process.env.NODE_ENV === 'production',
+    maxAge: 2147483647
+  });
+
   return {
     id: BigInt(authData.discord_id).toString(),
     username: userData.username,

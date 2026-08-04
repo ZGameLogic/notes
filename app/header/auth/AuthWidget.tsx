@@ -54,13 +54,6 @@ export default function AuthWidget({ redirect_url, client_id }: AuthWidgetProps)
       onClick={(event: MouseEvent<HTMLElement>) => setAnchorEl(event.currentTarget)}
       sx={{ p: '1%' }}
     >
-      <Stack direction={'row'} spacing={1} sx={{alignItems: 'center'}}>
-        <Typography>{data.username}</Typography>
-        <Avatar
-          sx={{ width: 24, height: 24 }}
-          src={`https://cdn.discordapp.com/avatars/${data.id}/${data.avatar}.png?size=56`}
-        />
-      </Stack>
     </ButtonBase>
     <Menu
       open={open}

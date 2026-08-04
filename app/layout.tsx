@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import {ReactNode, Suspense} from "react";
 import ThemeWrapper from "@/app/ThemeWrapper";
 import {AppRouterCacheProvider} from "@mui/material-nextjs/v13-appRouter";
-import AppHeader from "@/components/header/AppHeader";
+import AppHeader from "@/app/header/AppHeader";
 import QueryProvider from "@/components/global/QueryProvider";
 
 import "./globals.css";
+import AuthAvatar from "@/app/header/auth/AuthAvatar";
 
 export const dynamic = "force-dynamic";
 
@@ -22,6 +23,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
           <QueryProvider>
             <ThemeWrapper>
               <AppHeader redirect_url={process.env['discord.redirect-url'] ?? ''} client_id={process.env['discord.client.id'] ?? ''} />
+              <AuthAvatar />
               {children}
             </ThemeWrapper>
           </QueryProvider>
