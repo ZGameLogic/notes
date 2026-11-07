@@ -1,4 +1,4 @@
-import {campaigns, users} from "@/generated/prisma/client";
+import {campaigns, record_types, users} from "@/generated/prisma/client";
 
 async function fetchAllCampaigns(): Promise<campaigns[]> {
   if (!databaseService?.prisma) return [];
@@ -10,4 +10,9 @@ async function fetchAllUsers(): Promise<users[]> {
   return await databaseService.prisma.users.findMany();
 }
 
-export { fetchAllCampaigns, fetchAllUsers };
+async function fetchAllRecordTypes(): Promise<record_types[]> {
+  if (!databaseService?.prisma) return [];
+  return await databaseService.prisma.record_types.findMany();
+}
+
+export { fetchAllCampaigns, fetchAllUsers, fetchAllRecordTypes };

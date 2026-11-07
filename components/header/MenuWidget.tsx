@@ -13,6 +13,7 @@ export function MenuWidget(){
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const [createCampaignOpen, setCreateCampaignOpen] = useState(false);
+  const [createRecordOpen, setCreateRecordOpen] = useState(false);
 
   const { data: authData } = useQuery({
     queryKey: ['auth'],
@@ -37,7 +38,13 @@ export function MenuWidget(){
       anchorEl={anchorEl}
       onClose={() => setAnchorEl(null)}
     >
-      <MenuItem>
+      <MenuItem
+        disabled={!authData}
+        onClick={() => {
+          setAnchorEl(null);
+          setCreateRecordOpen(true)
+        }}
+      >
         <ListItemIcon> <AddIcon /> </ListItemIcon>
         Create Record
       </MenuItem>
